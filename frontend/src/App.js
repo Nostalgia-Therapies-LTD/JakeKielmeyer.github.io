@@ -1,24 +1,48 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./component/Navbar";
+
+//mui stuff
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+
+//pages
+import Home from "./pages/home";
+import Slide from "./component/Slide";
+import Footer from "./component/Footer";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: "KOW, sans-serif",
+  },
+  palette: {
+    primary: {
+      main: "#0f499d",
+    },
+    secondary: {
+      main: "#18a3f8",
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Nostalgia
-        </a>
-      </header>
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <Router>
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/puzzle">
+              <Slide />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </Router>
+    </MuiThemeProvider>
   );
 }
 

@@ -1,13 +1,37 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+
+/* @import url("https://fonts.googleapis.com/css?family=Josefin+Sans"); */
+
+@font-face {
+  font-family: KOJ;
+  src: url(../src/fonts/KnockoutHTF30JuniorWelterwt.otf);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: KOW;
+  src: url(../src/fonts/KnockoutHTF50Welterweight.otf);
+}
+
+@font-face {
+  font-family: Leviathan;
+  src: url(../src/fonts/Leviathan-HTF-Black.otf);
+}
+
+body,
+html,
+#root {
+  flex-grow: 1;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
