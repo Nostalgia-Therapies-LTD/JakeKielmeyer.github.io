@@ -21,7 +21,7 @@
 
 @font-face {
   font-family: Leviathan;
-  src: url(../src/fonts/Leviathan-HTF-Black.otf);
+  src: url(../src/fonts/Leviathan-HTF-Black-Italic.otf);
 }
 
 body,
@@ -34,4 +34,12 @@ html,
 a {
   text-decoration: none;
   color: inherit;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(transparent, #3fa9f5);
 }
