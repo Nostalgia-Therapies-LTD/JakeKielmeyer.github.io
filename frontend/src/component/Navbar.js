@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     color: "#3fa9f5",
     fontSize: "1rem",
     fontFamily: "Leviathan",
+    textTransform: "capitalize",
   },
 
   navContainer: {
