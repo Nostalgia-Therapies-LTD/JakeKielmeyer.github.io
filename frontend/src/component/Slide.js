@@ -1,25 +1,53 @@
 import React, { useState } from "react";
 import images from "./imageService";
+import pupper from "../images/Pupper.jpg";
 
 //components
 import PuzzleCard from "../component/PuzzleCard";
 import Puzzle from "../pages/Puzzle";
 
-//react-slick-carousel
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { settings } from "./sliderSettings";
-
 //mui stuff
-import { withStyles } from "@material-ui/core/";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
+import GridList from "@material-ui/core/GridList";
+import Box from "@material-ui/core/Box";
+import CssBaseLine from "@material-ui/core/CssBaseline";
 
 const styles = () => ({
-  slider: {
-    padding: "10px",
-    marginTop: "80px",
+  welcome: {
+    color: "white",
+    display: "flex",
+    paddingLeft: "4rem",
+    minHeight: "600px",
+    backgroundSize: "cover",
+    backgroundImage: `url(${pupper})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  },
+
+  content: {
     marginBottom: "100px",
+    padding: "80px 0px 200px 0px",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    minHeight: "800px",
+  },
+
+  slider: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    margin: "60px 40px 200px 0px",
+  },
+
+  gridList: {
+    flexWrap: "nowrap",
+    transform: "translateZ(0)",
+
+    "&::-webkit-scrollbar": {
+      width: "2px",
+    },
   },
 });
 
@@ -91,29 +119,44 @@ function Slide(props) {
   };
 
   return (
-    <div style={{ marginBottom: "100px", textAlign: "center" }}>
-      <Typography variant="h2" color="primary">
-        {" "}
-        Puzzle
-      </Typography>
-      <div className={classes.slider}>
-        <Slider {...settings}>
-          {images.map((image) => {
-            return (
-              <PuzzleCard
-                key={image.id}
-                src={image.src}
-                id={image.id}
-                handleClick={splitter}
-              />
-            );
-          })}
-        </Slider>
-        <canvas id="canvas" style={{ display: "none" }}></canvas>
+    <>
+      <div className={classes.welcome}>
+        <CssBaseLine />
+        <Box mt={9}>
+          <Typography variant="h4">Puzzle</Typography>
+          <Box mt={5}>
+            <Typography variant="h5">Puppies and more in this</Typography>
+            <Typography variant="h5">new Nostalgic Moments album</Typography>
+          </Box>
+        </Box>
       </div>
+      <div className={classes.content}>
+        <Typography
+          variant="h4"
+          style={{ color: "white", paddingLeft: "4rem" }}
+        >
+          {" "}
+          Animals{" "}
+        </Typography>
+        <div className={classes.slider}>
+          <GridList className={classes.gridList} cols={2.5}>
+            {images.map((image) => {
+              return (
+                <PuzzleCard
+                  key={image.id}
+                  src={image.src}
+                  id={image.id}
+                  handleClick={splitter}
+                />
+              );
+            })}
+          </GridList>
+          <canvas id="canvas" style={{ display: "none" }}></canvas>
+        </div>
 
-      <Puzzle puzzlePiecesProps={puzzlePiecesState} />
-    </div>
+        <Puzzle puzzlePiecesProps={puzzlePiecesState} />
+      </div>
+    </>
   );
 }
 
