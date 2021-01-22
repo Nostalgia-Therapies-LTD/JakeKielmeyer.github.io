@@ -44,9 +44,11 @@ function Navbar() {
         <Button color="inherit" className={classes.navLink}>
           Music{" "}
         </Button>
-        <Button color="inherit" className={classes.navLink}>
-          Video{" "}
-        </Button>
+        <Link to="/video">
+          <Button color="inherit" className={classes.navLink}>
+            Video
+          </Button>
+        </Link>
         <Button color="inherit" className={classes.navLink}>
           Photos{" "}
         </Button>
