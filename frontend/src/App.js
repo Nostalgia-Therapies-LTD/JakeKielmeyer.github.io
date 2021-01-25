@@ -10,6 +10,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import Home from "./pages/home";
 import Slide from "./component/Slide";
 import Footer from "./component/Footer";
+import Video from "./pages/Video";
+import Photo from "./pages/Photo"
 
 const theme = createMuiTheme({
   typography: {
@@ -35,9 +37,15 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
+            <Route exact path="/photo">
+              <Photo />
+            </Route>
             <Route exact path="/puzzle">
               <Slide />
             </Route>
+            {/* <Route exact path="/video">
+              <Video />
+            </Route> */}
           </Switch>
         </div>
         <Footer />
