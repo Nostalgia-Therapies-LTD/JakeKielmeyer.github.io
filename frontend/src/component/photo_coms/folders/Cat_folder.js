@@ -8,9 +8,9 @@ function Cat_folder() {
   return (
     <div className="App">
     <div className="title">
-        <h2>Animals</h2></div>
-      <ImgGrid1 props="Cats" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal1 props="Cats" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+        <h2>Cute Cats</h2></div>
+      <ImgGrid1 props="cats" setselectedImg={setselectedImg}  />
+      {selectedImg  && <Modal1 props="cats" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import useFirestore from "../../../hooks/useFirestore";
 
 
 function Modal({selectedImg, setselectedImg}) {
-const { docs, imgarr } = useFirestore ('images');
+const { docs, imgarr } = useFirestore ("images");
 
  const handleClick = (e)=> {
     setselectedImg(null);

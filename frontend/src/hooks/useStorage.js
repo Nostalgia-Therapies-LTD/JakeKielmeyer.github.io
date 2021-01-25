@@ -10,8 +10,8 @@ const useStorage = (file) => {
     
     useEffect(() => {
         const time = new Date().getMilliseconds();
-        const storageRef= storage.ref(file.name + time);
-        const collectionref= db.collection("images")
+        const storageRef= storage.ref('/photofolders/nature').child(file.name);
+        const collectionref= db.collection("nature")
         storageRef.put(file).on('state_changed',(snapshot)=>{
            console.log(snapshot);
         }, (err)=>{
@@ -20,7 +20,7 @@ const useStorage = (file) => {
         async() =>{
             const url= await storageRef.getDownloadURL();
             const createdAt=timestamp();
-            const imgname= file.name+time;
+            const imgname= file.name;
             collectionref.add({url :url , createdAt: createdAt, name:imgname});
             seturl(url);
         }
