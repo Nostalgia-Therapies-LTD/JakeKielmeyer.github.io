@@ -1,0 +1,536 @@
+.ui.inverted.menu {
+  background: #5e707a !important;
+}
+
+.ui.header {
+  font-size: 4.5rem !important;
+  font-weight: 300 !important;
+  line-height: 1.2 !important;
+  padding-bottom: 3rem !important;
+}
+
+.ui.label {
+  background-color: white !important;
+}
+
+h3.ui.center.aligned.header.display-3.text-center.pb-5 {
+  font-size: 42px !important;
+  padding-bottom: 10px !important;
+  padding-top: 30px !important;
+  font-family: leviathan;
+
+  animation: fadeIn ease 5s;
+  -webkit-animation: fadeIn ease 5s;
+  -moz-animation: fadeIn ease 5s;
+  -o-animation: fadeIn ease 5s;
+  -ms-animation: fadeIn ease 5s;
+}
+
+button.ui.icon.button.videoAddButton {
+  position: absolute !important;
+  display: inherit !important;
+  right: 0px;
+  margin-top: 184px;
+  background: transparent !important;
+}
+
+i.heart.outline.icon {
+  color: white !important;
+}
+
+i.heart.outline.icon:hover {
+  color: red !important;
+}
+
+i.heart.icon {
+  color: red !important;
+}
+
+i.trash.alternate.outline.icon {
+  color: white !important;
+}
+
+i.trash.alternate.outline.icon:hover {
+  color: red !important;
+}
+
+.ui.inverted.segment {
+  background: black;
+}
+
+.saveToButton {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.specificButtons {
+  border-radius: 0 0.28571429rem 0.28571429rem 0 !important;
+}
+
+div.column {
+  margin: 10px 10px !important;
+}
+
+div.two.column.row {
+  position: sticky !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-top: auto !important;
+  margin-left: 12% !important;
+}
+
+button.ui.icon.left.labeled.button.leftUiButton {
+  padding: 11px 0px 11px 40px !important;
+}
+
+button.ui.icon.right.labeled.button.rightUiButton {
+  padding: 11px 40px 11px 0px !important;
+}
+
+.ui.segment {
+  border: none !important;
+  padding: 0px !important;
+  margin: 0px 0 10px 0px !important;
+  -webkit-box-shadow: 0px 0px 0px 0px !important;
+}
+
+.ui.segment.pushable {
+  min-height: 100vh;
+}
+
+/* Texfield style */
+.rootText {
+  display: flex;
+  flex-wrap: wrap;
+}
+.marginText {
+  margin: 1px;
+}
+.withoutLabelText {
+  margin-top: 3px;
+}
+.textFieldText {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 562px;
+  height: 5ch !important;
+}
+
+.PrivateNotchedOutline-root-1.MuiOutlinedInput-notchedOutline {
+  border-radius: 5px !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .videoSearch {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+.MuiOutlinedInput-root:hover .videoSearch {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input {
+  padding: 10px 10px 10px 10px !important;
+}
+
+.MuiInputLabel-animated.MuiInputLabel-outlined {
+  transform: translate(14px, 12px) scale(1);
+  transform-origin: top left !important;
+}
+
+.videoSearch {
+  color: rgba(0, 0, 0, 0.2);
+  right: -20px;
+}
+.videoSearch:hover {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.manueOpen {
+  color: rgba(0, 0, 0, 0.8);
+  padding: 5px 5px 5px 5px !important;
+  font-size: 40px !important;
+}
+.manueOpenButton {
+  color: rgba(0, 0, 0, 0.8);
+  top: -5px;
+  right: 5px;
+  padding: 5px 5px 5px 5px !important;
+}
+
+button:focus {
+  outline: 0px !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+.MuiCardMedia-root.videocardmedia {
+  position: relative;
+  height: auto !important;
+  width: auto !important;
+}
+
+.videocard {
+  position: relative !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  display: inline-block;
+}
+
+.videoTitle {
+  padding: 10px 10px 10px 25px !important;
+}
+.videoLike {
+  padding: 10px !important;
+  height: 30px !important;
+}
+
+.playVideoButtonIcon {
+  width: 50px !important;
+  height: 50px !important;
+  color: black;
+  opacity: 0.4;
+  position: absolute;
+  top: 80px !important;
+  left: 125px !important;
+}
+
+.shareButtonVideo {
+  font-style: unset;
+  color: cornflowerblue !important;
+  font-weight: bold !important;
+}
+.thumbsupButtonVideo {
+  padding: 5px !important;
+  margin: 10px !important;
+}
+.thumbdownButtonVideo {
+  padding: 5px !important;
+  margin: 10px !important;
+}
+
+.videoPlayer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  position: absolute;
+  cursor: pointer;
+}
+.videoItself {
+  width: 100% !important;
+  position: relative;
+  object-fit: fill;
+  outline: none;
+  display: flex;
+}
+.closeButton {
+  font-size: 1000px !important;
+  color: #fefefe !important;
+  position: absolute !important;
+  top: 0px !important;
+  right: 0px !important;
+  z-index: 20;
+}
+
+.videoImages {
+  height: 15rem;
+  width: 10rem;
+  padding: 0px !important;
+}
+
+element.style {
+  margin-left: -3px !important;
+}
+
+#imageContainers {
+  text-align: center;
+  height: 210px;
+  top: 0px;
+  position: relative;
+}
+.prevButton {
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  position: absolute !important;
+  padding: 95px 10px 94px 10px !important;
+  bottom: 0px;
+  left: 0px !important;
+  border: none;
+  overflow: hidden !important;
+  outline: 0;
+  font-size: 0;
+  line-height: 0;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1 !important;
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+}
+
+.nextButton {
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  position: absolute !important;
+  padding: 95px 10px 94px 10px !important;
+  bottom: 0px;
+  right: 0px !important;
+  border: none;
+  overflow: hidden !important;
+  outline: 0;
+  font-size: 0;
+  line-height: 0;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1 !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.nextButton > span {
+  color: #fefefe;
+}
+.prevButton > span {
+  color: #fefefe;
+}
+* {
+  box-sizing: border-box;
+}
+
+.playButtons {
+  position: absolute !important;
+  bottom: 30% !important;
+  left: 20% !important;
+  color: rgba(144, 184, 68, 0.54) !important;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 5rem !important;
+}
+.splide__pagination__page {
+  width: 0px !important;
+}
+
+.BrainhubCarousel__arrowLeft span {
+  transform: translate(-50%, -50%) rotate(-135deg) !important;
+  margin-left: 2.45px;
+}
+
+#videoFile {
+  display: none;
+  outline: none;
+  z-index: 12;
+  min-width: 100%;
+  min-height: 100%;
+}
+.videoPlayer {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  background-color: black;
+}
+
+#videoFile::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+#videoFile::-internal-media-controls-download-button {
+  display: none;
+}
+
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+
+.splide--draggable > .splide__track > .splide__list > .splide__slide {
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  position: relative !important;
+}
+#prevDivWrapper {
+  position: absolute;
+  left: 0px;
+  height: 15rem;
+  background-color: white;
+  z-index: 20;
+}
+#nextDivWrapper {
+  position: absolute;
+  right: 0px;
+  height: 15rem;
+  background-color: white;
+  z-index: 20;
+}
+
+.carousel {
+  border-radius: 5px;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 0;
+}
+
+#prev,
+#next {
+  display: flex;
+  background: white;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  outline: 0;
+  cursor: pointer;
+  position: absolute;
+}
+
+#prev {
+  left: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  bottom: 0px !important;
+}
+
+#next {
+  right: 0;
+}
+.content {
+  display: grid;
+  grid-auto-columns: calc((100% - 4 * 6px) / 5);
+  grid-gap: 6px;
+  grid-auto-flow: column;
+  margin: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+}
+.flexContainer {
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.splide__arrow--prev > svg + path {
+  color: black !important;
+  right: 0px !important;
+}
+.carousel-items {
+  background-position: top center;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+}
+
+.splide__arrow--next {
+  right: 0em;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  padding: 105px 0px 105px 0px !important;
+  width: 35px !important;
+  top: 105px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.splide__arrow--prev {
+  left: 0em;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  padding: 105px 0px 105px 0px !important;
+  width: 35px !important;
+  top: 105px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.container {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Media */
+/* ======================================================================== */
+
+@media only screen and (max-width: 825px) {
+  .textFieldText {
+    width: 80%;
+    height: 5ch !important;
+  }
+}
+
+@media only screen and (min-width: 422px) {
+  /* add later */
+}

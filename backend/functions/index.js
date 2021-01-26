@@ -21,6 +21,19 @@ firebase.initializeApp(config);
 
 const db = admin.firestore();
 
+//Authentication Validation
+const FBAuth = (req, res, next) => {
+  let idToken;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer ")
+  ) {
+    idToken = req.headers.authorization.split("Bearer ")[1];
+  } else {
+    return res.status(403).json({ error: "The user is Unauthorized" });
+  }
+};
+
 //signup route
 
 app.post("/signup", (req, res) => {
