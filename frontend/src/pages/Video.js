@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import pupper from "../images/Pupper.jpg";
-import ContentRow from "../component/ContentRow";
+import VideoSlider from "../component/VideoSlider";
 
 //dummy backend service
 import radioImage from "../services/imageService";
@@ -13,9 +13,21 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import IconButton from "@material-ui/core/IconButton";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import Skeleton from "@material-ui/lab/Skeleton";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+
+//axios
+import axios from "axios";
+
+//External Styles
+import "../css/videoStyle.css";
 
 const useStyles = makeStyles({
   welcome: {
+    position: "relative",
     color: "white",
     display: "flex",
     paddingLeft: "4rem",
@@ -28,9 +40,11 @@ const useStyles = makeStyles({
   },
 
   contents: {
+    position: "relative",
     color: "white",
     minHeight: "800px",
-    paddingLeft: "4rem",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
     paddingTop: "3rem",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
@@ -40,15 +54,20 @@ const useStyles = makeStyles({
   },
 
   rowsTitle: {
+    // position: "relative",
     paddingBottom: "40px",
     justifyContent: "space-around",
   },
 });
 
 function Video() {
+  const [allUrls, setallUrls] = useState(null);
+
   const classes = useStyles();
+
   return (
-    <React.Fragment>
+    // <React.Fragment>
+    <div>
       <div className={classes.welcome}>
         <CssBaseLine />
         <Box mt={9}>
@@ -56,54 +75,18 @@ function Video() {
         </Box>
       </div>
       <div className={classes.contents}>
+        <VideoSlider genre="horror" />
+        <VideoSlider genre="animation" />
+        <VideoSlider genre="action" />
+        {/* {testGeturl} */}
+        {/* <button onClick={calculation}>Increment </button>
         <ContentRow rowName="Bonanza" images={radioImage} />
         <ContentRow rowName="Historical Moments" images={momentImage} />
-        <ContentRow rowName="Commercials" images={tvImage} />
+        <ContentRow rowName="Commercials" images={tvImage} /> */}
       </div>
-    </React.Fragment>
+    </div>
+    // </React.Fragment>
   );
-  //   const testGettingURLs = () => {
-  //     let genre = "horror";
-  //     let st = Firebase.storage();
-  //     var url = null;
-  //     var allurl = [];
-  //     axios
-  //       .get(`/getInfo/${genre}`)
-  //       .then((res) => {
-  //         return res.data;
-  //       })
-  //       .then((val) => {
-  //         val.map((dat) => {
-  //           st.refFromURL(dat.imageurl)
-  //             .getDownloadURL()
-  //             .then((urll) => {
-  //               return urll;
-  //             })
-  //             .then((rest) => {
-  //               st.refFromURL(dat.movieurl)
-  //                 .getDownloadURL()
-  //                 .then((url) => {
-  //                   let obj = { imageurll: rest, movieurll: url };
-  //                   // allUrl.push(obj);
-  //                   if (this.state.allUrls) allurl = this.state.allUrls;
-  //                   allurl.push(obj);
-  //                   //add allurl to allUrls
-  //                   this.setState({ allUrls: allurl }, () => {
-  //                     console.log("test:", this.state.allUrls);
-  //                   });
-  //                 });
-  //             });
-  //         });
-  //       })
-  //       // .then(() => {
-  //       //   callback();
-  //       // })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-
-  //     // return allurl;
-  //   };
 }
 
 export default Video;
