@@ -67,6 +67,7 @@ function Puzzle(props) {
       <Grid
         container
         justify="center"
+        id="puzzleBoard"
         style={{ display: puzzleTiles.length <= null ? "none" : "" }}
       >
         <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
@@ -91,8 +92,8 @@ function Puzzle(props) {
                       {...provided.droppableProps}
                       ref={provided.innerRef}
                       style={{
-                        width: puzzlePiecesLength,
-                        height: puzzlePiecesLength,
+                        width: puzzlePiecesLength + 2,
+                        height: puzzlePiecesLength + 2,
                         display: "flex",
                         flexWrap: "wrap",
                         border: "1px solid white",
@@ -152,8 +153,8 @@ function Puzzle(props) {
                       ref={provided.innerRef}
                       draggable={false}
                       style={{
-                        width: puzzlePiecesLength,
-                        height: puzzlePiecesLength,
+                        width: puzzlePiecesLength + 2,
+                        height: puzzlePiecesLength + 2,
                         display: "flex",
                         flexWrap: "wrap",
                         border: "1px solid white",
