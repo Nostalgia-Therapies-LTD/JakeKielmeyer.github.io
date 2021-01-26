@@ -116,6 +116,8 @@ function Slide(props) {
     background = canvas.toDataURL();
 
     setPuzzlePiecesState({ pieces, background });
+
+    window.location.href = "#puzzleBoard";
   };
 
   return (
