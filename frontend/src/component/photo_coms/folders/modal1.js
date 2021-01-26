@@ -23,7 +23,7 @@ const { docs, imgarr } = useFirestore (props);
               autoPlay={false}
               fullHeightHover={false}
               animation={'fade'}
-              timeout={200}
+              timeout={12}
               indicatorContainerProps={{style:{width:"0px", height:"0px", 
              marginTop:'60%'}}}
               navButtonsAlwaysVisible={true}

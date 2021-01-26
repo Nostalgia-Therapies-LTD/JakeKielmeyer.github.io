@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ImgGrid1 from "./imgGrid1"
 import Modal1 from './modal1';
-import Navbar from "../../Navbar"
+
 
 function Dog_folder() {
     const [selectedImg, setselectedImg] = useState();

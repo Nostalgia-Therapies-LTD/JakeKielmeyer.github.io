@@ -118,6 +118,7 @@ label:hover{
 /* modal styles */
 .backdrop{
   position: fixed;
+  z-index: 4012;
   top: 0;
   left: 0;
   width: 100%;
@@ -126,10 +127,11 @@ label:hover{
 }
 .backdrop img{
   display: block;
+  z-index: 4015;
   position: fixed;
   top:50%;
   left: 50%;
-  max-width: 100%;
+  max-width: 90%;
   max-height: 85%;
   transform: translate(-50%, -50%);
   box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
@@ -164,12 +166,12 @@ label:hover{
     background-color: rgba(30,30,36,0.8);
     color: rgba(255, 255, 255, 0.8); 
     width: 50%; 
-    padding: 12px 20px;
+    padding: 15px 20px;
     cursor: pointer;
     opacity: 0.8;
     border: transparent;
     margin:2px auto;
-   
+    
   }
   
   .close:hover {
