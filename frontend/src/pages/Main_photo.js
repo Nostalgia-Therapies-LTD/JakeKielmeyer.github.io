@@ -6,13 +6,10 @@ import Nature from "../../src/images/moments/Nature.jpg";
 
 
 
+
 function Main_photo(props) {
-     
   return (
     <div>
-       <div className="title ">
-      <h2>Photos</h2>
-    </div>
       <form className="form1">
      <button className="wrapper" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit" }}  ><img src={My_Moments} alt="My Moments"/></button>
       <button className="wrapper" onClick={()=>{props.history.push("/photo/Cats")}}><img src={erik} alt="cat"/></button>
@@ -20,6 +17,7 @@ function Main_photo(props) {
       <button className="wrapper" onClick={()=>{props.history.push("/photo/Dogs")}}><img src={Animals} alt="dog"/></button>
       </form>
     </div>
+    
   )
 }
 

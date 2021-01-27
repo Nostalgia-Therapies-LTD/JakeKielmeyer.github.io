@@ -7,26 +7,30 @@
 }
 
 /* base styles & title */
-body{
+/* body{
   font-family: "Noto Serif";
   color: var(--secondary);
   background-color: whitesmoke;
-}
+} */
 .App{
   max-width: 960px;
   margin: 0 auto;
-}
-.title h1{
+  margin-bottom: 100px;}
+  /* padding: 80px 0px 200px 0px ;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: "800px";} */
+  
+/* .title h1{
   color: var(--primary);
   font-size: 1.2rem;
   letter-spacing: 2px;
   font-weight: normal;
  
-}
-.title h2, .title p{
+} */
+/* .title h2, .title p{
   text-align: center;
-}
-.title h2{
+} */
+/* .title h2{
   margin-top: 2rem;
   margin-bottom:2rem;
   margin-left: 2%;
@@ -35,13 +39,12 @@ body{
   color:var(#4e4e4e);
   position: relative;
 
-}
+} */
 
 /* upload form styles */
 form{
   margin: 30px auto 10px;
   text-align: center;
- 
   
 }
 
