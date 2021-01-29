@@ -34,6 +34,11 @@ const useStyles = makeStyles({
       transform: "scale(1.04,1.04)",
     },
   },
+
+  divider: {
+    backgroundColor: "white",
+    marginBottom: "1rem",
+  },
 });
 
 function VideoSlider(props) {
@@ -47,10 +52,9 @@ function VideoSlider(props) {
   const [pageLoadCount, setpageLoadCount] = useState(0);
   const [buttonName, setbuttonName] = useState(null);
   const [runOnce, setrunOnce] = useState(true);
-  const [showVideo, setShowVideo] = useState(true);
 
   const body = (
-    <div className="videoPlayer" id="videoPlayer">
+    <div className="videoPlayer">
       <video
         autoplay="autoplay"
         allowfullscreen="true"
@@ -117,56 +121,19 @@ function VideoSlider(props) {
   }
 
   function closeVideoPage() {
-    const modalName = document.getElementById("videoPlayer");
+    const modalName = document.getElementById("myModal");
     const videoFile = document.getElementById("videoFile");
-
-    const elements = document.getElementsByClassName("flexContainer");
-    const videodivider = document.getElementsByClassName("videoDivider");
-    const videotitle = document.getElementsByClassName("videoTitle");
-    const appbar = document.getElementsByClassName("MuiAppBar-root");
-
     videoFile.pause();
     modalName.style.display = "none";
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "flex";
-    }
-    for (var j = 0; j < videodivider.length; j++) {
-      videodivider[j].style.display = "flex";
-    }
-    for (var k = 0; k < videotitle.length; k++) {
-      videotitle[k].style.display = "flex";
-    }
-    for (var m = 0; m < appbar.length; m++) {
-      appbar[m].style.display = "flex";
-    }
-    // setShowVideo(false);
   }
 
   function playVideo(name, token, location) {
     const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location}%2F${name}?alt=media&token=${token}`;
-    const elements = document.getElementsByClassName("flexContainer");
-    const videodivider = document.getElementsByClassName("videoDivider");
-    const videotitle = document.getElementsByClassName("videoTitle");
-    const appbar = document.getElementsByClassName("MuiAppBar-root");
-
-    const modalName = document.getElementById("videoPlayer");
+    const modalName = document.getElementById("myModal");
     const videoFileName = document.getElementById("videoFile");
     videoFileName.src = url;
-
-    videoFileName.style.display = "flex";
+    videoFileName.style.display = "block";
     modalName.style.display = "block";
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "none";
-    }
-    for (var j = 0; j < videodivider.length; j++) {
-      videodivider[j].style.display = "none";
-    }
-    for (var k = 0; k < videotitle.length; k++) {
-      videotitle[k].style.display = "none";
-    }
-    for (var m = 0; m < appbar.length; m++) {
-      appbar[m].style.display = "none";
-    }
   }
 
   useEffect(() => {
@@ -180,6 +147,8 @@ function VideoSlider(props) {
       const imageContainer = document.getElementsByClassName(
         `imageContainers${props.genre}`
       );
+      console.log("Length:", imageContainer.length);
+      console.log("available images:", carouselAvailableImages);
       setimageIndex(imageContainer.length - carouselAvailableImages);
     }
   }, [buttonName]);
@@ -191,8 +160,10 @@ function VideoSlider(props) {
     if (carousel) {
       width = carousel.offsetWidth;
       if (buttonName == "prev1" || buttonName == "prev2") {
+        console.log("img1:", imageIndex);
         carousel.scrollBy(-(width + gap), 0);
       } else if (buttonName == "next1" || buttonName == "next2") {
+        console.log("img2:", imageIndex);
         carousel.scrollBy(width + gap, 0);
       }
     }
@@ -200,11 +171,13 @@ function VideoSlider(props) {
 
   useEffect(() => {
     function handleResize() {
+      console.log("image index1:", imageIndex);
       const carousel = document.getElementById(`carousel${props.genre}`);
       const imageContainer = document.getElementsByClassName(
         `imageContainers${props.genre}`
       );
       if (carousel) {
+        console.log("image index:", imageIndex);
         carousel.scrollLeft = imageContainer[imageIndex].offsetLeft;
       }
     }
@@ -227,6 +200,8 @@ function VideoSlider(props) {
       let width = carousel.offsetWidth;
       setrunOnce(false);
       if (content.scrollWidth - width - gap <= carousel.scrollLeft) {
+        console.log("width me:", width);
+        console.log("width scroll:", content.scrollWidth);
         next.style.display = "none";
       } else {
         next.style.display = "flex";
@@ -240,6 +215,7 @@ function VideoSlider(props) {
   });
 
   useEffect(() => {
+    // let genre = "horror";
     axios
       .get(`/getInfo/${props.genre}`)
       .then((res) => {
@@ -247,6 +223,7 @@ function VideoSlider(props) {
       })
       .then((obj) => {
         axios.post(`/getInfoTest`, obj).then((info) => {
+          console.log("Hello everyone!", info.data);
           setallUrls(info.data);
         });
       })
@@ -310,14 +287,31 @@ function VideoSlider(props) {
   );
 
   return (
+    // <Grid>
     <div className="container">
-      <Typography variant="h4" component="h2" className="videoTitle">
+      <Typography variant="h4" component="h2">
         {props.genre}
       </Typography>
-      <Divider className="videoDivider" />
+      <Divider className={classes.divider} />
       {testGeturl}
-      {body}
+      <div className="modal" id="myModal">
+        <div className="modal-body">{body}</div>
+      </div>
+      {/* <Grid item xs={11} className={classes.rowsTitle}>
+        <Typography variant="h5">{props.rowName}</Typography>
+      </Grid>
+      <Grid item xs={1} className={classes.rowsTitle}>
+        <Typography variant="body1">view more</Typography>
+      </Grid> */}
+      {/* {props.images.map((image) => (
+        <Grid key={image.title} item xs={3}>
+          <a href="#">
+            <img src={image.url} alt={image.title} className={classes.image} />
+          </a>
+        </Grid>
+      ))} */}
     </div>
+    // </Grid>
   );
 }
 

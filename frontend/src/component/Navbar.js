@@ -11,7 +11,6 @@ const useStyles = makeStyles({
     background: "transparent",
     boxShadow: "none",
     paddingLeft: "2rem",
-    zIndex: 100000,
   },
 
   brandName: {
@@ -19,7 +18,6 @@ const useStyles = makeStyles({
     fontSize: "1rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
-    zIndex: 2,
   },
 
   navContainer: {
@@ -27,12 +25,10 @@ const useStyles = makeStyles({
     color: "white",
     width: "60vw",
     justifyContent: "space-between",
-    zIndex: 2,
   },
 
   navLink: {
     fontFamily: "KOJ",
-    zIndex: 2,
   },
 });
 
