@@ -37,6 +37,7 @@ const useStyles = makeStyles({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
+    zIndex: 1,
   },
 
   contents: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles({
     paddingRight: "1rem",
     paddingTop: "3rem",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
+    zIndex: 1,
   },
 
   rows: {
@@ -66,7 +68,6 @@ function Video() {
   const classes = useStyles();
 
   return (
-    // <React.Fragment>
     <div>
       <div className={classes.welcome}>
         <CssBaseLine />
@@ -78,14 +79,8 @@ function Video() {
         <VideoSlider genre="horror" />
         <VideoSlider genre="animation" />
         <VideoSlider genre="action" />
-        {/* {testGeturl} */}
-        {/* <button onClick={calculation}>Increment </button>
-        <ContentRow rowName="Bonanza" images={radioImage} />
-        <ContentRow rowName="Historical Moments" images={momentImage} />
-        <ContentRow rowName="Commercials" images={tvImage} /> */}
       </div>
     </div>
-    // </React.Fragment>
   );
 }
 
