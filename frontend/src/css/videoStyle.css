@@ -221,14 +221,16 @@ button:focus {
 }
 
 .videoPlayer {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   min-width: 100% !important;
   min-height: 100% !important;
-  position: absolute;
-  cursor: pointer;
+  z-index: 10000000000000000000000000 !important;
+  position: fixed !important;
+  /* cursor: pointer; */
 }
+
 .videoItself {
   width: 100% !important;
   position: relative;
@@ -237,8 +239,9 @@ button:focus {
   display: flex;
 }
 .closeButton {
-  font-size: 1000px !important;
-  color: #fefefe !important;
+  /* font-size: 1000px !important; */
+  /* display: none !important; */
+  color: #495cad !important;
   position: absolute !important;
   top: 0px !important;
   right: 0px !important;
@@ -325,9 +328,10 @@ element.style {
 }
 
 #videoFile {
+  position: relative;
   display: none;
   outline: none;
-  z-index: 12;
+  z-index: 12 !important;
   min-width: 100%;
   min-height: 100%;
 }
@@ -336,8 +340,15 @@ element.style {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 11;
+  z-index: 11 !important;
   background-color: black;
+}
+.videoDivider {
+  background-color: white !important;
+  margin-bottom: 1rem !important;
+}
+.videoTitle {
+  text-transform: capitalize;
 }
 
 #videoFile::-webkit-media-controls-fullscreen-button {
@@ -389,8 +400,8 @@ element.style {
 
 .modal {
   display: none;
-  position: absolute;
-  z-index: 0;
+  position: fixed !important;
+  z-index: 1000000000000000000000000000000000000000000000000000 !important;
   padding-top: 100px;
   left: 0;
   top: 0;
