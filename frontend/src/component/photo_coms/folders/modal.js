@@ -14,7 +14,7 @@ const { docs, imgarr } = useFirestore ("images");
     //let docid= docs.map(doc => doc.id)
     //let id = e.target.src(docid)
     db.collection("images").doc(selectedImg.id).delete();
-    var storeref=storage.ref(selectedImg.name)
+    var storeref=storage.ref('images').child(selectedImg.name)
     storeref.delete().then(function(){}).catch(function(error){});
     setselectedImg(null);
     

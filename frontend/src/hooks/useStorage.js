@@ -10,8 +10,8 @@ const useStorage = (file) => {
     
     useEffect(() => {
         const time = new Date().getMilliseconds();
-        const storageRef= storage.ref('/photofolders/nature').child(file.name);
-        const collectionref= db.collection("nature")
+        const storageRef= storage.ref('images').child(file.name);
+        const collectionref= db.collection("images")
         storageRef.put(file).on('state_changed',(snapshot)=>{
            console.log(snapshot);
         }, (err)=>{
