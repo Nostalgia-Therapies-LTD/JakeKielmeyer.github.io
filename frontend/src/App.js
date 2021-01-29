@@ -11,6 +11,7 @@ import Home from "./pages/home";
 import Slide from "./component/Slide";
 import Footer from "./component/Footer";
 import Video from "./pages/Video";
+import Photo from "./pages/Photo";
 
 const theme = createMuiTheme({
   typography: {
@@ -35,6 +36,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/photo">
+              <Photo />
             </Route>
             <Route exact path="/puzzle">
               <Slide />

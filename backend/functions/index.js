@@ -1,6 +1,13 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const fs = require("fs");
+const path = require("path");
+const cors = require("cors");
+const { filesUpload } = require("./middleware");
+const { v4: uuidv4 } = require("uuid");
+const { v1: uuidv1 } = require("uuid");
 const app = require("express")();
+app.use(cors());
 
 admin.initializeApp();
 
@@ -17,9 +24,11 @@ const config = {
 
 const firebase = require("firebase");
 const { firestore } = require("firebase-admin");
+const { ref } = require("firebase-functions/lib/providers/database");
 firebase.initializeApp(config);
 
 const db = admin.firestore();
+const storageRef = admin.storage().bucket();
 
 //Authentication Validation
 const FBAuth = (req, res, next) => {
@@ -29,6 +38,27 @@ const FBAuth = (req, res, next) => {
     req.headers.authorization.startsWith("Bearer ")
   ) {
     idToken = req.headers.authorization.split("Bearer ")[1];
+  } else {
+    return res.status(403).json({ error: "The user is Unauthorized" });
+  }
+};
+
+// Authentication Middleware
+const isAuthenticated = (req, res, next) => {
+  let idToken;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer ")
+  ) {
+    idToken = req.headers.authorization.split("Bearer ")[1];
+    admin
+      .auth()
+      .verifyIdToken(idToken)
+      .then((decodedToken) => {
+        const { uid } = decodedToken;
+        req.userId = uid;
+        next();
+      });
   } else {
     return res.status(403).json({ error: "The user is Unauthorized" });
   }
@@ -197,6 +227,50 @@ app.get("/getInfoTest", (req, res) => {
       });
       return res.json(tempUrl);
     });
+});
+
+app.post("/upload", isAuthenticated, filesUpload, (req, res) => {
+  const imageName = uuidv1();
+  const file = storageRef.file(
+    `userImages/${req.userId ?? 0}/${imageName}${path.extname(
+      req.files[0].originalname
+    )}`
+  );
+  const uuid = uuidv4();
+
+  file
+    .save(req.files[0].buffer, {
+      metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
+    })
+    .then(() => {
+      res.status(200).json({ publicUrl: file.publicUrl() });
+    })
+
+    .catch((err) => {
+      console.log(err);
+      res.status(403).json({ err: err });
+    });
+});
+
+app.get("/getdocs/:collection", async function (req, res) {
+  try {
+    const { collection } = req.params;
+    let docs = [];
+    let arr = [];
+    await db
+      .collection(collection)
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snap) => {
+        snap.forEach((doc) => {
+          docs.push({ ...doc.data(), id: doc.id });
+          arr.push(doc.id);
+          console.log(arr);
+        });
+      });
+    res.status(200).json({ docs: docs, arr: arr });
+  } catch (err) {
+    res.status(404).json({ err: err.toString });
+  }
 });
 
 exports.api = functions.https.onRequest(app);
