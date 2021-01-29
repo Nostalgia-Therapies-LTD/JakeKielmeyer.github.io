@@ -13,7 +13,7 @@ import GridList from "@material-ui/core/GridList";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 
-const styles = () => ({
+ const styles = () => ({
   welcome: {
     color: "white",
     display: "flex",
