@@ -14,7 +14,7 @@ import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   welcome: {
     color: "white",
     display: "flex",
@@ -69,4 +69,5 @@ function Home() {
   );
 }
 
-export default Home;
+export default  Home;
+

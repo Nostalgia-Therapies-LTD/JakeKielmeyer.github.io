@@ -47,12 +47,14 @@ function Navbar() {
         </Button>
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
-            Video
+            Video{" "}
           </Button>
         </Link>
+        <Link to="/photo">
         <Button color="inherit" className={classes.navLink}>
           Photos{" "}
         </Button>
+        </Link>
         <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle

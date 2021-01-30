@@ -6,16 +6,36 @@
   --error: #ff4a4a;
 }
 
+.welcome {
+  color: white;
+  display: flex;
+  padding-left: 4rem;
+  min-height: 600px;
+  background-size: cover;
+  background-image: url(images/Pupper.jpg);
+  background-Repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.Photocontent {
+  margin-bottom: 100px;
+  padding: 80px 0px 200px 0px;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: 800px;
+}
 /* base styles & title */
 /* body{
   font-family: "Noto Serif";
   color: var(--secondary);
   background-color: whitesmoke;
 } */
-.App{
+.PhotoApp{
   max-width: 960px;
   margin: 0 auto;
-  margin-bottom: 100px;}
+ }
+  
+
   /* padding: 80px 0px 200px 0px ;
   background-color: rgba(0, 0, 0, 0.9);
   min-height: "800px";} */
@@ -58,10 +78,10 @@ label{
   display: block;
   width: 30px;
   height: 30px;
-  border: 1px solid var(--primary);
+  border: 1px solid whitesmoke;
   border-radius: 50%;
   line-height: 30px;
-  color: var(--primary);
+  color: whitesmoke;
   font-weight: bold;
   font-size: relative;
   margin: 0;
@@ -72,11 +92,11 @@ label{
   transform: translate(-50%, -50%)
 }
 label:hover{
-  background: var(--primary);
+  background: rgb(124, 124, 124);
   color: rgba(255, 255, 255, 0.37);
 }
 .upload{
-  color: var(--secondary);
+  color: whitesmoke;
   font-weight: bold;
   font-size: 100%;
   margin: 0;
@@ -105,7 +125,7 @@ label:hover{
   /* padding controls height, will always be perfectly square regardless of width */
   position: relative;
   opacity:.9;
-  border: 2px solid var(--secondary);
+  border: 2px solid whitesmoke;
   
 }
 .img-wrap img{
@@ -122,7 +142,7 @@ label:hover{
 /* modal styles */
 .backdrop{
   position: fixed;
-  z-index: 4012;
+  z-index: 40012;
   top: 0;
   left: 0;
   width: 100%;
@@ -131,7 +151,7 @@ label:hover{
 }
 .backdrop img{
   display: block;
-  z-index: 4015;
+  z-index: 40015;
   position: fixed;
   top:50%;
   left: 50%;
