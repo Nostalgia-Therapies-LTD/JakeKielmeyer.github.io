@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+
+:root{
+  --primary: #efb6b2;
+  --secondary: #4e4e4e;
+  --error: #ff4a4a;
+}
+
+.welcome {
+  color: white;
+  display: flex;
+  padding-left: 4rem;
+  min-height: 600px;
+  background-size: cover;
+  background-image: url(images/Pupper.jpg);
+  background-Repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.Photocontent {
+  margin-bottom: 100px;
+  padding: 80px 0px 200px 0px;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: 800px;
+}
+/* base styles & title */
+/* body{
+  font-family: "Noto Serif";
+  color: var(--secondary);
+  background-color: whitesmoke;
+} */
+.PhotoApp{
+  max-width: 960px;
+  margin: 0 auto;
+ }
+  
+
+  /* padding: 80px 0px 200px 0px ;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: "800px";} */
+  
+/* .title h1{
+  color: var(--primary);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: normal;
+ 
+} */
+/* .title h2, .title p{
+  text-align: center;
+} */
+/* .title h2{
+  margin-top: 2rem;
+  margin-bottom:2rem;
+  margin-left: 2%;
+  margin-right: -2%;
+  font-size: 3rem;
+  color:var(#4e4e4e);
+  position: relative;
+
+} */
+
+/* upload form styles */
+form{
+  margin: 30px auto 10px;
+  text-align: center;
+  
+}
+
+label input{
+  height: 0;
+  width: 0;
+  opacity: 0;
+ 
+}
+label{
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+  line-height: 30px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: relative;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+label:hover{
+  background: rgb(124, 124, 124);
+  color: rgba(255, 255, 255, 0.37);
+}
+.upload{
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 100%;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+}
+
+
+
+/* image grid styles */
+.img-grid{
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-gap: 40px;
+}
+
+.img-wrap{
+  overflow: hidden;
+  height: 0;
+  padding: 50% 0;
+  /* padding controls height, will always be perfectly square regardless of width */
+  position: relative;
+  opacity:.9;
+  border: 2px solid whitesmoke;
+  
+}
+.img-wrap img{
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 105%;
+  max-height: 105%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+/* modal styles */
+.backdrop{
+  position: fixed;
+  z-index: 40012;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.952);
+}
+.backdrop img{
+  display: block;
+  z-index: 40015;
+  position: fixed;
+  top:50%;
+  left: 50%;
+  max-width: 90%;
+  max-height: 85%;
+  transform: translate(-50%, -50%);
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+ 
+}
+
+/*max-width: 60%;
+  max-height: 80%;
+  margin: 8% 20%;*/
+
+  /* .butn {
+    margin: 1% 1%;
+    float:right;
+    max-width: 100%;
+  
+  } */
+  .delete {
+    background-color:rgba(161, 9, 9, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    width: 50%;
+    padding: 12px ;
+    cursor: pointer;
+    opacity: 0.8;
+    border: transparent;
+  }
+
+  .delete:hover {
+    opacity:1;
+  }
+
+  .close {
+    background-color: rgba(30,30,36,0.8);
+    color: rgba(255, 255, 255, 0.8); 
+    width: 50%; 
+    padding: 15px 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    border: transparent;
+    margin:2px auto;
+    
+  }
+  
+  .close:hover {
+    opacity:1;
+  }
+  .form1 {
+    display: grid;
+    margin: 6rem 10rem ;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap: 2rem 2rem;
+    width: 40rem;
+    height: 40rem;
+    
+  }
+  .wrapper{
+    overflow: hidden;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    height:100%;
+
+  }
+  .wrapper img{
+    width: 100%;
+    height:100%;
+
+  }

@@ -51,20 +51,22 @@ function VideoSlider(props) {
 
   const body = (
     <div className="videoPlayer" id="videoPlayer">
-      <video
-        autoplay="autoplay"
-        allowfullscreen="true"
-        width="100%"
-        controls
-        controlsList="nodownload"
-        disablePictureInPicture
-        id="videoFile"
-      >
-        <source type="video/mp4" />
-      </video>
-      <IconButton className="closeButton" onClick={closeVideoPage}>
-        <CancelIcon fontSize="large" />
-      </IconButton>
+      <div className="videoWrapper" id="videoWrapper">
+        <video
+          autoplay="autoplay"
+          allowfullscreen="true"
+          width="100%"
+          controls
+          controlsList="nodownload"
+          disablePictureInPicture
+          id="videoFile"
+        >
+          <source type="video/mp4" />
+        </video>
+        <IconButton className="closeButton" onClick={closeVideoPage}>
+          <CancelIcon className="closeButtonIcon" />
+        </IconButton>
+      </div>
     </div>
   );
 
@@ -151,10 +153,12 @@ function VideoSlider(props) {
 
     const modalName = document.getElementById("videoPlayer");
     const videoFileName = document.getElementById("videoFile");
+    // const videoWrapper = document.getElementById("videoWrapper");
     videoFileName.src = url;
 
+    // videoWrapper.style.display = "flex";
     videoFileName.style.display = "flex";
-    modalName.style.display = "block";
+    modalName.style.display = "flex";
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";
     }

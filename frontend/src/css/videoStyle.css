@@ -1,3 +1,7 @@
+body,
+html {
+  height: 100%;
+}
 .ui.inverted.menu {
   background: #5e707a !important;
 }
@@ -220,17 +224,6 @@ button:focus {
   margin: 10px !important;
 }
 
-.videoPlayer {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  min-width: 100% !important;
-  min-height: 100% !important;
-  z-index: 10000000000000000000000000 !important;
-  position: fixed !important;
-  /* cursor: pointer; */
-}
-
 .videoItself {
   width: 100% !important;
   position: relative;
@@ -239,13 +232,11 @@ button:focus {
   display: flex;
 }
 .closeButton {
-  /* font-size: 1000px !important; */
-  /* display: none !important; */
-  color: #495cad !important;
+  color: white !important;
   position: absolute !important;
-  top: 0px !important;
-  right: 0px !important;
   z-index: 20;
+  right: 10px;
+  top: 0px;
 }
 
 .videoImages {
@@ -328,21 +319,38 @@ element.style {
 }
 
 #videoFile {
-  position: relative;
-  display: none;
-  outline: none;
-  z-index: 12 !important;
-  min-width: 100%;
-  min-height: 100%;
-}
-.videoPlayer {
-  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 11 !important;
+  position: absolute;
+  display: none;
+  outline: none;
+  z-index: 12 !important;
+  width: 100vw;
+  height: 95vh;
+}
+.videoPlayer {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
   background-color: black;
 }
+.videoWrapper {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 12 !important;
+  width: 100vw;
+  height: 100vh;
+}
+
 .videoDivider {
   background-color: white !important;
   margin-bottom: 1rem !important;
@@ -400,8 +408,8 @@ element.style {
 
 .modal {
   display: none;
-  position: fixed !important;
-  z-index: 1000000000000000000000000000000000000000000000000000 !important;
+  position: absolute;
+  z-index: 0;
   padding-top: 100px;
   left: 0;
   top: 0;
