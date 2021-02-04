@@ -66,7 +66,6 @@ function Video() {
   const classes = useStyles();
 
   return (
-    // <React.Fragment>
     <div>
       <div className={classes.welcome}>
         <CssBaseLine />
@@ -75,17 +74,11 @@ function Video() {
         </Box>
       </div>
       <div className={classes.contents}>
-        <VideoSlider genre="horror" />
+        <VideoSlider genre="Commercials" />
         <VideoSlider genre="animation" />
         <VideoSlider genre="action" />
-        {/* {testGeturl} */}
-        {/* <button onClick={calculation}>Increment </button>
-        <ContentRow rowName="Bonanza" images={radioImage} />
-        <ContentRow rowName="Historical Moments" images={momentImage} />
-        <ContentRow rowName="Commercials" images={tvImage} /> */}
       </div>
     </div>
-    // </React.Fragment>
   );
 }
 
