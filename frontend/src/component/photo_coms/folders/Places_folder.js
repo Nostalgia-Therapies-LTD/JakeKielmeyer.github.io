@@ -4,12 +4,16 @@ import Modal1 from './modal1';
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
-function Dog_folder() {
+
+
+
+
+function Places_folder() {
     const [selectedImg, setselectedImg] = useState();
- 
+      
   return (
     <div>
-       <div className="welcome"style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fdaniel-lincoln-u4SKJ1WN9AE-unsplash.jpg?alt=media&token=66231e5a-8361-465f-be32-8615d31b52e7)"}}>
+      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fplaces%2Fshan-elahi-DDiLYt_F88w-unsplash.jpg617?alt=media&token=91a772d8-9644-4c6b-9e5f-0c6e9e230875")'}}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h4">Photos</Typography>
@@ -25,15 +29,15 @@ function Dog_folder() {
        style={{ color: "white", paddingLeft: "4rem" }}
      >
        {" "}
-       Dashing Dogs {" "}
+       Popular Places {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="dogs" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal1 props="dogs" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="places" setselectedImg={setselectedImg}  />
+      {selectedImg  && <Modal1 props="places" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
     </div>
     </div>
     </div>
   );
 }
 
-export default Dog_folder;
+export default Places_folder;
