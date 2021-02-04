@@ -144,8 +144,8 @@ function VideoSlider(props) {
     // setShowVideo(false);
   }
 
-  function playVideo(name, token, location) {
-    const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location}%2F${name}?alt=media&token=${token}`;
+  function playVideo(token, location) {
+    const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location}?alt=media&token=${token}`;
     const elements = document.getElementsByClassName("flexContainer");
     const videodivider = document.getElementsByClassName("videoDivider");
     const videotitle = document.getElementsByClassName("videoTitle");
@@ -153,10 +153,8 @@ function VideoSlider(props) {
 
     const modalName = document.getElementById("videoPlayer");
     const videoFileName = document.getElementById("videoFile");
-    // const videoWrapper = document.getElementById("videoWrapper");
     videoFileName.src = url;
 
-    // videoWrapper.style.display = "flex";
     videoFileName.style.display = "flex";
     modalName.style.display = "flex";
     for (var i = 0; i < elements.length; i++) {
@@ -273,19 +271,13 @@ function VideoSlider(props) {
                   className="carousel-items"
                   id={`videoImageId${props.genre}`}
                   style={{
-                    backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2F${val.imageName}?alt=media&token=${val.imageToken})`,
+                    backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${val.imageLocation}?alt=media&token=${val.imageToken})`,
                   }}
                 ></div>
                 <IconButton className="playButtons">
                   <PlayCircleFilledIcon
                     fontSize="large"
-                    onClick={() =>
-                      playVideo(
-                        val.movieName,
-                        val.movieToken,
-                        val.movieLocation
-                      )
-                    }
+                    onClick={() => playVideo(val.movieToken, val.movieLocation)}
                   />
                 </IconButton>
               </div>
