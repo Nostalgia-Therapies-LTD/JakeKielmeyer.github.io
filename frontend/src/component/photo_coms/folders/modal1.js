@@ -21,7 +21,7 @@ const { docs, imgarr } = useFirestore (props);
             <Carousel
              index={imgarr.indexOf(selectedImg.id)}
               autoPlay={false}
-              fullHeightHover={false}
+              fullHeightHover={true}
               animation={'fade'}
               timeout={12}
               indicatorContainerProps={{style:{width:"0px", height:"0px", 

@@ -32,14 +32,14 @@ function Main_photo(props) {
           {" "}
           Categories {" "}
         </Typography>
-      <div >
-      <form className="form1">
-     <button className="photowrapper" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit" }}  ><img src={My_Moments} alt="My Moments"/></button>
-      <button className="photowrapper" onClick={()=>{props.history.push("/photo/Cats")}}><img src={erik} alt="cat"/></button>
-      <button className="photowrapper" onClick={()=>{props.history.push("/photo/Nature")}}> <img src={Nature} alt="Classic Cars"/></button>
-      <button className="photowrapper" onClick={()=>{props.history.push("/photo/Dogs")}}><img src={Animals} alt="dog"/></button>
-      <button className="photowrapper" onClick={()=>{props.history.push("/photo/Places")}}> <img src={rush} alt="Classic Cars"/></button>
-      <button className="photowrapper" onClick={()=>{props.history.push("/photo/Wildlife")}}><img src={panda} alt="dog"/></button>
+      <div className="PhotoApp" >
+      <form className="img-grid">
+     <button className="img-wrap" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit"}}  ><img src={My_Moments} alt="My Moments"/></button>
+      <button className="img-wrap" onClick={()=>{props.history.push("/photo/Cats")}}><img src={erik} alt="cat"/></button>
+      <button className="img-wrap" onClick={()=>{props.history.push("/photo/Nature")}}> <img src={Nature} alt="Classic Cars"/></button>
+      <button className="img-wrap" onClick={()=>{props.history.push("/photo/Dogs")}}><img src={Animals} alt="dog"/></button>
+      <button className="img-wrap" onClick={()=>{props.history.push("/photo/Places")}}> <img src={rush} alt="Classic Cars"/></button>
+      <button className="img-wrap" onClick={()=>{props.history.push("/photo/Wildlife")}}><img src={panda} alt="dog"/></button>
       </form>
       </div>
   </div>
