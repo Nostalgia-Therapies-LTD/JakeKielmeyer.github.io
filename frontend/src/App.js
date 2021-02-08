@@ -11,8 +11,9 @@ import Home from "./pages/home";
 import Slide from "./component/Slide";
 import Footer from "./component/Footer";
 import Video from "./pages/Video";
-import Main_photo from './pages/Main_photo';
-import My_moments from './pages/My_moments';
+import Music from "./pages/Music";
+import Main_photo from "./pages/Main_photo";
+import My_moments from "./pages/My_moments";
 import Cat_folder from "./component/photo_coms/folders/Cat_folder";
 import Dog_folder from "./component/photo_coms/folders/Dog_folder";
 import Nature_folder from "./component/photo_coms/folders/Nature_folder";
@@ -49,14 +50,25 @@ function App() {
             <Route exact path="/video">
               <Video />
             </Route>
-              <Route exact path="/photo" component={Main_photo}></Route>
-              <Route exact path="/photo/My moments" component={My_moments}></Route>
-              <Route exact path="/photo/Cats" component={Cat_folder}></Route>
-              <Route exact path="/photo/Dogs" component={Dog_folder}></Route>
-              <Route exact path="/photo/Nature" component={Nature_folder}></Route>
-              <Route exact path="/photo/Places" component={Places_folder}></Route>
-              <Route exact path="/photo/Wildlife" component={Wildlife_folder}></Route>
-               <Route exact path="/puzzle">
+            <Route exact path="/music">
+              <Music />
+            </Route>
+            <Route exact path="/photo" component={Main_photo}></Route>
+            <Route
+              exact
+              path="/photo/My moments"
+              component={My_moments}
+            ></Route>
+            <Route exact path="/photo/Cats" component={Cat_folder}></Route>
+            <Route exact path="/photo/Dogs" component={Dog_folder}></Route>
+            <Route exact path="/photo/Nature" component={Nature_folder}></Route>
+            <Route exact path="/photo/Places" component={Places_folder}></Route>
+            <Route
+              exact
+              path="/photo/Wildlife"
+              component={Wildlife_folder}
+            ></Route>
+            <Route exact path="/puzzle">
               <Slide />
             </Route>
           </Switch>

@@ -42,9 +42,11 @@ function Navbar() {
             Nostalgia Therapy
           </Button>
         </Link>{" "}
-        <Button color="inherit" className={classes.navLink}>
-          Music{" "}
-        </Button>
+        <Link to="/music">
+          <Button color="inherit" className={classes.navLink}>
+            Music{" "}
+          </Button>
+        </Link>
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
             Video
