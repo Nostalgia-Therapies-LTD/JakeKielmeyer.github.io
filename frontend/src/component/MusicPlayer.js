@@ -162,6 +162,7 @@ function MusicPlayer(props) {
             <audio
               controls
               controlsList="nodownload"
+              className="audioFiles"
               id={`musicAudio${props.folderName}`}
               onLoadStart={() => {
                 changeCounter();
