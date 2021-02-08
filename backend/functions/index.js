@@ -273,4 +273,49 @@ app.get("/getdocs/:collection", async function (req, res) {
   }
 });
 
+//Music modules
+app.get("/getMusicInfo", (req, res) => {
+  let arr = [];
+  let final = null;
+  let st = admin.storage().bucket();
+  st.getFiles()
+    .then((data) => {
+      data[0].map((dat) => {
+        if (dat.metadata.name.includes("musics")) {
+          let output = dat.metadata.name.split("/");
+          if (output[1] != "") arr.push(output[1]);
+          final = [...new Set(arr)];
+        }
+      });
+      return res.json(final);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+app.get("/getMusics/:foldername", (req, res) => {
+  let arr = [];
+  let final = null;
+  let st = admin.storage().bucket();
+  st.getFiles()
+    .then((data) => {
+      data[0].map((dat) => {
+        if (dat.metadata.name.includes(req.params.foldername)) {
+          let output = dat.metadata.name.split("/");
+          if (output[2] != "")
+            arr.push({
+              musicAdd: dat.metadata.name.replace(/\//g, "%2F"),
+              musicToken: dat.metadata.metadata.firebaseStorageDownloadTokens,
+            });
+        }
+      });
+      final = [...new Set(arr)];
+      return res.json(final);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 exports.api = functions.https.onRequest(app);
