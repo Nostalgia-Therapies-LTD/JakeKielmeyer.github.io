@@ -17,6 +17,8 @@ import My_moments from "./pages/My_moments";
 import Cat_folder from "./component/photo_coms/folders/Cat_folder";
 import Dog_folder from "./component/photo_coms/folders/Dog_folder";
 import Nature_folder from "./component/photo_coms/folders/Nature_folder";
+import Places_folder from "./component/photo_coms/folders/Places_folder";
+import Wildlife_folder from "./component/photo_coms/folders/Wildlife_folder";
 
 const theme = createMuiTheme({
   typography: {
@@ -60,6 +62,12 @@ function App() {
             <Route exact path="/photo/Cats" component={Cat_folder}></Route>
             <Route exact path="/photo/Dogs" component={Dog_folder}></Route>
             <Route exact path="/photo/Nature" component={Nature_folder}></Route>
+            <Route exact path="/photo/Places" component={Places_folder}></Route>
+            <Route
+              exact
+              path="/photo/Wildlife"
+              component={Wildlife_folder}
+            ></Route>
             <Route exact path="/puzzle">
               <Slide />
             </Route>

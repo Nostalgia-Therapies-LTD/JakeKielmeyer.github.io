@@ -49,7 +49,7 @@ function Navbar() {
         </Link>
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
-            Video{" "}
+            Video
           </Button>
         </Link>
         <Link to="/photo">

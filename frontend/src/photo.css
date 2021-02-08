@@ -36,30 +36,6 @@
  }
   
 
-  /* padding: 80px 0px 200px 0px ;
-  background-color: rgba(0, 0, 0, 0.9);
-  min-height: "800px";} */
-  
-/* .title h1{
-  color: var(--primary);
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  font-weight: normal;
- 
-} */
-/* .title h2, .title p{
-  text-align: center;
-} */
-/* .title h2{
-  margin-top: 2rem;
-  margin-bottom:2rem;
-  margin-left: 2%;
-  margin-right: -2%;
-  font-size: 3rem;
-  color:var(#4e4e4e);
-  position: relative;
-
-} */
 
 /* upload form styles */
 form{
@@ -112,9 +88,9 @@ label:hover{
 
 /* image grid styles */
 .img-grid{
-  margin: 20px auto;
+  margin: 20px 6%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr)) ;
   grid-gap: 40px;
 }
 
@@ -126,7 +102,7 @@ label:hover{
   position: relative;
   opacity:.9;
   border: 2px solid whitesmoke;
-  
+ 
 }
 .img-wrap img{
   min-width: 100%;
@@ -187,6 +163,7 @@ label:hover{
   }
 
   .close {
+    z-index: 500100;
     background-color: rgba(30,30,36,0.8);
     color: rgba(255, 255, 255, 0.8); 
     width: 50%; 
@@ -201,26 +178,24 @@ label:hover{
   .close:hover {
     opacity:1;
   }
-  .form1 {
+  /* .form1 {
+    margin: 20px auto;
     display: grid;
-    margin: 6rem 10rem ;
-    grid-template-columns: 1fr 1fr ;
-    grid-gap: 2rem 2rem;
-    width: 40rem;
-    height: 40rem;
-    
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr)) ;
+    grid-auto-rows: 1fr;
+    grid-gap: 2vw;
+    max-width: 300px;
   }
-  .wrapper{
-    overflow: hidden;
-    border:none;
+  .photowrapper{
+    display: flex;
+    flex-flow: column;
+    border:2px solid whitesmoke;
     outline: none;
     cursor: pointer;
+    padding:0px;
+  }
+
+  .photowrapper img{
     width: 100%;
     height:100%;
-
-  }
-  .wrapper img{
-    width: 100%;
-    height:100%;
-
-  }
+  } */

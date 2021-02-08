@@ -22,6 +22,13 @@ const config = {
   measurementId: "G-LE3W9VF6VC",
 };
 
+// to create the download url for images uploaded
+const createPersistentDownloadUrl = (bucket, pathToFile, downloadToken) => {
+  return `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${encodeURIComponent(
+    pathToFile
+  )}?alt=media&token=${downloadToken}`;
+};
+
 const firebase = require("firebase");
 const { firestore } = require("firebase-admin");
 const { ref } = require("firebase-functions/lib/providers/database");
@@ -229,49 +236,75 @@ app.get("/getInfoTest", (req, res) => {
     });
 });
 
-app.post("/upload", isAuthenticated, filesUpload, (req, res) => {
-  const imageName = uuidv1();
-  const file = storageRef.file(
-    `userImages/${req.userId ?? 0}/${imageName}${path.extname(
-      req.files[0].originalname
-    )}`
-  );
-  const uuid = uuidv4();
+app.post(
+  "/upload",
+  // isAuthenticated,
+  filesUpload,
+  async (req, res) => {
+    try {
+      // image name to hide from attackers
+      const imageName = uuidv1();
 
-  file
-    .save(req.files[0].buffer, {
-      metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
-    })
-    .then(() => {
-      res.status(200).json({ publicUrl: file.publicUrl() });
-    })
+      // access token for the images uploaded
+      const uuid = uuidv4();
 
-    .catch((err) => {
-      console.log(err);
-      res.status(403).json({ err: err });
-    });
-});
-
-app.get("/getdocs/:collection", async function (req, res) {
-  try {
-    const { collection } = req.params;
-    let docs = [];
-    let arr = [];
-    await db
-      .collection(collection)
-      .orderBy("createdAt", "desc")
-      .onSnapshot((snap) => {
-        snap.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id });
-          arr.push(doc.id);
-          console.log(arr);
-        });
+      // file reference
+      const file = storageRef.file(
+        `userImages/${req.userId ?? 0}/${imageName}${path.extname(
+          req.files[0].originalname
+        )}`
+      );
+      await file.save(req.files[0].buffer, {
+        metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
       });
-    res.status(200).json({ docs: docs, arr: arr });
-  } catch (err) {
-    res.status(404).json({ err: err.toString });
+
+      // store the details in firestore
+      // stored in users/userId/images collection
+      const fileUrl = createPersistentDownloadUrl(
+        config.storageBucket,
+        `userImages/${req.userId ?? 0}/${imageName}${path.extname(
+          req.files[0].originalname
+        )}`,
+        uuid
+      );
+      await db.collection(`users/${req.userId ?? 0}/images`).add({
+        url: fileUrl,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        name: `${imageName}${path.extname(req.files[0].originalname)}`,
+      });
+      res.status(200).json({ url: fileUrl });
+    } catch (error) {
+      return res.status(404).json({ error: error.toString() });
+    }
   }
-});
+);
+
+app.delete(
+  "/image",
+
+  //isAuthenticated,
+  async (req, res) => {
+    try {
+      // get the file name
+      const { name } = req.body;
+
+      // file reference
+      const file = storageRef.file(`userImages/${req.userId ?? 0}/${name}`);
+      // delete the file
+      await file.delete();
+      // remove the file document from the firestore
+      const querySnapshots = await db
+        .collection(`users/${req.userId ?? 0}/images`)
+        .where("name", "==", name)
+        .get();
+      querySnapshots.forEach((doc) => doc.ref.delete());
+
+      return res.status(200).json({ message: "Deleted the file successfully" });
+    } catch (error) {
+      return res.status(404).json({ error: error.toString() });
+    }
+  }
+);
 
 //Music modules
 app.get("/getMusicInfo", (req, res) => {

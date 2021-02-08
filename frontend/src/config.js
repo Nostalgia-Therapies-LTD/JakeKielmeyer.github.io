@@ -15,6 +15,7 @@ const config = {
 
 firebase.initializeApp(config);
 const storage = firebase.storage();
+const apiUrl = "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
 const db = firebase.firestore();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
-export { db, storage, timestamp };
+export { db, storage, timestamp, apiUrl };
