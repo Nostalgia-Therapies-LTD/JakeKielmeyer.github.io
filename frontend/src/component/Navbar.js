@@ -4,9 +4,9 @@ import ToolBar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-const useStyles = makeStyles({
+const styles = {
   appBar: {
     background: "transparent",
     boxShadow: "none",
@@ -30,10 +30,10 @@ const useStyles = makeStyles({
   navLink: {
     fontFamily: "KOJ",
   },
-});
+};
 
-function Navbar() {
-  const classes = useStyles();
+function Navbar(props) {
+  const { classes } = props;
   return (
     <AppBar position="absolute" className={classes.appBar}>
       <ToolBar className={classes.navContainer}>
@@ -67,4 +67,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default withStyles(styles)(Navbar);

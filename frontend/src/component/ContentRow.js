@@ -1,8 +1,8 @@
 import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const styles = {
   rows: {
     paddingBottom: "50px",
   },
@@ -21,10 +21,10 @@ const useStyles = makeStyles({
       transform: "scale(1.04,1.04)",
     },
   },
-});
+};
 
 function ContentRow(props) {
-  const classes = useStyles();
+  const { classes } = props;
   return (
     <Grid container className={classes.rows}>
       <Grid item xs={11} className={classes.rowsTitle}>
@@ -44,4 +44,4 @@ function ContentRow(props) {
   );
 }
 
-export default ContentRow;
+export default withStyles(styles)(ContentRow);

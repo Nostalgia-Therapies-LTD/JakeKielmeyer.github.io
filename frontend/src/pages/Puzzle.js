@@ -1,199 +1,179 @@
-import React from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import React, { useState } from "react";
+import images from "../component/imageService";
+import pupper from "../images/Pupper.jpg";
 
-//import mui stuff
-import Grid from "@material-ui/core/Grid";
+//components
+import PuzzleCard from "../component/PuzzleCard";
+import PuzzlePlay from "../component/PuzzlePlay";
 
-const shufflePieces = (pieces) => {
-  const shuffled = [...pieces];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let tmp = shuffled[i];
-    shuffled[i] = shuffled[j];
-    shuffled[j] = tmp;
-  }
-  return shuffled;
-};
+//mui stuff
+import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from "@material-ui/core/Typography";
+import GridList from "@material-ui/core/GridList";
+import Box from "@material-ui/core/Box";
+import CssBaseLine from "@material-ui/core/CssBaseline";
 
-function Puzzle(props) {
-  const { puzzlePiecesProps } = props;
-  const puzzlePieces = puzzlePiecesProps.pieces;
-  const puzzleBackground = puzzlePiecesProps.background;
+const styles = () => ({
+  welcome: {
+    color: "white",
+    display: "flex",
+    paddingLeft: "4rem",
+    minHeight: "600px",
+    backgroundSize: "cover",
+    backgroundImage: `url(${pupper})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  },
 
-  const puzzlePiecesLength = puzzlePieces.length === 16 ? 98 : 48;
+  content: {
+    marginBottom: "100px",
+    padding: "80px 0px 200px 0px",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    minHeight: "800px",
+  },
 
-  const puzzleTilesUnshuffled = puzzlePieces.map((puzzlePiece, index) => ({
-    id: `${index}`,
-    content: `${puzzlePiece}`,
-  }));
+  slider: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    margin: "60px 40px 200px 0px",
+  },
 
-  const puzzleTiles = shufflePieces(puzzleTilesUnshuffled);
+  gridList: {
+    flexWrap: "nowrap",
+    transform: "translateZ(0)",
 
-  const solveTiles = puzzlePieces.map((puzzlePiece, index) => ({
-    id: `${index} + ${puzzlePieces.length}`,
-    content: null,
-  }));
+    "&::-webkit-scrollbar": {
+      width: "2px",
+    },
+  },
+});
 
-  const handleDragEnd = (result) => {
-    //handling dropping puzzle piece outside the boards
-    if (result.destination === null) return;
+const Slide = (props) => {
+  const { classes } = props;
+  const [puzzlePiecesState, setPuzzlePiecesState] = useState({
+    pieces: [],
+    background: "",
+  });
 
-    //get destination board
-    const destination = result.destination.droppableId.startsWith("solve")
-      ? solveTiles[result.destination.index]
-      : puzzleTiles[result.destination.index];
+  const splitter = (imageId, tileNumber) => {
+    const canvas = document.getElementById("canvas");
+    const image = document.getElementById(imageId);
+    const tilePieceSide = image.naturalWidth / tileNumber;
 
-    //get source board
-    const source = result.source.droppableId.startsWith("solve")
-      ? solveTiles[result.source.index]
-      : puzzleTiles[result.source.index];
+    // 98px for 4x4 puzzle, 48px for 8x8 puzzle
+    const puzzlePieceSide = tileNumber === 4 ? "98" : "48";
+    canvas.width = puzzlePieceSide;
+    canvas.height = puzzlePieceSide;
 
-    //handling droping a piece in an non-empty box
-    if (destination.content !== null) return;
+    const pieces = [];
+    let background = " ";
 
-    //swapping the image contents between source and destination
-    destination.content = source.content;
-    source.content = null;
+    const context = canvas.getContext("2d");
+
+    //creating the puzzle tiles
+    for (let j = 0; j < tileNumber; j++) {
+      for (let i = 0; i < tileNumber; i++) {
+        //clearing any previous draw in canvas
+        context.clearRect(0, 0, puzzlePieceSide, puzzlePieceSide);
+
+        //drawing the puzzle tile in the canvas
+        context.drawImage(
+          image,
+          i * tilePieceSide,
+          j * tilePieceSide,
+          tilePieceSide,
+          tilePieceSide,
+          0,
+          0,
+          puzzlePieceSide,
+          puzzlePieceSide
+        );
+        //storing the tile piece to pieces array
+        pieces.push(canvas.toDataURL());
+      }
+    }
+
+    //creating the background for the solve board in puzzle
+    canvas.width = "400";
+    canvas.height = "400";
+
+    const anotherContext = canvas.getContext("2d");
+
+    //setting transperency for the background picture
+    anotherContext.globalAlpha = 0.4;
+
+    //drawing the background
+    anotherContext.drawImage(
+      image,
+      0,
+      0,
+      image.naturalWidth,
+      image.naturalHeight,
+      0,
+      0,
+      400,
+      400
+    );
+
+    //storing the background photo
+    background = canvas.toDataURL();
+    setPuzzlePiecesState({ pieces, background });
+
+    //scrolling to the puzzle board
+    window.location.href = "#puzzleBoard";
   };
 
   return (
-    <div
-      id="puzzle"
-      style={{
-        textAlign: "center",
-        // minHeight: "100vh",
-      }}
-    >
-      <Grid
-        container
-        justify="center"
-        id="puzzleBoard"
-        style={{ display: puzzleTiles.length <= null ? "none" : "" }}
-      >
-        <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
-          <Grid item sm={6} xs={12}>
-            <div
-              style={{
-                marginTop: 80,
-                margin: "auto",
-                width: 400,
-                height: 400,
-                display: "flex",
-                flexWrap: "wrap",
-                backgroundColor: "grey",
-                outline: "8px solid #0f499d",
-              }}
-            >
-              {puzzleTiles.map((tile, index) => (
-                <Droppable droppableId={"puzzle" + tile.id} key={tile.id}>
-                  {(provided, snapshot) => (
-                    <div
-                      key={tile.id}
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      style={{
-                        width: puzzlePiecesLength + 2,
-                        height: puzzlePiecesLength + 2,
-                        display: "flex",
-                        flexWrap: "wrap",
-                        border: "1px solid white",
-                        backgroundColor: snapshot.isDraggingOver
-                          ? "aliceblue"
-                          : null,
-                      }}
-                    >
-                      <Draggable
-                        key={tile.id}
-                        draggableId={tile.id}
-                        index={index}
-                        isDragDisabled={!tile.content}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={{
-                              width: puzzlePiecesLength,
-                              height: puzzlePiecesLength,
-                              backgroundImage: `url(${tile.content}`,
-                              ...provided.draggableProps.style,
-                            }}
-                          ></div>
-                        )}
-                      </Draggable>
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </div>
-          </Grid>
+    <>
+      {/* Top Banner with welcome note */}
+      <div className={classes.welcome}>
+        <CssBaseLine />
+        <Box mt={9}>
+          <Typography variant="h4">Puzzle</Typography>
+          <Box mt={5}>
+            <Typography variant="h5">Puppies and more in this</Typography>
+            <Typography variant="h5">new Nostalgic Moments album</Typography>
+          </Box>
+        </Box>
+      </div>
 
-          {/* Solve Board */}
-          <Grid item sm={6} xs={12}>
-            <div
-              style={{
-                marginTop: 80,
-                margin: "auto",
-                width: 400,
-                height: 400,
-                display: "flex",
-                flexWrap: "wrap",
-                backgroundImage: `url(${puzzleBackground})`,
-                outline: "8px solid #0f499d",
-              }}
-            >
-              {solveTiles.map((tile, index) => (
-                <Droppable droppableId={"solve" + tile.id} key={tile.id}>
-                  {(provided, snapshot) => (
-                    <div
-                      key={tile.id}
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      draggable={false}
-                      style={{
-                        width: puzzlePiecesLength + 2,
-                        height: puzzlePiecesLength + 2,
-                        display: "flex",
-                        flexWrap: "wrap",
-                        border: "1px solid white",
-                        backgroundColor: snapshot.isDraggingOver
-                          ? "aliceblue"
-                          : null,
-                      }}
-                    >
-                      <Draggable
-                        key={tile.id}
-                        draggableId={tile.id}
-                        index={index}
-                        isDragDisabled={!tile.content}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={{
-                              width: puzzlePiecesLength,
-                              height: puzzlePiecesLength,
-                              backgroundImage: `url(${tile.content}`,
-                              ...provided.draggableProps.style,
-                            }}
-                          ></div>
-                        )}
-                      </Draggable>
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </div>
-          </Grid>
-        </DragDropContext>
-      </Grid>
-    </div>
+      {/* Section with puzzle photo selection contents */}
+      <div className={classes.content}>
+        <Typography
+          variant="h4"
+          style={{ color: "white", paddingLeft: "4rem" }}
+        >
+          {" "}
+          Animals{" "}
+        </Typography>
+
+        {/* horizontal scrolling slider with photos */}
+        <div className={classes.slider}>
+          <GridList className={classes.gridList} cols={2.5}>
+            {images.map((image) => {
+              return (
+                <PuzzleCard
+                  key={image.id}
+                  src={image.src}
+                  id={image.id}
+                  handleClick={splitter}
+                />
+              );
+            })}
+          </GridList>
+
+          {/* hidden canvas to create the puzzle */}
+          <canvas id="canvas" style={{ display: "none" }}></canvas>
+        </div>
+
+        {/* puzzle solve board rendering from this component */}
+        <PuzzlePlay puzzlePiecesProps={puzzlePiecesState} />
+      </div>
+    </>
   );
-}
+};
 
-export default Puzzle;
+export default withStyles(styles)(Slide);
