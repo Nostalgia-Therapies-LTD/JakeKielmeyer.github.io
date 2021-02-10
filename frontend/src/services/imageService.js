@@ -42,19 +42,23 @@ export const momentImage = [
   {
     url: moment1,
     title: "moments",
+    href: "photo/My moments",
   },
 
   {
     url: moment2,
-    title: "famous face",
+    title: "Places",
+    href: "photo/Places",
   },
   {
     url: moment3,
     title: "Classic car",
+    href: "photo/Cats",
   },
   {
     url: moment4,
-    title: "animals",
+    title: "Dog",
+    href: "photo/Dogs",
   },
 
 ];
@@ -63,18 +67,22 @@ export const tvImage = [
   {
     url: tv1,
     title: "Bonanza",
+    href: "video",
   },
   {
     url: tv2,
     title: "Commercial",
+    href: "video",
   },
   {
   url: tv3,
   title: "Commercial",
+  href: "video",
   },
   {
   url: tv4,
   title: "Commercial",
+  href: "video",
   },
 ];
 
@@ -82,19 +90,23 @@ export const puzzleImage = [
   {
     url: puzzle1,
     title: "mypuzzle",
+    href: "puzzle",
   },
 
   {
     url: puzzle2,
-    title: "cornpuzzle",
+    title: "dogpuzzle",
+    href: "puzzle",
   },
   {
     url: puzzle3,
-    title: "fieldpuzzle",
+    title: "parrotpuzzle",
+    href: "puzzle",
   },
   {
     url: puzzle4,
-    title: "flowerpuzzle",
+    title: "pumpkinpuzzle",
+    href: "puzzle",
   },
 ];
 
