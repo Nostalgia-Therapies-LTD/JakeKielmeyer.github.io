@@ -230,7 +230,7 @@ function MusicPlayer(props) {
                   </Typography>
                 </CardContent>
                 <div className={classes.controls}>
-                  <IconButton
+                  {/* <IconButton
                     aria-label="previous"
                     className={classes.previousButton}
                   >
@@ -239,7 +239,7 @@ function MusicPlayer(props) {
                     ) : (
                       <SkipPreviousIcon />
                     )}
-                  </IconButton>
+                  </IconButton> */}
                   {showStopButton ? (
                     <IconButton
                       aria-label="play/pause"
@@ -257,11 +257,7 @@ function MusicPlayer(props) {
                   )}
 
                   <IconButton aria-label="next" className={classes.nextButton}>
-                    {theme.direction === "rtl" ? (
-                      <SkipPreviousIcon />
-                    ) : (
-                      <SkipNextIcon onClick={() => playMusic()} />
-                    )}
+                    <SkipNextIcon onClick={() => playMusic()} />
                   </IconButton>
                 </div>
               </div>
