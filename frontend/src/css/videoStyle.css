@@ -543,6 +543,10 @@ element.style {
 .audioFiles {
   outline: none;
 }
+
+.hidden {
+  display: none;
+}
 /* Media */
 /* ======================================================================== */
 

@@ -67,18 +67,22 @@ function Video() {
 
   return (
     <div>
-      <div className={classes.welcome}>
+      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2FBonanza.jpg?alt=media&token=6a85b5be-1cf1-4d80-bfce-39ad988b803b")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Video Page</Typography>
+          <Typography variant="h4">Bonanza</Typography>
+          <Box mt={5}>
+            <Typography variant="h5">Watch the classic show today!</Typography>
+          </Box>
         </Box>
       </div>
       <div className={classes.contents}>
+        <VideoSlider genre="Bonanza" />
         <VideoSlider genre="Commercials" />
-        <VideoSlider genre="animation" />
-        <VideoSlider genre="action" />
-      </div>
+        <VideoSlider genre="Leave it to Beaver" />
+        <VideoSlider genre="Hollywood Palace"/>
     </div>
+  </div>
   );
 }
 
