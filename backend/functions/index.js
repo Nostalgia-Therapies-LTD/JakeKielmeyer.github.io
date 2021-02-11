@@ -2,12 +2,10 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const fs = require("fs");
 const path = require("path");
-const cors = require("cors");
 const { filesUpload } = require("./middleware");
 const { v4: uuidv4 } = require("uuid");
 const { v1: uuidv1 } = require("uuid");
 const app = require("express")();
-app.use(cors());
 
 admin.initializeApp();
 
@@ -236,65 +234,60 @@ app.get("/getInfoTest", (req, res) => {
     });
 });
 
-app.post(
-  "/upload",
-  // isAuthenticated,
-  filesUpload,
-  async (req, res) => {
-    try {
-      // image name to hide from attackers
-      const imageName = uuidv1();
+app.post("/upload", isAuthenticated, filesUpload, async (req, res) => {
+  try {
+    // image name to hide from attackers
+    const imageName = uuidv1();
 
-      // access token for the images uploaded
-      const uuid = uuidv4();
+    // access token for the images uploaded
+    const uuid = uuidv4();
 
-      // file reference
-      const file = storageRef.file(
-        `userImages/${req.userId ?? 0}/${imageName}${path.extname(
-          req.files[0].originalname
-        )}`
-      );
-      await file.save(req.files[0].buffer, {
-        metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
-      });
+    // file reference
+    const file = storageRef.file(
+      `userImages/${req.userId}/${imageName}${path.extname(
+        req.files[0].originalname
+      )}`
+    );
+    await file.save(req.files[0].buffer, {
+      metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
+    });
 
-      // store the details in firestore
-      // stored in users/userId/images collection
-      const fileUrl = createPersistentDownloadUrl(
-        config.storageBucket,
-        `userImages/${req.userId ?? 0}/${imageName}${path.extname(
-          req.files[0].originalname
-        )}`,
-        uuid
-      );
-      await db.collection(`users/${req.userId ?? 0}/images`).add({
-        url: fileUrl,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        name: `${imageName}${path.extname(req.files[0].originalname)}`,
-      });
-      res.status(200).json({ url: fileUrl });
-    } catch (error) {
-      return res.status(404).json({ error: error.toString() });
-    }
+    // store the details in firestore
+    // stored in users/userId/images collection
+    const fileUrl = createPersistentDownloadUrl(
+      config.storageBucket,
+      `userImages/${req.userId}/${imageName}${path.extname(
+        req.files[0].originalname
+      )}`,
+      uuid
+    );
+    await db.collection(`users/${req.userId}/images`).add({
+      url: fileUrl,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      name: `${imageName}${path.extname(req.files[0].originalname)}`,
+    });
+    res.status(200).json({ url: fileUrl });
+  } catch (error) {
+    return res.status(404).json({ error: error.toString() });
   }
-);
+});
 
 app.delete(
   "/image",
 
-  //isAuthenticated,
+  isAuthenticated,
   async (req, res) => {
     try {
       // get the file name
       const { name } = req.body;
 
       // file reference
-      const file = storageRef.file(`userImages/${req.userId ?? 0}/${name}`);
+      const file = storageRef.file(`userImages/${req.userId}/${name}`);
       // delete the file
       await file.delete();
       // remove the file document from the firestore
       const querySnapshots = await db
-        .collection(`users/${req.userId ?? 0}/images`)
+        .collection(`users/${req.userId}/images`)
         .where("name", "==", name)
         .get();
       querySnapshots.forEach((doc) => doc.ref.delete());

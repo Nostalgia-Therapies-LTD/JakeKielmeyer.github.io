@@ -60,10 +60,10 @@ function App() {
         <Navbar />
         <div className="container">
           <Switch>
-            <Route exact path="/login">
+            <Route exact path="/">
               <Login authenticated />
             </Route>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Home />
             </Route>
             <Route exact path="/puzzle">

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import ImgGrid from "../component/photo_coms/folders/imgGrid";
+import ImgGrid1 from "../component/photo_coms/folders/imgGrid1";
 import Upload from "../component/photo_coms/folders/Upload";
-import Modal from "../component/photo_coms/folders/modal";
+import Modal1 from "../component/photo_coms/folders/modal1";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
+//jwt
+import jwtDecode from "jwt-decode";
 
 function My_moments() {
   const [selectedImg, setselectedImg] = useState();
@@ -38,14 +40,22 @@ function My_moments() {
             </div>
           </div>
 
+          {localStorage.FBIdToken && (
+            <ImgGrid1
+              setselectedImg={setselectedImg}
+              props={`users/${
+                jwtDecode(localStorage.FBIdToken).user_id
+              }/images`}
+            />
+          )}
           {selectedImg && (
-            <>
-              <ImgGrid setselectedImg={setselectedImg} />
-              <Modal
-                selectedImg={selectedImg}
-                setselectedImg={setselectedImg}
-              />
-            </>
+            <Modal1
+              selectedImg={selectedImg}
+              setselectedImg={setselectedImg}
+              props={`users/${
+                jwtDecode(localStorage.FBIdToken).user_id
+              }/images`}
+            />
           )}
         </div>
       </div>
