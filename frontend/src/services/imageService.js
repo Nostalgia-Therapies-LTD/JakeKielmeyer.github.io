@@ -4,19 +4,19 @@ import radio3 from "../images/radio/Classic Rock.png";
 import radio4 from "../images/radio/Jazz.png";
 
 import moment1 from "../images/moments/My Moments.png";
-import moment2 from "../images/moments/Famous Faces.jpg";
-import moment3 from "../images/moments/Classic Cars.jpg";
+import moment2 from "../images/moments/terence.jpg";
+import moment3 from "../images/moments/erik.jpg";
 import moment4 from "../images/moments/Animals.jpg";
 
 import tv1 from "../images/tv/Bonanza.jpg";
-import tv2 from "../images/tv/Leave it to Beaver.jpg";
-import tv3 from "../images/tv/Commercial.PNG";
-import tv4 from "../images/tv/JFK Speech.jpg";
+import tv2 from "../images/tv/Commercial.PNG";
+import tv3 from "../images/tv/LeaveItToBeaver.jpg";
+import tv4 from "../images/tv/HollyWoodPalace.jpg";
 
-import puzzle1 from "../images/puzzleRow/My Puzzles.png";
-import puzzle2 from "../images/puzzleRow/Corn-Puzzle.PNG";
-import puzzle3 from "../images/puzzleRow/Field Puzzle.PNG";
-import puzzle4 from "../images/puzzleRow/flower field.PNG";
+import puzzle1 from "../images/puzzles/My Puzzles.png";
+import puzzle2 from "../images/puzzles/dog.jpg";
+import puzzle3 from "../images/puzzles/parrot.jpg";
+import puzzle4 from "../images/puzzles/pumpkin.jpg";
 
 const radioImage = [
   {
@@ -42,39 +42,47 @@ export const momentImage = [
   {
     url: moment1,
     title: "moments",
+    href: "photo/My moments",
   },
 
   {
     url: moment2,
-    title: "famous face",
+    title: "Places",
+    href: "photo/Places",
   },
   {
     url: moment3,
     title: "Classic car",
+    href: "photo/Cats",
   },
   {
     url: moment4,
-    title: "animals",
+    title: "Dog",
+    href: "photo/Dogs",
   },
+
 ];
 
 export const tvImage = [
   {
     url: tv1,
     title: "Bonanza",
+    href: "video",
   },
-
   {
     url: tv2,
-    title: "leave it",
-  },
-  {
-    url: tv3,
     title: "Commercial",
+    href: "video",
   },
   {
-    url: tv4,
-    title: "JFK",
+  url: tv3,
+  title: "Commercial",
+  href: "video",
+  },
+  {
+  url: tv4,
+  title: "Commercial",
+  href: "video",
   },
 ];
 
@@ -82,19 +90,23 @@ export const puzzleImage = [
   {
     url: puzzle1,
     title: "mypuzzle",
+    href: "puzzle",
   },
 
   {
     url: puzzle2,
-    title: "cornpuzzle",
+    title: "dogpuzzle",
+    href: "puzzle",
   },
   {
     url: puzzle3,
-    title: "fieldpuzzle",
+    title: "parrotpuzzle",
+    href: "puzzle",
   },
   {
     url: puzzle4,
-    title: "flowerpuzzle",
+    title: "pumpkinpuzzle",
+    href: "puzzle",
   },
 ];
 

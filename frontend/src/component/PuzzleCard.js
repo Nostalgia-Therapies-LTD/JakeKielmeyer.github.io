@@ -25,7 +25,7 @@ const styles = (theme) => ({
   },
 });
 
-function PuzzleCard(props) {
+const PuzzleCard = (props) => {
   const { classes, src, id, handleClick } = props;
 
   return (
@@ -56,6 +56,6 @@ function PuzzleCard(props) {
       </Box>
     </div>
   );
-}
+};
 
 export default withStyles(styles)(PuzzleCard);

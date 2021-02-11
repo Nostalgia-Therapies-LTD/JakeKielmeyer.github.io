@@ -12,9 +12,9 @@ import { puzzleImage } from "../services/imageService";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
-export const useStyles = makeStyles({
+const styles = {
   welcome: {
     color: "white",
     display: "flex",
@@ -43,10 +43,10 @@ export const useStyles = makeStyles({
     paddingBottom: "40px",
     justifyContent: "space-around",
   },
-});
+};
 
-function Home() {
-  const classes = useStyles();
+const Home = (props) => {
+  const { classes } = props;
   return (
     <React.Fragment>
       <div className={classes.welcome}>
@@ -67,7 +67,6 @@ function Home() {
       </div>
     </React.Fragment>
   );
-}
+};
 
-export default  Home;
-
+export default withStyles(styles)(Home);
