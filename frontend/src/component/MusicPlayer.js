@@ -18,6 +18,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
+import PauseIcon from "@material-ui/icons/Pause";
 
 //axios
 import axios from "axios";
@@ -44,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
 
   musicCard: {
     display: "flex",
+    width: "100%",
+    marginRight: "auto",
+    backgroundColor: "#eeeee4",
+    borderTop: "4mm solid #eab676 !important",
   },
 
   details: {
@@ -53,6 +58,8 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     flex: "1 0 auto",
+    textAlign: "left",
+    borderTop: "2px",
   },
   cover: {
     width: 151,
@@ -66,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
   playIcon: {
     height: 38,
     width: 38,
+    color: "rgba(0, 0, 0, 0.9) !important",
   },
   gridContainer: {
     display: "flex",
@@ -88,6 +96,20 @@ const useStyles = makeStyles((theme) => ({
   textStyle: {
     color: "white",
   },
+
+  playIconDisable: {
+    pointerEvents: "none",
+    color: "rgba(0, 0, 0, 0.54)",
+  },
+
+  previousButton: {
+    color: "rgba(0, 0, 0, 0.54)",
+    pointerEvents: "none",
+  },
+
+  nextButton: {
+    color: "rgba(0, 0, 0, 0.9) !important",
+  },
 }));
 
 function MusicPlayer(props) {
@@ -97,12 +119,12 @@ function MusicPlayer(props) {
   const [musicName, setmusicName] = useState(null);
   const [counter, setcounter] = useState(null);
   const [musicPlaying, setmusicPlaying] = useState(null);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  const [carouselScrollLeft, setcarouselScrollLeft] = useState(0);
-  const [pageLoadCount, setpageLoadCount] = useState(0);
-  const [buttonName, setbuttonName] = useState(null);
-  const [runOnce, setrunOnce] = useState(true);
-  const [showVideo, setShowVideo] = useState(true);
+  const [showStopButton, setshowStopButton] = useState(1);
+  const [musicAl, setmusicAl] = useState(null);
+  const [musicTr, setmusicTr] = useState(null);
+  const [musicArt, setmusicArt] = useState(null);
+  // const [runOnce, setrunOnce] = useState(true);
+  // const [showVideo, setShowVideo] = useState(true);
 
   useEffect(() => {}, []);
 
@@ -120,7 +142,7 @@ function MusicPlayer(props) {
   }, [props.folderName]);
 
   useEffect(() => {
-    if (counter == 0) {
+    if (counter != null) {
       setmusicPlaying(
         musicName[counter].musicAdd.split("%2F")[
           musicName[counter].musicAdd.split("%2F").length - 1
@@ -129,39 +151,60 @@ function MusicPlayer(props) {
       let url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${musicName[counter].musicAdd}?alt=media&token=${musicName[counter].musicToken}`;
       let musicID = document.getElementById(`musicAudio${props.folderName}`);
       musicID.src = url;
-    } else if (counter != 0 && counter != null) {
-      setmusicPlaying(
-        musicName[counter].musicAdd.split("%2F")[
-          musicName[counter].musicAdd.split("%2F").length - 1
-        ]
-      );
-      let url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${musicName[counter].musicAdd}?alt=media&token=${musicName[counter].musicToken}`;
-      let musicID = document.getElementById(`musicAudio${props.folderName}`);
-      musicID.src = url;
-      musicID.play();
+      if (showStopButton) {
+      } else {
+        musicID.play();
+      }
     }
   }, [counter]);
 
+  useEffect(() => {
+    if (musicPlaying) {
+      axios
+        .get(`/getMusicInformation/${musicPlaying}`)
+        .then((res) => {
+          console.log(res);
+          setmusicAl(res.data[0].musicAlbum);
+          setmusicArt(res.data[0].musicTrack);
+          setmusicTr(res.data[0].musicArtist);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [musicPlaying]);
+
   function playMusic() {
-    console.log("Ended");
     counter != musicName.length - 1 ? setcounter(counter + 1) : setcounter(0);
   }
 
   function changeCounter() {
     if (counter == null) {
-      console.log("Hello");
       setcounter(0);
     }
+  }
+
+  function playMusicPlayer() {
+    setshowStopButton(null);
+    let musicID = document.getElementById(`musicAudio${props.folderName}`);
+    musicID.play();
+  }
+
+  function stopMusic() {
+    setshowStopButton(1);
+    let musicID = document.getElementById(`musicAudio${props.folderName}`);
+    musicID.pause();
   }
 
   const getMusicName = musicName ? (
     <div className={classes.gridClass}>
       <Grid container spacing={3} className={classes.gridContainer}>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Paper className={classes.paper}>
             <audio
               controls
               controlsList="nodownload"
+              className="audioFiles hidden"
               id={`musicAudio${props.folderName}`}
               onLoadStart={() => {
                 changeCounter();
@@ -172,54 +215,67 @@ function MusicPlayer(props) {
             >
               <source type="audio/mpeg"></source>
             </audio>
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            <marquee className="marquee" behavior="scroll" scrollamount="3">
-              <span className={classes.textStyle}>{musicPlaying}</span>
-            </marquee>
+
+            <Card className={classes.musicCard}>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {musicArt}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {musicAl}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {musicTr}
+                  </Typography>
+                </CardContent>
+                <div className={classes.controls}>
+                  <IconButton
+                    aria-label="previous"
+                    className={classes.previousButton}
+                  >
+                    {theme.direction === "rtl" ? (
+                      <SkipNextIcon />
+                    ) : (
+                      <SkipPreviousIcon />
+                    )}
+                  </IconButton>
+                  {showStopButton ? (
+                    <IconButton
+                      aria-label="play/pause"
+                      onClick={() => playMusicPlayer()}
+                    >
+                      <PlayArrowIcon className={classes.playIcon} />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      aria-label="play/pause"
+                      onClick={() => stopMusic()}
+                    >
+                      <PauseIcon className={classes.playIcon} />
+                    </IconButton>
+                  )}
+
+                  <IconButton aria-label="next" className={classes.nextButton}>
+                    {theme.direction === "rtl" ? (
+                      <SkipPreviousIcon />
+                    ) : (
+                      <SkipNextIcon onClick={() => playMusic()} />
+                    )}
+                  </IconButton>
+                </div>
+              </div>
+              <CardMedia
+                className={classes.cover}
+                // image="someImages.jpg"
+                title="Live from space album cover"
+              />
+            </Card>
           </Paper>
         </Grid>
       </Grid>
     </div>
   ) : (
-    // <Card className={classes.musicCard}>
-    //   <div className={classes.details}>
-    //     <CardContent className={classes.content}>
-    //       <Typography component="h5" variant="h5">
-    //         Live From Space
-    //       </Typography>
-    //       <Typography variant="subtitle1" color="textSecondary">
-    //         Mac Miller
-    //       </Typography>
-    //     </CardContent>
-    //     <div className={classes.controls}>
-    //       <IconButton aria-label="previous">
-    //         {theme.direction === "rtl" ? (
-    //           <SkipNextIcon />
-    //         ) : (
-    //           <SkipPreviousIcon />
-    //         )}
-    //       </IconButton>
-    //       <IconButton aria-label="play/pause">
-    //         <PlayArrowIcon className={classes.playIcon} />
-    //       </IconButton>
-    //       <IconButton aria-label="next">
-    //         {theme.direction === "rtl" ? (
-    //           <SkipPreviousIcon />
-    //         ) : (
-    //           <SkipNextIcon />
-    //         )}
-    //       </IconButton>
-    //     </div>
-    //   </div>
-    //   <CardMedia
-    //     className={classes.cover}
-    //     // image="someImages.jpg"
-    //     title="Live from space album cover"
-    //   />
-    // </Card>
     <Skeleton variant="rect" width={300} height={200} />
   );
 

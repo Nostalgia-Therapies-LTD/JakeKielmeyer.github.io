@@ -540,24 +540,13 @@ element.style {
   z-index: 1000;
 }
 
-/* .marquee {
-  width: 450px;
-  margin: 0 auto;
-  overflow: hidden;
-  box-sizing: border-box;
+.audioFiles {
+  outline: none;
 }
 
-.marquee span {
-  display: inline-block;
-  width: max-content;
-  padding-left: 100%;
-  will-change: transform;
-  animation: marquee 15s linear infinite;
+.hidden {
+  display: none;
 }
-
-.marquee span:hover {
-  animation-play-state: paused;
-} */
 /* Media */
 /* ======================================================================== */
 
