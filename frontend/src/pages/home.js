@@ -33,15 +33,18 @@ const styles = {
     paddingLeft: "4rem",
     paddingTop: "3rem",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
+   
   },
 
   rows: {
     paddingBottom: "50px",
+    
   },
 
   rowsTitle: {
     paddingBottom: "40px",
     justifyContent: "space-around",
+    
   },
 };
 
@@ -60,8 +63,8 @@ const Home = (props) => {
         </Box>
       </div>
       <div className={classes.contents}>
-        <ContentRow rowName="Nostalgia Radio" images={radioImage} />
-        <ContentRow rowName="Nostalgia Moments" images={momentImage} />
+        <ContentRow rowName="Nostalgia Radio" images={radioImage}  />
+        <ContentRow rowName="Nostalgia Moments" images={momentImage}/>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
         <ContentRow rowName="Puzzles" images={puzzleImage} />
       </div>

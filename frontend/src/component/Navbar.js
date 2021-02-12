@@ -37,7 +37,7 @@ function Navbar(props) {
   return (
     <AppBar position="absolute" className={classes.appBar}>
       <ToolBar className={classes.navContainer}>
-        <Link to="/">
+        <Link to="/home">
           <Button color="inherit" className={classes.brandName}>
             Nostalgia Therapy
           </Button>
@@ -60,6 +60,11 @@ function Navbar(props) {
         <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
+          </Button>
+        </Link>
+        <Link to="/">
+          <Button color="inherit" className={classes.navLink}>
+            Sign In/Sign Up
           </Button>
         </Link>
       </ToolBar>

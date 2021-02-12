@@ -34,7 +34,7 @@ function Main_photo(props) {
         </Typography>
       <div className="PhotoApp" >
       <form className="img-grid">
-     <button className="img-wrap" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit"}}  ><img src={My_Moments} alt="My Moments"/></button>
+     <button className="img-wrap" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit", border:"none", borderRight:"2.5px solid whiteSmoke"}}  ><img src={My_Moments} alt="My Moments"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Cats")}}><img src={erik} alt="cat"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Nature")}}> <img src={Nature} alt="Classic Cars"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Dogs")}}><img src={Animals} alt="dog"/></button>

@@ -34,12 +34,12 @@ function My_moments() {
         </Typography>
         <div className="PhotoApp">
           <div className="img-grid">
+            <div></div>
             <div className="img-wrap">
               <Upload />
               <p className="upload">Upload</p>
             </div>
-          </div>
-
+</div>
           {localStorage.FBIdToken && (
             <ImgGrid1
               setselectedImg={setselectedImg}
@@ -48,6 +48,7 @@ function My_moments() {
               }/images`}
             />
           )}
+          
           {selectedImg && (
             <Modal1
               selectedImg={selectedImg}
@@ -57,6 +58,7 @@ function My_moments() {
               }/images`}
             />
           )}
+          
         </div>
       </div>
     </div>

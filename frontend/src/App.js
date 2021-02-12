@@ -46,7 +46,7 @@ if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem("FBIdToken");
-    window.location.href("/login");
+    window.location.href("/");
     authenticated = false;
   } else {
     authenticated = true;
@@ -57,12 +57,13 @@ function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
+      <Switch>
+      <Route exact path="/">
+      <Login authenticated />
+      </Route>
+      <div>
         <Navbar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Login authenticated />
-            </Route>
+        <div className="container">          
             <Route exact path="/home">
               <Home />
             </Route>
@@ -76,22 +77,15 @@ function App() {
               <Music />
             </Route>
             <Route exact path="/photo" component={Main_photo}></Route>
-            <Route
-              exact
-              path="/photo/My moments"
-              component={My_moments}
-            ></Route>
+            <Route exact path="/photo/My moments" component={My_moments}></Route>
             <Route exact path="/photo/Cats" component={Cat_folder}></Route>
             <Route exact path="/photo/Dogs" component={Dog_folder}></Route>
             <Route exact path="/photo/Nature" component={Nature_folder}></Route>
             <Route exact path="/photo/Places" component={Places_folder}></Route>
-            <Route
-              exact
-              path="/photo/Wildlife"
-              component={Wildlife_folder}
-            ></Route>
-          </Switch>
-        </div>
+            <Route exact path="/photo/Wildlife" component={Wildlife_folder}></Route>
+          </div>
+          </div>
+        </Switch>
         <Footer />
       </Router>
     </MuiThemeProvider>

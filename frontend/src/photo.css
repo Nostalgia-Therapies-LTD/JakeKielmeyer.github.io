@@ -73,7 +73,7 @@ label:hover {
   font-size: 100%;
   margin: 0;
   position: absolute;
-  top: 70%;
+  top: 75%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -94,6 +94,7 @@ label:hover {
   /* padding controls height, will always be perfectly square regardless of width */
   position: relative;
   opacity: 0.9;
+  color: whitesmoke;
   border: 2px solid whitesmoke;
 }
 .img-wrap img {
