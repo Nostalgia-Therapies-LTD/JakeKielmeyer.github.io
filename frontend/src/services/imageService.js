@@ -1,7 +1,6 @@
-import radio1 from "../images/radio/50s.png";
-import radio2 from "../images/radio/60s.png";
-import radio3 from "../images/radio/Classic Rock.png";
-import radio4 from "../images/radio/Jazz.png";
+import radio1 from "../images/radio/sockhop2-100.jpg";
+import radio2 from "../images/radio/Boomer1-100.jpg";
+import radio3 from "../images/radio/70s1-100.jpg";
 
 import moment1 from "../images/moments/My Moments.png";
 import moment2 from "../images/moments/terence.jpg";
@@ -22,19 +21,18 @@ const radioImage = [
   {
     url: radio1,
     title: "50s",
+    href: "music",
   },
 
   {
     url: radio2,
     title: "60s",
+    href: "music",
   },
   {
     url: radio3,
     title: "Classic Rock",
-  },
-  {
-    url: radio4,
-    title: "Jazz",
+    href: "music",
   },
 ];
 

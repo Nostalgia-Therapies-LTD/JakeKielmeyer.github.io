@@ -16,10 +16,10 @@ function Main_photo(props) {
       <div className="welcome">
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">Nostalgic Moments</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+          <Typography variant="h4">Reminsice to special moments from your life</Typography>
+          <Typography variant="h4">or find comfort in one of our Nostalgic Moments albums</Typography>
           </Box>
         </Box>
       </div>
@@ -30,11 +30,11 @@ function Main_photo(props) {
           style={{ color: "white", paddingLeft: "4rem" }}
         >
           {" "}
-          Categories {" "}
+          Albums {" "}
         </Typography>
       <div className="PhotoApp" >
       <form className="img-grid">
-     <button className="img-wrap" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit"}}  ><img src={My_Moments} alt="My Moments"/></button>
+     <button className="img-wrap" onClick={()=>{props.history.push("/photo/My moments")}} style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit", border:"none", borderRight:"2.5px solid whiteSmoke"}}  ><img src={My_Moments} alt="My Moments"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Cats")}}><img src={erik} alt="cat"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Nature")}}> <img src={Nature} alt="Classic Cars"/></button>
       <button className="img-wrap" onClick={()=>{props.history.push("/photo/Dogs")}}><img src={Animals} alt="dog"/></button>

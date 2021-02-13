@@ -16,10 +16,10 @@ function Wildlife_folder() {
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fwildlife%2Figor-talanov-SeVOHQ4FQYQ-unsplash.jpg305?alt=media&token=21f9cb30-173e-4ac0-9846-ebe5896a4146")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">Wonderful Wildlife</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">If you love seeing animals in their</Typography>
+            <Typography variant="h4">natural habbitat, this is the album for you</Typography>
           </Box>
         </Box>
       </div>

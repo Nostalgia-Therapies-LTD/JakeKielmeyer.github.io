@@ -28,11 +28,11 @@ function ContentRow(props) {
   return (
     <Grid container className={classes.rows}>
       <Grid item xs={11} className={classes.rowsTitle}>
-        <Typography variant="h5">{props.rowName}</Typography>
+        <Typography variant="h4">{props.rowName}</Typography>
       </Grid>
-      <Grid item xs={1} className={classes.rowsTitle}>
-        <Typography variant="h6">View more</Typography>
-      </Grid>
+      {/* <Grid item xs={1} className={classes.rowsTitle}>
+        <Typography variant="h5">View more</Typography>
+      </Grid> */}
       {props.images.map((image) => (
         <Grid key={image.title} item xs={3}>
           <a href={image.href}>

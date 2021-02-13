@@ -16,10 +16,10 @@ function Places_folder() {
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fplaces%2Fshan-elahi-DDiLYt_F88w-unsplash.jpg617?alt=media&token=91a772d8-9644-4c6b-9e5f-0c6e9e230875")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">Famous Places</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">Enjoy and reminsice to some of the most</Typography>
+            <Typography variant="h4">iconic places in the world</Typography>
           </Box>
         </Box>
       </div>
@@ -29,7 +29,7 @@ function Places_folder() {
        style={{ color: "white", paddingLeft: "4rem" }}
      >
        {" "}
-       Popular Places {" "}
+       Famous Places {" "}
      </Typography>
     <div className="PhotoApp">
       <ImgGrid1 props="places" setselectedImg={setselectedImg}  />

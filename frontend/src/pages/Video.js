@@ -77,9 +77,9 @@ function Video() {
       >
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Bonanza</Typography>
+          <Typography variant="h3">Bonanza</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Watch the classic show today!</Typography>
+            <Typography variant="h4">Watch the classic show today!</Typography>
           </Box>
         </Box>
       </div>

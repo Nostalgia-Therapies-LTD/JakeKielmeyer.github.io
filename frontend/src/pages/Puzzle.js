@@ -129,13 +129,12 @@ const Slide = (props) => {
   return (
     <>
       {/* Top Banner with welcome note */}
-      <div className={classes.welcome}>
+      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/puzzles%2Fimage_2021-02-12_154657.png?alt=media&token=c017b480-a750-49d7-af7b-45662feb8701")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Puzzle</Typography>
+          <Typography variant="h3">Tucker the Dog</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Puppies and more in this</Typography>
-            <Typography variant="h5">new Nostalgic Moments album</Typography>
+            <Typography variant="h4">Try our newest puzzle, Tucker the dog!</Typography>
           </Box>
         </Box>
       </div>

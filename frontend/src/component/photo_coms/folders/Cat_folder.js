@@ -16,10 +16,10 @@ function Cat_folder() {
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fcats%2Fisabela-ferreira-MQMVPYh3bhk-unsplash.jpg?alt=media&token=a0d4619e-6b3c-40d1-a24a-494df5d6c565")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">Cute Cats</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">If you love cats, then this is the album for you!</Typography>
+            <Typography variant="h4">Enjoy and reminisce to dozens of of adorable cats</Typography>
           </Box>
         </Box>
       </div>

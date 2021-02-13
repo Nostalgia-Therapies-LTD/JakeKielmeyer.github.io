@@ -110,10 +110,15 @@ function Music() {
 
   return (
     <div>
-      <div className={classes.welcome}>
+  <div className="welcome" style={{backgroundImage:'url("http://3.bp.blogspot.com/-KgZ1XvqDJnU/Ud2HY5wgf4I/AAAAAAAAheE/QlL9UG811k4/s1600/John+Collier+-+Around+the+Jukebox.+Dance+hall,+Richwood,+West+Virginia,+1942.jpg")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Music Page</Typography>
+          <Typography variant="h3">Welcome to Nostalgia Radio</Typography>
+          <Box mt={5}>
+            <Typography variant="h4">With stations like Pop-Socks! Boomer Heyday,</Typography>
+            <Typography variant="h4">and 70's time machine,there's great </Typography>
+            <Typography variant="h4">music for everyone </Typography>
+          </Box>
         </Box>
       </div>
       <div className={classes.contents}>

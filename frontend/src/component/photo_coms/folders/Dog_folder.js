@@ -12,10 +12,11 @@ function Dog_folder() {
        <div className="welcome"style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fdaniel-lincoln-u4SKJ1WN9AE-unsplash.jpg?alt=media&token=66231e5a-8361-465f-be32-8615d31b52e7)"}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+        <Typography variant="h3">Dashing Dogs</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">Do you and your loved one have a soft spot for dogs?</Typography>
+            <Typography variant="h4">Check out out this new Nostalgic Moments album</Typography>
+            <Typography variant="h4">and reminsice about four legged friends</Typography>
           </Box>
         </Box>
       </div>

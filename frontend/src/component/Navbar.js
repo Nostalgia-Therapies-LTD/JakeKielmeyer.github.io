@@ -15,7 +15,7 @@ const styles = {
 
   brandName: {
     color: "#3fa9f5",
-    fontSize: "1rem",
+    fontSize: "1.18rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
   },
@@ -29,6 +29,7 @@ const styles = {
 
   navLink: {
     fontFamily: "KOJ",
+    fontSize: "1.15rem",
   },
 };
 
@@ -37,7 +38,7 @@ function Navbar(props) {
   return (
     <AppBar position="absolute" className={classes.appBar}>
       <ToolBar className={classes.navContainer}>
-        <Link to="/">
+        <Link to="/home">
           <Button color="inherit" className={classes.brandName}>
             Nostalgia Therapy
           </Button>
@@ -60,6 +61,11 @@ function Navbar(props) {
         <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
+          </Button>
+        </Link>
+        <Link to="/">
+          <Button color="inherit" className={classes.navLink}>
+            Logout
           </Button>
         </Link>
       </ToolBar>

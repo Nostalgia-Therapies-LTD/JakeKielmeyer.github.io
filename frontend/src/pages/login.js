@@ -57,7 +57,7 @@ const Login = (props) => {
       .then((res) => {
         setLoading(false);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        history.push("/");
+        history.push("/home");
       })
       .catch((err) => console.log(err));
   };

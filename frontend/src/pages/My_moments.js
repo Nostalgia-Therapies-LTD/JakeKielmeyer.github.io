@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import ImgGrid from "../component/photo_coms/folders/imgGrid";
+import ImgGrid1 from "../component/photo_coms/folders/imgGrid1";
 import Upload from "../component/photo_coms/folders/Upload";
-import Modal from "../component/photo_coms/folders/modal";
+import Modal1 from "../component/photo_coms/folders/modal1";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
+//jwt
+import jwtDecode from "jwt-decode";
 
 function My_moments() {
   const [selectedImg, setselectedImg] = useState();
@@ -14,12 +16,12 @@ function My_moments() {
       <div className="welcome">
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">My Moments</Typography>
           <Box mt={5}>
-            <Typography variant="h5">
-              Let's go back to this moment and live it in forever
-            </Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">
+              This is a personal album for you and your loved one.</Typography>
+            <Typography variant="h4">Add pictures of precious moments, family,</Typography>
+            <Typography variant="h4">friends, and anything else you want.</Typography>
           </Box>
         </Box>
       </div>
@@ -32,21 +34,31 @@ function My_moments() {
         </Typography>
         <div className="PhotoApp">
           <div className="img-grid">
+            <div></div>
             <div className="img-wrap">
               <Upload />
               <p className="upload">Upload</p>
             </div>
-          </div>
-
-          {selectedImg && (
-            <>
-              <ImgGrid setselectedImg={setselectedImg} />
-              <Modal
-                selectedImg={selectedImg}
-                setselectedImg={setselectedImg}
-              />
-            </>
+</div>
+          {localStorage.FBIdToken && (
+            <ImgGrid1
+              setselectedImg={setselectedImg}
+              props={`users/${
+                jwtDecode(localStorage.FBIdToken).user_id
+              }/images`}
+            />
           )}
+          
+          {selectedImg && (
+            <Modal1
+              selectedImg={selectedImg}
+              setselectedImg={setselectedImg}
+              props={`users/${
+                jwtDecode(localStorage.FBIdToken).user_id
+              }/images`}
+            />
+          )}
+          
         </div>
       </div>
     </div>
