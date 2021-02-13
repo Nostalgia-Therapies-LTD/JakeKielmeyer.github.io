@@ -161,6 +161,8 @@ app.get("/getInfo/:genre", (req, res) => {
         movieUrl.push({
           imageurl: snap.data().imageURL,
           movieurl: snap.data().url,
+          desc: snap.data().description,
+          movName: snap.data().name,
         });
       });
       return res.json(movieUrl);
@@ -171,7 +173,7 @@ app.get("/getInfo/:genre", (req, res) => {
 });
 
 //extract all info about the video
-app.get("/getInfoTest", (req, res) => {
+app.post("/getInfoTest", (req, res) => {
   let movieUrl = [];
   let finalObj = [];
   let tempUrl = [];
@@ -186,7 +188,12 @@ app.get("/getInfoTest", (req, res) => {
       "gs://nostalgiadev-1f319.appspot.com/"
     )[1];
 
-    dataArray.push({ movName: movieName, imgName: imageName });
+    dataArray.push({
+      movName: movieName,
+      imgName: imageName,
+      movDesc: dat.desc,
+      movRealName: dat.movName,
+    });
   });
 
   admin
@@ -211,23 +218,16 @@ app.get("/getInfoTest", (req, res) => {
           )
             movtoken = data.metadata.metadata.firebaseStorageDownloadTokens;
         });
-        let imgLocIndex = urlss.imgName.indexOf("/");
-        let imgLoc = urlss.imgName.slice(0, imgLocIndex).trim();
-        let imgnam = urlss.imgName
-          .slice(imgLocIndex + 1, urlss.imgName.length)
-          .trim();
-        let movLocIndex = urlss.movName.indexOf("/");
-        let movLoc = urlss.movName.slice(0, movLocIndex).trim();
-        let movnam = urlss.movName
-          .slice(movLocIndex + 1, urlss.movName.length)
-          .trim();
+        imgLoc = urlss.imgName.replace(/\//g, "%2F");
+        movLoc = urlss.movName.replace(/\//g, "%2F");
+
         tempUrl.push({
           imageToken: imgtoken,
           movieToken: movtoken,
           imageLocation: imgLoc,
           movieLocation: movLoc,
-          imageName: imgnam,
-          movieName: movnam,
+          movieName: urlss.movRealName,
+          movieDesc: urlss.movDesc,
         });
       });
       return res.json(tempUrl);
@@ -338,6 +338,26 @@ app.get("/getMusics/:foldername", (req, res) => {
       });
       final = [...new Set(arr)];
       return res.json(final);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
+app.get("/getMusicInformation/:musicname", (req, res) => {
+  const musicInf = [];
+  db.collection("music")
+    .where("musicName", "==", req.params.musicname)
+    .get()
+    .then((doc) => {
+      doc.forEach((snap) => {
+        musicInf.push({
+          musicAlbum: snap.data().album,
+          musicTrack: snap.data().track,
+          musicArtist: snap.data().artist,
+        });
+      });
+      return res.json(musicInf);
     })
     .catch((err) => {
       console.error(err);

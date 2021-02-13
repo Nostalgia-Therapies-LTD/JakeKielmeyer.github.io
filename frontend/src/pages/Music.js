@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "1rem",
     paddingRight: "1rem",
     paddingTop: "3rem",
+    paddingBottom: "20px",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
 

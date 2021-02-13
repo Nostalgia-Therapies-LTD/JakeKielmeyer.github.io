@@ -302,9 +302,10 @@ element.style {
 
 .playButtons {
   position: absolute !important;
-  bottom: 30% !important;
-  left: 20% !important;
-  color: rgba(144, 184, 68, 0.54) !important;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.7) !important;
 }
 .MuiSvgIcon-fontSizeLarge {
   font-size: 5rem !important;
@@ -490,6 +491,7 @@ element.style {
   box-sizing: border-box;
   padding: 0px;
 }
+
 .flexContainer {
   -webkit-overflow-scrolling: touch;
   margin: 0;
@@ -537,6 +539,7 @@ element.style {
 }
 .container {
   position: relative;
+  margin-bottom: 0px;
   z-index: 1000;
 }
 
