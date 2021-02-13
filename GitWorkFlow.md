@@ -1,8 +1,8 @@
 # Git Work Flow
 
 After you clone the Master Branch Run these commands in the beginning, after cloning the master branch.
-git config –-global rerere.enabled true
-git config –-global pull.rebase.enabled true
+-git config –-global rerere.enabled true
+-git config –-global pull.rebase.enabled true
 
 When you Start Working
 - Make a new branch for your work
