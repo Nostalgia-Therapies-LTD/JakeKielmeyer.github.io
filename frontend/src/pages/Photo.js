@@ -44,10 +44,10 @@ function Photo(props) {
       <div className={classes.welcome}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">Nostalgic Moments</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Let's go back to this moment and live it in forever</Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">Reminsice to special moments from your life</Typography>
+            <Typography variant="h4">or find comfort in one of our Nostalgic Moments albums</Typography>
           </Box>
         </Box>
       </div>

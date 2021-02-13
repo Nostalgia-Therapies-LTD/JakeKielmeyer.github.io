@@ -52,16 +52,19 @@ const Home = (props) => {
   const { classes } = props;
   return (
     <React.Fragment>
-      <div className={classes.welcome}>
+  <a href="photo/Dogs">
+  <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/Provided%20Photo%20Content-Categories%2FDogs%2Fryan-walton-pWBAwqUUWkk-unsplash.jpg?alt=media&token=588513d1-7e59-4c1c-b26f-d51536833375")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Baby Animals</Typography>
+          <Typography variant="h3">Dashing Dogs</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Puppies and more in this</Typography>
-            <Typography variant="h5">new Nostalgic Moments album</Typography>
+            <Typography variant="h4">Do you and your loved one have a soft spot for dogs?</Typography>
+            <Typography variant="h4">Check out out this new Nostalgic Moments album</Typography>
+            <Typography variant="h4">and reminsice about four legged friends!</Typography>
           </Box>
         </Box>
-      </div>
+  </div>
+  </a>
       <div className={classes.contents}>
         <ContentRow rowName="Nostalgia Radio" images={radioImage}  />
         <ContentRow rowName="Nostalgia Moments" images={momentImage}/>

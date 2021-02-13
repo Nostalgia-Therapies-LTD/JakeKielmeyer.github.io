@@ -15,7 +15,7 @@ const styles = {
 
   brandName: {
     color: "#3fa9f5",
-    fontSize: "1rem",
+    fontSize: "1.18rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
   },
@@ -29,6 +29,7 @@ const styles = {
 
   navLink: {
     fontFamily: "KOJ",
+    fontSize: "1.15rem",
   },
 };
 
@@ -64,7 +65,7 @@ function Navbar(props) {
         </Link>
         <Link to="/">
           <Button color="inherit" className={classes.navLink}>
-            Sign In/Sign Up
+            Logout
           </Button>
         </Link>
       </ToolBar>

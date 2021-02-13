@@ -16,12 +16,12 @@ function My_moments() {
       <div className="welcome">
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Photos</Typography>
+          <Typography variant="h3">My Moments</Typography>
           <Box mt={5}>
-            <Typography variant="h5">
-              Let's go back to this moment and live it in forever
-            </Typography>
-            <Typography variant="h5">Take me away to better days</Typography>
+            <Typography variant="h4">
+              This is a personal album for you and your loved one.</Typography>
+            <Typography variant="h4">Add pictures of precious moments, family,</Typography>
+            <Typography variant="h4">friends, and anything else you want.</Typography>
           </Box>
         </Box>
       </div>

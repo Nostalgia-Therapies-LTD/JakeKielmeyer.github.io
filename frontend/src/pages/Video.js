@@ -70,9 +70,9 @@ function Video() {
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2FBonanza.jpg?alt=media&token=6a85b5be-1cf1-4d80-bfce-39ad988b803b")'}}>
         <CssBaseLine />
         <Box mt={9}>
-          <Typography variant="h4">Bonanza</Typography>
+          <Typography variant="h3">Bonanza</Typography>
           <Box mt={5}>
-            <Typography variant="h5">Watch the classic show today!</Typography>
+            <Typography variant="h4">Watch the classic show today!</Typography>
           </Box>
         </Box>
       </div>
