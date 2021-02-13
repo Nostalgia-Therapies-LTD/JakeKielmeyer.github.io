@@ -12,6 +12,12 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CancelIcon from "@material-ui/icons/Cancel";
 import Divider from "@material-ui/core/Divider";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
 
 //axios
 import axios from "axios";
@@ -35,6 +41,17 @@ const useStyles = makeStyles({
       transform: "scale(1.04,1.04)",
     },
   },
+
+  media: {
+    height: 120,
+    backgroundColor: "#eeeee4",
+  },
+
+  texts: {
+    textAlign: "left",
+    backgroundColor: "#eeeee4",
+    height: "100%",
+  },
 });
 
 function VideoSlider(props) {
@@ -49,6 +66,7 @@ function VideoSlider(props) {
   const [buttonName, setbuttonName] = useState(null);
   const [runOnce, setrunOnce] = useState(true);
   const [showVideo, setShowVideo] = useState(true);
+  const [movieIndex, setmovieIndex] = useState(null);
 
   const body = (
     <div className="videoPlayer" id="videoPlayer">
@@ -61,6 +79,7 @@ function VideoSlider(props) {
           controlsList="nodownload"
           disablePictureInPicture
           id="videoFile"
+          onEnded={() => playNextVideo()}
         >
           <source type="video/mp4" />
         </video>
@@ -70,6 +89,23 @@ function VideoSlider(props) {
       </div>
     </div>
   );
+
+  function playNextVideo() {
+    if (movieIndex < allUrls.length - 1) {
+      const movIndex = movieIndex + 1;
+      console.log("index", movIndex);
+      setmovieIndex(movIndex);
+      const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
+      const videoFileName = document.getElementById("videoFile");
+      videoFileName.src = url;
+    } else {
+      const movIndex = 0;
+      setmovieIndex(movIndex);
+      const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
+      const videoFileName = document.getElementById("videoFile");
+      videoFileName.src = url;
+    }
+  }
 
   function clickPrevious() {
     const gap = 6;
@@ -145,7 +181,8 @@ function VideoSlider(props) {
     // setShowVideo(false);
   }
 
-  function playVideo(token, location) {
+  function playVideo(token, location, index) {
+    setmovieIndex(index);
     const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location}?alt=media&token=${token}`;
     const elements = document.getElementsByClassName("flexContainer");
     const videodivider = document.getElementsByClassName("videoDivider");
@@ -250,6 +287,7 @@ function VideoSlider(props) {
       })
       .then((obj) => {
         axios.post(`/getInfoTest`, obj).then((info) => {
+          console.log("info:", info.data);
           setallUrls(info.data);
         });
       })
@@ -268,17 +306,40 @@ function VideoSlider(props) {
                 id="imageContainers"
                 className={`imageContainers${props.genre}`}
               >
-                <div
+                {/* <div
                   className="carousel-items"
                   id={`videoImageId${props.genre}`}
                   style={{
                     backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${val.imageLocation}?alt=media&token=${val.imageToken})`,
                   }}
-                ></div>
+                ></div> */}
+                <Card className="carousel-items">
+                  {/* <CardActionArea> */}
+                  <CardMedia
+                    className={classes.media}
+                    image={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${val.imageLocation}?alt=media&token=${val.imageToken}`}
+                    title="Movie Title"
+                  />
+                  <CardContent className={classes.texts}>
+                    <Typography gutterBottom variant="h7" component="h4">
+                      {val.movieName}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {val.movieDesc}
+                    </Typography>
+                  </CardContent>
+                  {/* </CardActionArea> */}
+                </Card>
                 <IconButton className="playButtons">
                   <PlayCircleFilledIcon
                     fontSize="large"
-                    onClick={() => playVideo(val.movieToken, val.movieLocation)}
+                    onClick={() =>
+                      playVideo(val.movieToken, val.movieLocation, ind, allUrls)
+                    }
                   />
                 </IconButton>
               </div>

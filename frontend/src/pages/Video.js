@@ -46,6 +46,7 @@ const useStyles = makeStyles({
     paddingLeft: "1rem",
     paddingRight: "1rem",
     paddingTop: "3rem",
+    paddingBottom: "3rem",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
 
@@ -67,7 +68,13 @@ function Video() {
 
   return (
     <div>
-      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2FBonanza.jpg?alt=media&token=6a85b5be-1cf1-4d80-bfce-39ad988b803b")'}}>
+      <div
+        className="welcome"
+        style={{
+          backgroundImage:
+            'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2FBonanza.jpg?alt=media&token=6a85b5be-1cf1-4d80-bfce-39ad988b803b")',
+        }}
+      >
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h4">Bonanza</Typography>
@@ -80,9 +87,9 @@ function Video() {
         <VideoSlider genre="Bonanza" />
         <VideoSlider genre="Commercials" />
         <VideoSlider genre="Leave it to Beaver" />
-        <VideoSlider genre="Hollywood Palace"/>
+        <VideoSlider genre="Hollywood Palace" />
+      </div>
     </div>
-  </div>
   );
 }
 
