@@ -91,20 +91,42 @@ function VideoSlider(props) {
   );
 
   function playNextVideo() {
-    if (movieIndex < allUrls.length - 1) {
-      const movIndex = movieIndex + 1;
-      console.log("index", movIndex);
-      setmovieIndex(movIndex);
-      const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
-      const videoFileName = document.getElementById("videoFile");
-      videoFileName.src = url;
-    } else {
-      const movIndex = 0;
-      setmovieIndex(movIndex);
-      const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
-      const videoFileName = document.getElementById("videoFile");
-      videoFileName.src = url;
+    const modalName = document.getElementById("videoPlayer");
+    const videoFile = document.getElementById("videoFile");
+
+    const elements = document.getElementsByClassName("flexContainer");
+    const videodivider = document.getElementsByClassName("videoDivider");
+    const videotitle = document.getElementsByClassName("videoTitle");
+    const appbar = document.getElementsByClassName("MuiAppBar-root");
+
+    videoFile.pause();
+    modalName.style.display = "none";
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.display = "flex";
     }
+    for (var j = 0; j < videodivider.length; j++) {
+      videodivider[j].style.display = "flex";
+    }
+    for (var k = 0; k < videotitle.length; k++) {
+      videotitle[k].style.display = "flex";
+    }
+    for (var m = 0; m < appbar.length; m++) {
+      appbar[m].style.display = "flex";
+    }
+    // if (movieIndex < allUrls.length - 1) {
+    //   const movIndex = movieIndex + 1;
+    //   console.log("index", movIndex);
+    //   setmovieIndex(movIndex);
+    //   const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
+    //   const videoFileName = document.getElementById("videoFile");
+    //   videoFileName.src = url;
+    // } else {
+    //   const movIndex = 0;
+    //   setmovieIndex(movIndex);
+    //   const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
+    //   const videoFileName = document.getElementById("videoFile");
+    //   videoFileName.src = url;
+    // }
   }
 
   function clickPrevious() {
