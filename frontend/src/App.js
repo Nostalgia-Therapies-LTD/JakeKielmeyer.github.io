@@ -24,7 +24,9 @@ import Wildlife_folder from "./component/photo_coms/folders/Wildlife_folder";
 
 //jwt
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 
+axios.defaults.baseURL=  "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
 const theme = createMuiTheme({
   typography: {
     fontFamily: "KOW, sans-serif",
@@ -39,14 +41,16 @@ const theme = createMuiTheme({
   },
 });
 
-const token = localStorage.FBIdToken;
+const token = localStorage.getItem('FBIdToken');
+console.log(token);
 let authenticated;
 
 if (token) {
   const decodedToken = jwtDecode(token);
+  console.log (decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem("FBIdToken");
-    window.location.href("/");
+    window.location.href="/";
     authenticated = false;
   } else {
     authenticated = true;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ImgGrid1 from "./imgGrid1"
-import Modal1 from './modal1';
+import Modal from './modal';
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
@@ -33,7 +33,7 @@ function Places_folder() {
      </Typography>
     <div className="PhotoApp">
       <ImgGrid1 props="places" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal1 props="places" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      {selectedImg  && <Modal props="places" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
     </div>
     </div>
     </div>

@@ -52,10 +52,12 @@ const Login = (props) => {
     event.preventDefault();
     setLoading(true);
 
+
     axios
       .post("/login", user)
       .then((res) => {
         setLoading(false);
+        console.log(res.data.token);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         history.push("/home");
       })
