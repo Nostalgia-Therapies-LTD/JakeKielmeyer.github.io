@@ -364,4 +364,27 @@ app.get("/getMusicInformation/:musicname", (req, res) => {
     });
 });
 
+app.get("/getMusicOnClick/:musicname", async (req, res) => {
+  db.collection("music")
+    .where("musicName", "==", req.params.musicname)
+    .limit(1)
+    .get()
+    .then((docs) => {
+      const documentName = docs.docs[0].ref.path.split("/")[
+        docs.docs[0].ref.path.split("/").length - 1
+      ];
+      const docRef = db.collection("music").doc(documentName);
+
+      db.runTransaction(async (t) => {
+        const doc = await t.get(docRef);
+        const newPopulation = doc.data().click + 1;
+        t.update(docRef, { click: newPopulation });
+      });
+      return res.json("Transaction success!");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 exports.api = functions.https.onRequest(app);
