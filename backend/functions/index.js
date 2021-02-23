@@ -6,9 +6,10 @@ const { filesUpload } = require("./middleware");
 const { v4: uuidv4 } = require("uuid");
 const { v1: uuidv1 } = require("uuid");
 const app = require("express")();
+const cors = require("cors");
+app.use(cors());
 
 admin.initializeApp();
-
 const config = {
   apiKey: "AIzaSyAzJtyyhhXUj2cFikqsfbRhtFjAoa21UCY",
   authDomain: "nostalgiadev-1f319.firebaseapp.com",
@@ -114,7 +115,7 @@ app.post("/signup", (req, res) => {
 //login route
 
 app.post("/login", (req, res) => {
-  user = {
+  const user = {
     ...req.body,
   };
 

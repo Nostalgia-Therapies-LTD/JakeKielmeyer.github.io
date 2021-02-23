@@ -33,6 +33,10 @@ const styles = {
   },
 };
 
+function logoutHandle(){
+  localStorage.clear();
+};
+
 function Navbar(props) {
   const { classes } = props;
   return (
@@ -64,7 +68,7 @@ function Navbar(props) {
           </Button>
         </Link>
         <Link to="/">
-          <Button color="inherit" className={classes.navLink}>
+          <Button color="inherit" className={classes.navLink} onClick={logoutHandle}>
             Logout
           </Button>
         </Link>

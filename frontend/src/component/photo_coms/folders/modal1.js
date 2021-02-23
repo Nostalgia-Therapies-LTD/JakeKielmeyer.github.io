@@ -26,7 +26,7 @@ function Modal1({ selectedImg, setselectedImg, props }) {
       <button className="close" style={{ width: "50%" }} onClick={handleClose}>
         Close
       </button>
-      <button className="close" style={{ width: "50%" }} onClick={handleDelete}>
+      <button className="delete" style={{ width: "50%" }} onClick={handleDelete}>
         Delete Image
       </button>
       <Carousel

@@ -56,7 +56,7 @@ const Login = (props) => {
       .post("/login", user)
       .then((res) => {
         setLoading(false);
-        console.log("token:", res.data.token);
+        console.log(res.data.token);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         history.push("/home");
       })

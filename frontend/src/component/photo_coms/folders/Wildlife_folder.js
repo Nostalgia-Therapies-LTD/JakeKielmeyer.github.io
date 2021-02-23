@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ImgGrid1 from "./imgGrid1"
-import Modal1 from './modal1';
+import Modal from './modal';
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
@@ -33,7 +33,7 @@ function Wildlife_folder() {
      </Typography>
     <div className="PhotoApp">
       <ImgGrid1 props="wildlife" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal1 props="wildlife" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      {selectedImg  && <Modal props="wildlife" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
     </div>
     </div>
     </div>
