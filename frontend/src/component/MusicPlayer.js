@@ -123,8 +123,6 @@ function MusicPlayer(props) {
   const [musicAl, setmusicAl] = useState(null);
   const [musicTr, setmusicTr] = useState(null);
   const [musicArt, setmusicArt] = useState(null);
-  // const [runOnce, setrunOnce] = useState(true);
-  // const [showVideo, setShowVideo] = useState(true);
 
   useEffect(() => {}, []);
 
@@ -151,9 +149,25 @@ function MusicPlayer(props) {
       let url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${musicName[counter].musicAdd}?alt=media&token=${musicName[counter].musicToken}`;
       let musicID = document.getElementById(`musicAudio${props.folderName}`);
       musicID.src = url;
+
       if (showStopButton) {
       } else {
         musicID.play();
+
+        axios
+          .get(
+            `/getMusicOnClick/${
+              musicName[counter].musicAdd.split("%2F")[
+                musicName[counter].musicAdd.split("%2F").length - 1
+              ]
+            }`
+          )
+          .then((res) => {
+            // console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     }
   }, [counter]);
@@ -163,7 +177,6 @@ function MusicPlayer(props) {
       axios
         .get(`/getMusicInformation/${musicPlaying}`)
         .then((res) => {
-          console.log(res);
           setmusicAl(res.data[0].musicAlbum);
           setmusicArt(res.data[0].musicTrack);
           setmusicTr(res.data[0].musicArtist);
@@ -188,6 +201,22 @@ function MusicPlayer(props) {
     setshowStopButton(null);
     let musicID = document.getElementById(`musicAudio${props.folderName}`);
     musicID.play();
+    if (musicID.currentTime == 0) {
+      axios
+        .get(
+          `/getMusicOnClick/${
+            musicName[counter].musicAdd.split("%2F")[
+              musicName[counter].musicAdd.split("%2F").length - 1
+            ]
+          }`
+        )
+        .then((res) => {
+          // console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   function stopMusic() {

@@ -52,7 +52,6 @@ const Login = (props) => {
     event.preventDefault();
     setLoading(true);
 
-
     axios
       .post("/login", user)
       .then((res) => {
