@@ -53,7 +53,7 @@ const Home = (props) => {
   return (
     <React.Fragment>
   <a href="photo/Dogs">
-  <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/Provided%20Photo%20Content-Categories%2FDogs%2Fryan-walton-pWBAwqUUWkk-unsplash.jpg?alt=media&token=588513d1-7e59-4c1c-b26f-d51536833375")'}}>
+  <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fryan-walton-pWBAwqUUWkk-unsplash.jpg?alt=media&token=82738075-659f-4a3b-b7bc-f1d115497ec0")'}}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Dashing Dogs</Typography>

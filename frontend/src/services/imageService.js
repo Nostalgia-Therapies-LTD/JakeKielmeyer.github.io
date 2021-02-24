@@ -69,17 +69,17 @@ export const tvImage = [
   },
   {
     url: tv2,
-    title: "Commercial",
+    title: "Commercial1",
     href: "video",
   },
   {
   url: tv3,
-  title: "Commercial",
+  title: "Commercial2",
   href: "video",
   },
   {
   url: tv4,
-  title: "Commercial",
+  title: "Commercial3",
   href: "video",
   },
 ];

@@ -22,8 +22,8 @@ const Upload =()=>{
 
     return(
         <form className="form">
-            <label className="label">
-            <input className="label input" type = "file" onChange={changeHandler}/>
+            <label className="photolabel">
+            <input className="photolabel input" type = "file" onChange={changeHandler}/>
             <span>+</span>
             </label>
             <div>

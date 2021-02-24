@@ -1,6 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import {useState } from "react";
+import {useHistory } from "react-router-dom";
 
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
@@ -18,6 +18,7 @@ const styles = {
   form: {
     paddingTop: "100px",
     height: "100vh",
+    
     // backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
   logo: {
@@ -37,37 +38,51 @@ const styles = {
   progress: {
     position: "absolute",
   },
+  resize:{
+    fontSize:"15px",
+  },
 };
 
-const Login = (props) => {
+const SignUp = (props) => {
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    
   });
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { classes } = props;
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
 
     axios
-      .post("/login", user)
+      .post("/signup", user)
       .then((res) => {
-        setLoading(false);
-        //console.log(res.data.token);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        history.push("/home");
+        setLoading(false);  
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);  
+       history.push("/home")
       })
       .catch((err) => console.log(err));
   };
 
   const handleChange = (event) => {
-    if (event.target.name === "email") {
-      setUser({ email: event.target.value, password: user.password });
-    } else {
-      setUser({ email: user.email, password: event.target.value });
+    if (event.target.name === "firstName") {
+      setUser({ firstName:event.target.value, lastName:user.lastName, email: user.email, password: user.password, confirmPassword: user.comfirmPassword});
+    }else if (event.target.name === "lastName") {
+      setUser({ firstName:user.firstName, lastName:event.target.value, email: user.email, password: user.password, confirmPassword: user.comfirmPassword});
+    }
+    else if (event.target.name === "email") {
+      setUser({ firstName:user.firstName, lastName:user.lastName, email: event.target.value, password: user.password, confirmPassword: user.comfirmPassword});
+    } else if (event.target.name === "password") {
+      setUser({ firstName:user.firstName, lastName:user.lastName, email: user.email, password: event.target.value, confirmPassword: user.comfirmPassword});
+    } else if (event.target.name === "confirmPassword") {
+      setUser({ firstName:user.firstName, lastName:user.lastName, email: user.email, password: user.password, confirmPassword: event.target.value });
     }
   };
   return (
@@ -79,19 +94,39 @@ const Login = (props) => {
           Nostalgia Therapy
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
+        <TextField
+            id="standard-name"
+            type="text"
+            name="firstName"
+            label="First Name"
+            value={user.firstName}
+            className={classes.textField}
+            onChange={handleChange}
+            fullWidth
+          />
+          
+          <TextField
+            id="standard-name"
+            type="lastName"
+            name="lastName"
+            label="Last Name"
+            value={user.lastName}
+            className={classes.textField}
+            onChange={handleChange}
+            fullWidth
+          />
           <TextField
             id="email"
             name="email"
             type="email"
             label="Email"
             value={user.email}
-            onChange={handleChange}
             className={classes.textField}
+            onChange={handleChange}
             fullWidth
           />
-           
-           <TextField
-            id="password"
+        <TextField
+            id="standard-password-input"
             type="password"
             name="password"
             label="Password"
@@ -100,6 +135,17 @@ const Login = (props) => {
             onChange={handleChange}
             fullWidth
           />
+          <TextField
+            id="standard-password-input"
+            type="password"
+            name="confirmPassword"
+            label="Confirm Password"
+            value={user.confirmPassword}
+            className={classes.textField}
+            onChange={handleChange}
+            fullWidth
+          />
+          
           <Button
             type="submit"
             variant="contained"
@@ -110,7 +156,7 @@ const Login = (props) => {
             disabled={loading}
           >
             {" "}
-            sign in
+            sign up
             {loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
@@ -121,10 +167,10 @@ const Login = (props) => {
             color="primary"
             className={classes.button}
             fullWidth
-            href="/signup"
+            href="/"
           >
             {" "}
-            not registered? sign up 
+            Already have an account? sign in 
           </Button>
         </form>
       </Grid>
@@ -133,4 +179,4 @@ const Login = (props) => {
   );
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(SignUp);

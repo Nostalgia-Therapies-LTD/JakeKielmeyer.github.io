@@ -5,13 +5,13 @@ import Typography from "@material-ui/core/Typography";
 
 //material-UI
 import IconButton from "@material-ui/core/IconButton";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+//import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import Skeleton from "@material-ui/lab/Skeleton";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import CancelIcon from "@material-ui/icons/Cancel";
-import Divider from "@material-ui/core/Divider";
-import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+// import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+// import CancelIcon from "@material-ui/icons/Cancel";
+// import Divider from "@material-ui/core/Divider";
+// import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import Card from "@material-ui/core/Card";
@@ -188,7 +188,7 @@ function MusicPlayer(props) {
   }, [musicPlaying]);
 
   function playMusic() {
-    counter != musicName.length - 1 ? setcounter(counter + 1) : setcounter(0);
+    counter !== musicName.length - 1 ? setcounter(counter + 1) : setcounter(0);
   }
 
   function changeCounter() {
