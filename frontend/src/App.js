@@ -9,6 +9,7 @@ import "./photo.css";
 
 //pages
 import Login from "./pages/login";
+import SignUp from "./pages/signup";
 import Home from "./pages/home";
 import Puzzle from "./pages/Puzzle";
 import Footer from "./component/Footer";
@@ -42,12 +43,12 @@ const theme = createMuiTheme({
 });
 
 const token = localStorage.getItem('FBIdToken');
-console.log(token);
+//console.log(token);
 let authenticated;
 
 if (token) {
   const decodedToken = jwtDecode(token);
-  console.log (decodedToken);
+  //console.log (decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem("FBIdToken");
     window.location.href="/";
@@ -64,6 +65,9 @@ function App() {
       <Switch>
       <Route exact path="/">
       <Login authenticated />
+      </Route>
+      <Route exact path="/signup">
+      <SignUp />
       </Route>
       <div>
         <Navbar />

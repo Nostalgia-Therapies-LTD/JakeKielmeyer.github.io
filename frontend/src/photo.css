@@ -41,15 +41,15 @@ form {
   text-align: center;
 }
 
-label input {
+.photolabel input {
   height: 0;
   width: 0;
   opacity: 0;
 }
-label {
+.photolabel {
   display: block;
-  width: 30px;
   height: 30px;
+  width:30px;
   border: 1px solid whitesmoke;
   border-radius: 50%;
   line-height: 30px;
@@ -63,7 +63,8 @@ label {
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-label:hover {
+
+.photolabel:hover {
   background: rgb(124, 124, 124);
   color: rgba(255, 255, 255, 0.37);
 }

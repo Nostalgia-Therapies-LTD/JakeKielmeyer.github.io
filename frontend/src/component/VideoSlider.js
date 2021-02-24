@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Grid from "@material-ui/core/Grid";
+//import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 
@@ -13,11 +13,11 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CancelIcon from "@material-ui/icons/Cancel";
 import Divider from "@material-ui/core/Divider";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
+// import CardActionArea from "@material-ui/core/CardActionArea";
+// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 //axios
 import axios from "axios";
@@ -60,20 +60,20 @@ function VideoSlider(props) {
   const [allUrls, setallUrls] = useState(null);
   const [imageIndex, setimageIndex] = useState(0);
   const [carouselAvailableImages, setcarouselAvailableImages] = useState(5);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  const [carouselScrollLeft, setcarouselScrollLeft] = useState(0);
-  const [pageLoadCount, setpageLoadCount] = useState(0);
+  // const [windowSize, setWindowSize] = useState(window.innerWidth);
+  // const [carouselScrollLeft, setcarouselScrollLeft] = useState(0);
+  // const [pageLoadCount, setpageLoadCount] = useState(0);
   const [buttonName, setbuttonName] = useState(null);
   const [runOnce, setrunOnce] = useState(true);
-  const [showVideo, setShowVideo] = useState(true);
+  //const [showVideo, setShowVideo] = useState(true);
   const [movieIndex, setmovieIndex] = useState(null);
 
   const body = (
     <div className="videoPlayer" id="videoPlayer">
       <div className="videoWrapper" id="videoWrapper">
         <video
-          autoplay="autoplay"
-          allowfullscreen="true"
+          autoPlay="autoplay"
+          allowFullScreen="true"
           width="100%"
           controls
           controlsList="nodownload"
@@ -232,13 +232,13 @@ function VideoSlider(props) {
   }
 
   useEffect(() => {
-    if (buttonName == "prev1") {
+    if (buttonName === "prev1") {
       setimageIndex(0);
-    } else if (buttonName == "prev2") {
+    } else if (buttonName === "prev2") {
       setimageIndex(imageIndex - carouselAvailableImages);
-    } else if (buttonName == "next1") {
+    } else if (buttonName === "next1") {
       setimageIndex(imageIndex + carouselAvailableImages);
-    } else if (buttonName == "next2") {
+    } else if (buttonName === "next2") {
       const imageContainer = document.getElementsByClassName(
         `imageContainers${props.genre}`
       );
@@ -252,9 +252,9 @@ function VideoSlider(props) {
     const carousel = document.getElementById(`carousel${props.genre}`);
     if (carousel) {
       width = carousel.offsetWidth;
-      if (buttonName == "prev1" || buttonName == "prev2") {
+      if (buttonName === "prev1" || buttonName === "prev2") {
         carousel.scrollBy(-(width + gap), 0);
-      } else if (buttonName == "next1" || buttonName == "next2") {
+      } else if (buttonName === "next1" || buttonName === "next2") {
         carousel.scrollBy(width + gap, 0);
       }
     }
