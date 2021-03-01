@@ -309,7 +309,7 @@ function VideoSlider(props) {
       })
       .then((obj) => {
         axios.post(`/getInfoTest`, obj).then((info) => {
-          console.log("info:", info.data);
+          //console.log("info:", info.data);
           setallUrls(info.data);
         });
       })
