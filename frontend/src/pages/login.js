@@ -37,6 +37,12 @@ const styles = {
   progress: {
     position: "absolute",
   },
+
+  customError:{
+    color:"red",
+    fontSize:"1rem",
+    marginTop:'10px'
+  }
 };
 
 const Login = (props) => {
@@ -45,6 +51,7 @@ const Login = (props) => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const history = useHistory();
   const { classes } = props;
 
@@ -60,7 +67,11 @@ const Login = (props) => {
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         history.push("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErrors(err.response.data);
+        setLoading(false)
+
+      })
   };
 
   const handleChange = (event) => {
@@ -85,8 +96,10 @@ const Login = (props) => {
             type="email"
             label="Email"
             value={user.email}
-            onChange={handleChange}
             className={classes.textField}
+            helperText={errors.email}
+            error={errors.email ? true : false}
+            onChange={handleChange}
             fullWidth
           />
            
@@ -97,9 +110,16 @@ const Login = (props) => {
             label="Password"
             value={user.password}
             className={classes.textField}
+            helperText={errors.password}
+            error={errors.password ? true : false}
             onChange={handleChange}
             fullWidth
           />
+          {errors.general && (
+            <Typography variant="body2" className={classes.customError}>
+              {errors.general}
+            </Typography>
+          )}
           <Button
             type="submit"
             variant="contained"

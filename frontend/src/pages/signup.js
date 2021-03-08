@@ -41,6 +41,11 @@ const styles = {
   resize:{
     fontSize:"15px",
   },
+  customError:{
+    color:"red",
+    fontSize:"1rem",
+    marginTop:'10px'
+  }
 };
 
 const SignUp = (props) => {
@@ -49,10 +54,11 @@ const SignUp = (props) => {
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
     
   });
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const history = useHistory();
   const { classes } = props;
 
@@ -68,7 +74,11 @@ const SignUp = (props) => {
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);  
        history.push("/home")
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setErrors(err.response.data);
+        setLoading(false)
+
+      })
   };
 
   const handleChange = (event) => {
@@ -122,6 +132,8 @@ const SignUp = (props) => {
             label="Email"
             value={user.email}
             className={classes.textField}
+            helperText={errors.email}
+            error={errors.email ? true : false}
             onChange={handleChange}
             fullWidth
           />
@@ -132,20 +144,28 @@ const SignUp = (props) => {
             label="Password"
             value={user.password}
             className={classes.textField}
+            helperText={errors.password}
+            error={errors.password ? true : false}
             onChange={handleChange}
             fullWidth
           />
           <TextField
-            id="standard-password-input"
+            id="standard-confirmpassword-input"
             type="password"
             name="confirmPassword"
             label="Confirm Password"
             value={user.confirmPassword}
             className={classes.textField}
+            helperText={errors.confirmPassword}
+            error={errors.confirmPassword ? true : false}
             onChange={handleChange}
             fullWidth
           />
-          
+           {errors.general && (
+            <Typography variant="body2" className={classes.customError}>
+              {errors.general}
+            </Typography>
+          )}
           <Button
             type="submit"
             variant="contained"
