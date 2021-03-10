@@ -170,18 +170,30 @@ app.post("/login", (req, res) => {
 
 //reset route
 app.post("/reset", (req, res) => {
-  const emailAddress = req.email;
+  const emailAddress = {
+    ...req.body,
+  };
 
+  let errors = {};
+
+  if (isEmpty(emailAddress.email)) {
+    errors.email = "Must not be empty";
+  } else if (!isEmail(emailAddress .email)) {
+    errors.email = "Must be a valid email address";
+  }
+  if (Object.keys(errors).length > 0) return res.status(400).json(errors);
   firebase
     .auth()
-    .sendPasswordResetEmail(emailAddress)
+    .sendPasswordResetEmail(emailAddress.email)
     .then(() => {
       return res
         .status(200)
         .json({ message: "reset link has been emailed to you" });
     })
     .catch((err) => {
-      return res.status(500).json({ error: err });
+      if (err.code === "auth/too-many-requests") {
+      return res.status(400).json({ general: "Too many requests! Please try again later" });
+    } else return res.status(500).json({ general: "Something went wrong, please try again" });
     });
 });
 

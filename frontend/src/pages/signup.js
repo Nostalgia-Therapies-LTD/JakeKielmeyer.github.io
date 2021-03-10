@@ -190,7 +190,7 @@ const SignUp = (props) => {
             href="/"
           >
             {" "}
-            Already have an account? sign in 
+            Already have an account? log in 
           </Button>
         </form>
       </Grid>

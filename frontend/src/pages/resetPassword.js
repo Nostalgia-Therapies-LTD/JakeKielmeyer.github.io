@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useHistory} from "react-router-dom";
 
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
@@ -26,9 +25,13 @@ const styles = {
   },
 
   textField: {
-    marginTop: "10px",
+    marginTop: "20px",
   },
-  
+
+  textField2: {
+    marginTop: "20px",
+  },
+
   button: {
     marginTop: "20px",
     position: "relative",
@@ -45,27 +48,25 @@ const styles = {
   }
 };
 
-const Login = (props) => {
+const Reset = (props) => {
   const [user, setUser] = useState({
     email: "",
-    password: "",
   });
+  const[msg, setMsg]=useState("")
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const history = useHistory();
   const { classes } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-
     axios
-      .post("/login", user)
+      .post("/reset", user)
       .then((res) => {
         setLoading(false);
-        //console.log(res.data.token);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        history.push("/home");
+        setMsg(<body style={{textAlign:"center", fontSize:"1.2em", color:"green"}}>
+        A reset link has been emailed to you.
+        </body>)
       })
       .catch((err) => {
         setErrors(err.response.data);
@@ -75,12 +76,9 @@ const Login = (props) => {
   };
 
   const handleChange = (event) => {
-    if (event.target.name === "email") {
-      setUser({ email: event.target.value, password: user.password });
-    } else {
-      setUser({ email: user.email, password: event.target.value });
-    }
+      setUser({ email: event.target.value});
   };
+
   return (
     <Grid container className={classes.form}>
       <CssBaseline />
@@ -88,6 +86,9 @@ const Login = (props) => {
       <Grid item sm>
         <Typography className={classes.logo} variant="h5">
           Nostalgia Therapy
+        </Typography>
+        <Typography className={classes.textField2} variant="body1">
+          Please enter your registered email address and you will recieve a link to create a new password via email.
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
@@ -103,19 +104,6 @@ const Login = (props) => {
             fullWidth
           />
            
-           <TextField
-            id="password"
-            type="password"
-            name="password"
-            label="Password"
-            value={user.password}
-            className={classes.textField}
-            helperText={errors.password}
-            error={errors.password ? true : false}
-            onChange={handleChange}
-            fullWidth
-          />
-
           {errors.general && (
             <Typography variant="body2" className={classes.customError}>
               {errors.general}
@@ -131,30 +119,20 @@ const Login = (props) => {
             disabled={loading}
           >
             {" "}
-            log in
+            Send Request
             {loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
-          <Button
-            type="link"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            fullWidth
-            href="/signup"
-          >
-            {" "}
-            not registered? sign up 
-          </Button>
         </form>
         <Typography className="forgotPassword" variant="subtitle1">
-          <a href="/reset">Forgot password?</a>
-          </Typography>
+           <a href="/login"> Back to log in </a>
+        </Typography>
+        {msg}
       </Grid>
       <Grid item sm />
     </Grid>
   );
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Reset);

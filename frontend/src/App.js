@@ -11,6 +11,7 @@ import "./photo.css";
 //pages
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
+import Reset from "./pages/resetPassword";
 import Home from "./pages/home";
 import Puzzle from "./pages/Puzzle";
 import Footer from "./component/Footer";
@@ -75,7 +76,8 @@ function App() {
       <Switch>
       <Route exact path="/" component={Login}></Route>
       <Route exact path="/signup" component={SignUp} ></Route>
-      <div>
+      <Route exact path="/reset" component={Reset} ></Route>
+      <React.Fragment>
         <Navbar />
         <div className="container">          
             <ProtectedRoute exact path="/home" component={Home}></ProtectedRoute>
@@ -90,7 +92,7 @@ function App() {
             <ProtectedRoute exact path="/photo/Places" component={Places_folder}></ProtectedRoute>
             <ProtectedRoute exact path="/photo/Wildlife" component={Wildlife_folder}></ProtectedRoute>
           </div>
-          </div>
+          </React.Fragment>
         </Switch>
         <Footer />
       </Router>
