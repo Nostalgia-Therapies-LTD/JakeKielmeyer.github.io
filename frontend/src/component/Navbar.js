@@ -18,6 +18,7 @@ const styles = {
     fontSize: "1.18rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
+    textShadow: "1px 1px 4px #000",
   },
 
   navContainer: {
@@ -30,12 +31,13 @@ const styles = {
   navLink: {
     fontFamily: "KOJ",
     fontSize: "1.15rem",
+    textShadow: "1px 1px 4px #000",
   },
 };
 
-function logoutHandle(){
+function logoutHandle() {
   localStorage.clear();
-};
+}
 
 function Navbar(props) {
   const { classes } = props;
@@ -68,7 +70,11 @@ function Navbar(props) {
           </Button>
         </Link>
         <Link to="/">
-          <Button color="inherit" className={classes.navLink} onClick={logoutHandle}>
+          <Button
+            color="inherit"
+            className={classes.navLink}
+            onClick={logoutHandle}
+          >
             Logout
           </Button>
         </Link>
