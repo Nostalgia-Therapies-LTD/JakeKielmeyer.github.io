@@ -167,6 +167,26 @@ app.post("/login", (req, res) => {
         .json({ general: "Wrong credentials, please try again" });
     });
 });
+// google signin
+app.post("/google", (req, res) => {
+let provider = new firebase.auth.GoogleAuthProvider();
+firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    let credential = result.credential;
+    let token = credential.accessToken;
+    let user = result.user;
+    return res.status(200).json({ token });
+
+  }).catch((error) => {
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    let email = error.email;
+    let credential = error.credential;
+    res.status(400).json({ errorMessage })
+  
+  });
+});
 
 //reset route
 app.post("/reset", (req, res) => {

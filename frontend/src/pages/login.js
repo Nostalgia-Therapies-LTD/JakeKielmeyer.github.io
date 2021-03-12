@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import GoogleButton from 'react-google-button';
 
 //axios
 import axios from "axios";
@@ -32,6 +33,7 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+ 
   },
 
   progress: {
@@ -43,6 +45,7 @@ const styles = {
     fontSize:"1rem",
     marginTop:'10px'
   }
+
 };
 
 const Login = (props) => {
@@ -81,6 +84,23 @@ const Login = (props) => {
       setUser({ email: user.email, password: event.target.value });
     }
   };
+
+  const handleGoogle=()=>{
+    axios
+      .post("/google")
+      .then((res) => {
+        setLoading(false);
+        console.log(res, res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
+        history.push("/home");
+      })
+      .catch((err) => {
+        setErrors(err.response.data);
+        setLoading(false)
+
+      })
+    
+  }
   return (
     <Grid container className={classes.form}>
       <CssBaseline />
@@ -136,6 +156,7 @@ const Login = (props) => {
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
+    
           <Button
             type="link"
             variant="contained"
@@ -148,6 +169,9 @@ const Login = (props) => {
             not registered? sign up 
           </Button>
         </form>
+        <hr></hr>
+        <GoogleButton style={{width:"100%", marginTop:"20px", textAlign:"center"}} 
+          label='Log in with Google' type="light"  onClick={() => handleGoogle}/>
         <Typography className="forgotPassword" variant="subtitle1">
           <a href="/reset">Forgot password?</a>
           </Typography>
