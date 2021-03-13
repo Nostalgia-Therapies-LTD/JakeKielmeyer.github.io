@@ -129,14 +129,19 @@ function MusicPlayer(props) {
   useEffect(() => {});
 
   useEffect(() => {
-    axios
-      .get(`/getMusics/${props.folderName}`)
-      .then((res) => {
-        setmusicName(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem(props.folderName)) {
+      setmusicName(JSON.parse(localStorage.getItem(props.folderName)));
+    } else {
+      axios
+        .get(`/getMusics/${props.folderName}`)
+        .then((res) => {
+          setmusicName(res.data);
+          localStorage.setItem(props.folderName, JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [props.folderName]);
 
   useEffect(() => {

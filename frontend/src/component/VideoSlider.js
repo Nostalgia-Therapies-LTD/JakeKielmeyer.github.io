@@ -302,20 +302,24 @@ function VideoSlider(props) {
   });
 
   useEffect(() => {
-    axios
-      .get(`/getInfo/${props.genre}`)
-      .then((res) => {
-        return res.data;
-      })
-      .then((obj) => {
-        axios.post(`/getInfoTest`, obj).then((info) => {
-          //console.log("info:", info.data);
-          setallUrls(info.data);
+    if (localStorage.getItem(props.genre)) {
+      setallUrls(JSON.parse(localStorage.getItem(props.genre)));
+    } else {
+      axios
+        .get(`/getInfo/${props.genre}`)
+        .then((res) => {
+          return res.data;
+        })
+        .then((obj) => {
+          axios.post(`/getInfoTest`, obj).then((info) => {
+            setallUrls(info.data);
+            localStorage.setItem(props.genre, JSON.stringify(info.data));
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   }, [props.genre]);
 
   const testGeturl = allUrls ? (
