@@ -70,6 +70,16 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
+const isEmail = (email) => {
+  const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email.match(regEx)) return true;
+  else return false;
+};
+
+const isEmpty = (string) => {
+  if (string === "") return true;
+  else return false;
+};
 //signup route
 
 app.post("/signup", (req, res) => {
@@ -78,7 +88,20 @@ app.post("/signup", (req, res) => {
     ...req.body,
   };
 
-  let token;
+  let errors = {};
+
+  if (isEmpty(newUser.email)) {
+    errors.email = "Must not be empty";
+  } else if (!isEmail(newUser.email)) {
+    errors.email = "Must be a valid email address";
+  }
+  if (isEmpty(newUser.password)) errors.password = "Must not be empty";
+  if (newUser.password != newUser.confirmPassword){errors.confirmPassword = "Passwords must match";}
+  
+
+  if (Object.keys(errors).length > 0) return res.status(400).json(errors);
+
+  let token, userId;
 
   firebase
     .auth()
@@ -99,15 +122,18 @@ app.post("/signup", (req, res) => {
       return db.doc(`/users/${userCredential.userId}`).set(userCredential);
     })
     .then(() => {
-      console.log(token);
       return res.status(201).json({ token });
     })
     .catch((err) => {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
-        return res.status(400).json({ email: "Email elready registered" });
+        return res.status(400).json({ general: "This email address is already registered" });
+      } else if (err.code === "auth/weak-password") {
+        return res
+          .status(400)
+          .json({ password: "Password must be atleast six(6) characters" });
       } else {
-        return res.status(500).json({ error: err });
+        return res.status(500).json({ general: "Something went wrong, please try again" });
       }
     });
 });
@@ -118,7 +144,13 @@ app.post("/login", (req, res) => {
   const user = {
     ...req.body,
   };
+  let errors = {};
 
+  if (isEmpty(user.email)) errors.email = 'Must not be empty';
+  if (isEmpty(user.password)) errors.password = 'Must not be empty';
+  
+  if (Object.keys(errors).length > 0) return res.status(400).json(errors);
+  
   firebase
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
@@ -130,24 +162,38 @@ app.post("/login", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      return res.status(500).json({ error: err });
+      return res
+        .status(403)
+        .json({ general: "Wrong credentials, please try again" });
     });
 });
 
 //reset route
 app.post("/reset", (req, res) => {
-  const emailAddress = req.email;
+  const emailAddress = {
+    ...req.body,
+  };
 
+  let errors = {};
+
+  if (isEmpty(emailAddress.email)) {
+    errors.email = "Must not be empty";
+  } else if (!isEmail(emailAddress .email)) {
+    errors.email = "Must be a valid email address";
+  }
+  if (Object.keys(errors).length > 0) return res.status(400).json(errors);
   firebase
     .auth()
-    .sendPasswordResetEmail(emailAddress)
+    .sendPasswordResetEmail(emailAddress.email)
     .then(() => {
       return res
         .status(200)
         .json({ message: "reset link has been emailed to you" });
     })
     .catch((err) => {
-      return res.status(500).json({ error: err });
+      if (err.code === "auth/too-many-requests") {
+      return res.status(400).json({ general: "Too many requests! Please try again later" });
+    } else return res.status(500).json({ general: "Something went wrong, please try again" });
     });
 });
 

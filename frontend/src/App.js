@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./component/Navbar";
+import ProtectedRoute from "./component/protectedRoute";
 
 //mui stuff
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
@@ -10,6 +11,7 @@ import "./photo.css";
 //pages
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
+import Reset from "./pages/resetPassword";
 import Home from "./pages/home";
 import Puzzle from "./pages/Puzzle";
 import Footer from "./component/Footer";
@@ -26,6 +28,7 @@ import Wildlife_folder from "./component/photo_coms/folders/Wildlife_folder";
 //jwt
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+
 
 axios.defaults.baseURL=  "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
 const theme = createMuiTheme({
@@ -44,55 +47,52 @@ const theme = createMuiTheme({
 
 const token = localStorage.getItem('FBIdToken');
 //console.log(token);
-let authenticated;
+//let authenticated;
 
 if (token) {
   const decodedToken = jwtDecode(token);
   //console.log (decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem("FBIdToken");
-    window.location.href="/";
-    authenticated = false;
-  } else {
-    authenticated = true;
-  }
+    window.location.href="/"};
+    //authenticated = false;
+  // } else {
+  //   //authenticated = true;
+  // }
 }
+// const Page404 = ({ location }) => (
+//   <div className="welcome">
+//   <div style={{margin:'10% 20% 60% 20%'}}>
+//      <h2>Opps! Sorry, No match found for <code>{location.pathname}</code></h2>
+//      <div style={{margin:'2% 30%'}}><h3>Return to <a className="newlink" href="/home">Home</a></h3></div>
+//   </div>
+//   </div>
+// );
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
       <Switch>
-      <Route exact path="/">
-      <Login authenticated />
-      </Route>
-      <Route exact path="/signup">
-      <SignUp />
-      </Route>
-      <div>
+      <Route exact path="/" component={Login}></Route>
+      <Route exact path="/signup" component={SignUp} ></Route>
+      <Route exact path="/reset" component={Reset} ></Route>
+      <React.Fragment>
         <Navbar />
         <div className="container">          
-            <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/puzzle">
-              <Puzzle />
-            </Route>
-            <Route exact path="/video">
-              <Video />
-            </Route>
-            <Route exact path="/music">
-              <Music />
-            </Route>
-            <Route exact path="/photo" component={Main_photo}></Route>
-            <Route exact path="/photo/My moments" component={My_moments}></Route>
-            <Route exact path="/photo/Cats" component={Cat_folder}></Route>
-            <Route exact path="/photo/Dogs" component={Dog_folder}></Route>
-            <Route exact path="/photo/Nature" component={Nature_folder}></Route>
-            <Route exact path="/photo/Places" component={Places_folder}></Route>
-            <Route exact path="/photo/Wildlife" component={Wildlife_folder}></Route>
+            <ProtectedRoute exact path="/home" component={Home}></ProtectedRoute>
+            <ProtectedRoute exact path="/puzzle" component={Puzzle}></ProtectedRoute>
+            <ProtectedRoute exact path="/video" component={Video}></ProtectedRoute>
+            <ProtectedRoute exact path="/music" component={Music}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo" component={Main_photo}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/My moments" component={My_moments}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/Cats" component={Cat_folder}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/Dogs" component={Dog_folder}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/Nature" component={Nature_folder}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/Places" component={Places_folder}></ProtectedRoute>
+            <ProtectedRoute exact path="/photo/Wildlife" component={Wildlife_folder}></ProtectedRoute>
           </div>
-          </div>
+          </React.Fragment>
         </Switch>
         <Footer />
       </Router>

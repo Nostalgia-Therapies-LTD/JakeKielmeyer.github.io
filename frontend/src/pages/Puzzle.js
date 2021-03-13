@@ -53,6 +53,7 @@ const styles = () => ({
 
 const Slide = (props) => {
   const { classes } = props;
+  const [modalOpen, setModalOpen] = useState(false);
   const [puzzlePiecesState, setPuzzlePiecesState] = useState({
     pieces: [],
     background: "",
@@ -121,20 +122,33 @@ const Slide = (props) => {
     //storing the background photo
     background = canvas.toDataURL();
     setPuzzlePiecesState({ pieces, background });
+    setModalOpen(true);
 
     //scrolling to the puzzle board
     window.location.href = "#puzzleBoard";
   };
 
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       {/* Top Banner with welcome note */}
-      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/puzzles%2Fimage_2021-02-12_154657.png?alt=media&token=c017b480-a750-49d7-af7b-45662feb8701")'}}>
+      <div
+        className="welcome"
+        style={{
+          backgroundImage:
+            'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/puzzles%2Fimage_2021-02-12_154657.png?alt=media&token=c017b480-a750-49d7-af7b-45662feb8701")',
+        }}
+      >
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Tucker the Dog</Typography>
           <Box mt={5}>
-            <Typography variant="h4">Try our newest puzzle, Tucker the dog!</Typography>
+            <Typography variant="h4">
+              Try our newest puzzle, Tucker the dog!
+            </Typography>
           </Box>
         </Box>
       </div>
@@ -169,7 +183,11 @@ const Slide = (props) => {
         </div>
 
         {/* puzzle solve board rendering from this component */}
-        <PuzzlePlay puzzlePiecesProps={puzzlePiecesState} />
+        <PuzzlePlay
+          puzzlePiecesProps={puzzlePiecesState}
+          modalOpen={modalOpen}
+          handleClose={handleModalClose}
+        />
       </div>
     </>
   );

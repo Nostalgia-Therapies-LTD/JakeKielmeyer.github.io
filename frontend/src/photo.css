@@ -5,6 +5,29 @@
   --secondary: #4e4e4e;
   --error: #ff4a4a;
 } */
+.newlink{
+  
+  color:white;
+  background-color: transparent;
+  text-decoration: underline;
+  font:inherit;
+}
+
+ 
+.newlink:hover {
+  color:deepskyblue;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.forgotPassword {
+  margin-top:30px;
+  text-align:right;
+ }
+ .forgotPassword:hover {
+  text-decoration:underline;
+  color: red;
+ }
 
 .welcome {
   color: white;

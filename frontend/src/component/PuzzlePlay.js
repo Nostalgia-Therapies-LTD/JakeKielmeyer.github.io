@@ -3,6 +3,9 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 //import mui stuff
 import Grid from "@material-ui/core/Grid";
+import Modal from "@material-ui/core/Modal";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 //to shuffle the puzzle tile pieces for puzzle board
 const shufflePieces = (pieces) => {
@@ -17,7 +20,7 @@ const shufflePieces = (pieces) => {
 };
 
 const Puzzle = (props) => {
-  const { puzzlePiecesProps } = props;
+  const { puzzlePiecesProps, modalOpen, handleClose } = props;
   const puzzlePieces = puzzlePiecesProps.pieces;
   const puzzleBackground = puzzlePiecesProps.background;
 
@@ -62,149 +65,165 @@ const Puzzle = (props) => {
   };
 
   return (
-    <div
-      id="puzzle"
+    <Modal
+      open={modalOpen}
       style={{
-        textAlign: "center",
+        backgroundColor: "black",
+        margin: "2em",
+        padding: "5em",
       }}
     >
-      <Grid
-        container
-        justify="center"
-        id="puzzleBoard"
-        style={{ display: puzzleTiles.length <= null ? "none" : "" }}
+      <div
+        id="puzzle"
+        style={{
+          textAlign: "center",
+          outline: "none",
+        }}
       >
-        {/* react-beautiful-dnd components start here */}
-        <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
-          {/* puzzle board */}
-          <Grid item sm={6} xs={12}>
-            <div
-              style={{
-                marginTop: 80,
-                margin: "auto",
-                width: 400,
-                height: 400,
-                display: "flex",
-                flexWrap: "wrap",
-                backgroundColor: "grey",
-                outline: "8px solid #0f499d",
-              }}
-            >
-              {puzzleTiles.map((tile, index) => (
-                <Droppable droppableId={"puzzle" + tile.id} key={tile.id}>
-                  {/* react-beautiful-dnd Droppable takes it elements in a function */}
-                  {(provided, snapshot) => (
-                    <div
-                      key={tile.id}
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      style={{
-                        width: puzzlePiecesLength + 2,
-                        height: puzzlePiecesLength + 2,
-                        display: "flex",
-                        flexWrap: "wrap",
-                        border: "1px solid white",
-                        backgroundColor: snapshot.isDraggingOver
-                          ? "aliceblue"
-                          : null,
-                      }}
-                    >
-                      <Draggable
+        <IconButton
+          color="primary"
+          arai-label="close puzzle modal"
+          component="span"
+          style={{
+            float: "right",
+          }}
+          onClick={() => handleClose()}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Grid container justify="center" id="puzzleBoard">
+          {/* react-beautiful-dnd components start here */}
+          <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
+            {/* puzzle board */}
+            <Grid item sm={6} xs={12}>
+              <div
+                style={{
+                  marginTop: 80,
+                  margin: "auto",
+                  width: 400,
+                  height: 400,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  backgroundColor: "grey",
+                  outline: "8px solid #0f499d",
+                }}
+              >
+                {puzzleTiles.map((tile, index) => (
+                  <Droppable droppableId={"puzzle" + tile.id} key={tile.id}>
+                    {/* react-beautiful-dnd Droppable takes it elements in a function */}
+                    {(provided, snapshot) => (
+                      <div
                         key={tile.id}
-                        draggableId={tile.id}
-                        index={index}
-                        isDragDisabled={!tile.content}
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          width: puzzlePiecesLength + 2,
+                          height: puzzlePiecesLength + 2,
+                          display: "flex",
+                          flexWrap: "wrap",
+                          border: "1px solid white",
+                          backgroundColor: snapshot.isDraggingOver
+                            ? "aliceblue"
+                            : null,
+                        }}
                       >
-                        {/* react-beautiful-dnd Draggable takes it elements in a function */}
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={{
-                              width: puzzlePiecesLength,
-                              height: puzzlePiecesLength,
-                              backgroundImage: `url(${tile.content}`,
-                              ...provided.draggableProps.style,
-                            }}
-                          ></div>
-                        )}
-                      </Draggable>
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </div>
-          </Grid>
+                        <Draggable
+                          key={tile.id}
+                          draggableId={tile.id}
+                          index={index}
+                          isDragDisabled={!tile.content}
+                        >
+                          {/* react-beautiful-dnd Draggable takes it elements in a function */}
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                width: puzzlePiecesLength,
+                                height: puzzlePiecesLength,
+                                backgroundImage: `url(${tile.content}`,
+                                ...provided.draggableProps.style,
+                              }}
+                            ></div>
+                          )}
+                        </Draggable>
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                ))}
+              </div>
+            </Grid>
 
-          {/* Solve Board */}
-          <Grid item sm={6} xs={12}>
-            <div
-              style={{
-                marginTop: 80,
-                margin: "auto",
-                width: 400,
-                height: 400,
-                display: "flex",
-                flexWrap: "wrap",
-                backgroundImage: `url(${puzzleBackground})`,
-                outline: "8px solid #0f499d",
-              }}
-            >
-              {solveTiles.map((tile, index) => (
-                <Droppable droppableId={"solve" + tile.id} key={tile.id}>
-                  {/* react-beautiful-dnd Droppable takes it elements in a function */}
-                  {(provided, snapshot) => (
-                    <div
-                      key={tile.id}
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      draggable={false}
-                      style={{
-                        width: puzzlePiecesLength + 2,
-                        height: puzzlePiecesLength + 2,
-                        display: "flex",
-                        flexWrap: "wrap",
-                        border: "1px solid white",
-                        backgroundColor: snapshot.isDraggingOver
-                          ? "aliceblue"
-                          : null,
-                      }}
-                    >
-                      <Draggable
+            {/* Solve Board */}
+            <Grid item sm={6} xs={12}>
+              <div
+                style={{
+                  marginTop: 80,
+                  margin: "auto",
+                  width: 400,
+                  height: 400,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  backgroundImage: `url(${puzzleBackground})`,
+                  outline: "8px solid #0f499d",
+                }}
+              >
+                {solveTiles.map((tile, index) => (
+                  <Droppable droppableId={"solve" + tile.id} key={tile.id}>
+                    {/* react-beautiful-dnd Droppable takes it elements in a function */}
+                    {(provided, snapshot) => (
+                      <div
                         key={tile.id}
-                        draggableId={tile.id}
-                        index={index}
-                        isDragDisabled={!tile.content}
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        draggable={false}
+                        style={{
+                          width: puzzlePiecesLength + 2,
+                          height: puzzlePiecesLength + 2,
+                          display: "flex",
+                          flexWrap: "wrap",
+                          border: "1px solid white",
+                          backgroundColor: snapshot.isDraggingOver
+                            ? "aliceblue"
+                            : null,
+                        }}
                       >
-                        {/* react-beautiful-dnd Draggable takes it elements in a function */}
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={{
-                              width: puzzlePiecesLength,
-                              height: puzzlePiecesLength,
-                              backgroundImage: `url(${tile.content}`,
-                              ...provided.draggableProps.style,
-                            }}
-                          ></div>
-                        )}
-                      </Draggable>
+                        <Draggable
+                          key={tile.id}
+                          draggableId={tile.id}
+                          index={index}
+                          isDragDisabled={!tile.content}
+                        >
+                          {/* react-beautiful-dnd Draggable takes it elements in a function */}
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                width: puzzlePiecesLength,
+                                height: puzzlePiecesLength,
+                                backgroundImage: `url(${tile.content}`,
+                                ...provided.draggableProps.style,
+                              }}
+                            ></div>
+                          )}
+                        </Draggable>
 
-                      {/* react-beautiful-dnd requirement to drag and drop */}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </div>
-          </Grid>
-        </DragDropContext>
-      </Grid>
-    </div>
+                        {/* react-beautiful-dnd requirement to drag and drop */}
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                ))}
+              </div>
+            </Grid>
+          </DragDropContext>
+        </Grid>
+      </div>
+    </Modal>
   );
 };
 
