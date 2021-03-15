@@ -37,9 +37,17 @@ const PuzzleCard = (props) => {
       <Box ml={9}>
         <div className={classes.slideImageAction}>
           <Button
+            variant="outlined"
+            color="secondary"
+            style={{ margin: "5px" }}
+            onClick={() => handleClick(id, 3)}
+          >
+            3 X 3
+          </Button>
+          <Button
             variant="contained"
             color="primary"
-            style={{ margin: "10px" }}
+            style={{ margin: "5px" }}
             onClick={() => handleClick(id, 4)}
           >
             4 x 4
@@ -47,7 +55,7 @@ const PuzzleCard = (props) => {
           <Button
             variant="contained"
             color="secondary"
-            style={{ margin: "10px" }}
+            style={{ margin: "5px" }}
             onClick={() => handleClick(id, 8)}
           >
             8 x 8

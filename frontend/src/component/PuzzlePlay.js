@@ -25,7 +25,7 @@ const Puzzle = (props) => {
   const puzzleBackground = puzzlePiecesProps.background;
 
   //selecting 98px for 4x4 puzzle (16 puzzle pieces) and 48px for 8x8
-  const puzzlePiecesLength = puzzlePieces.length === 16 ? 98 : 48;
+  const puzzlePiecesLength = puzzlePieces.length === 16 ? 98 : 9 ? 131.2 : 48;
 
   //creating object to keep track of the index of the pieces
   const puzzleTilesUnshuffled = puzzlePieces.map((puzzlePiece, index) => ({
