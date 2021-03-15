@@ -93,6 +93,7 @@ const Login = (props) => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleAuthProvider)
     .then((result) => {
+      let acctoken = result.credential.accessToken;
       let token = result.credential.idToken;
       let isnewUser = result.additionalUserInfo.isNewUser;
       let profile=result.additionalUserInfo.profile;
@@ -110,7 +111,7 @@ const Login = (props) => {
       if (isnewUser){
         db.doc(`/users/${userCredential.userId}`).set(userCredential)
       }
-      console.log(isnewUser,userCredential);
+      console.log(isnewUser,userCredential,acctoken);
       
     
   }).catch((error) => {

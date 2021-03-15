@@ -48,12 +48,12 @@ const FBAuth = (req, res, next) => {
     return res.status(403).json({ error: "The user is Unauthorized" });
   }
 };
-app.post('/upload', function (req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.end();
-});
+// app.post('/upload', function (req, res) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader('Access-Control-Allow-Methods', '*');
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   res.end();
+// });
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');
 //   res.setHeader("Access-Control-Allow-Credentials", "true");
