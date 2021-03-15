@@ -1,6 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useHistory} from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
+import { db } from "../config";
 
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
@@ -49,6 +52,7 @@ const styles = {
 };
 
 const Login = (props) => {
+  const[googleIn, setGoogleIn]=useState(false)
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -84,23 +88,41 @@ const Login = (props) => {
       setUser({ email: user.email, password: event.target.value });
     }
   };
-
+// google signin
   const handleGoogle=()=>{
-    axios
-      .post("/google")
-      .then((res) => {
-        setLoading(false);
-        console.log(res, res.data);
-        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-        history.push("/home");
-      })
-      .catch((err) => {
-        setErrors(err.response.data);
-        setLoading(false)
+    const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(googleAuthProvider)
+    .then((result) => {
+      let token = result.credential.idToken;
+      let isnewUser = result.additionalUserInfo.isNewUser;
+      let profile=result.additionalUserInfo.profile;
+      let uid=result.user.uid;
+      localStorage.setItem("FBIdToken", `Bearer ${token}`);
+      history.push("/home");
+      const userCredential = {
+        firstName: profile.given_name,
+        lastName: profile.family_name,
+        email: profile.email,
+        createdAt: new Date().toISOString(),
+        userId:uid,
+      };
 
-      })
+      if (isnewUser){
+        db.doc(`/users/${userCredential.userId}`).set(userCredential)
+      }
+      console.log(isnewUser,userCredential);
+      
     
-  }
+  }).catch((error) => {
+    let errorCode = error.code;
+    let errorMessage = error.message;
+    let email = error.email;
+    let credential = error.credential;
+    
+  });
+};
+
+  
   return (
     <Grid container className={classes.form}>
       <CssBaseline />
@@ -171,7 +193,7 @@ const Login = (props) => {
         </form>
         <hr></hr>
         <GoogleButton style={{width:"100%", marginTop:"20px", textAlign:"center"}} 
-          label='Log in with Google' type="light"  onClick={() => handleGoogle}/>
+          label='Log in with Google' type="light"  onClick={handleGoogle}/>
         <Typography className="forgotPassword" variant="subtitle1">
           <a href="/reset">Forgot password?</a>
           </Typography>
