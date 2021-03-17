@@ -16,12 +16,14 @@ const useUserStorage = (file) => {
         const config = {
           headers: {
             "content-type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
             Authorization: localStorage.FBIdToken,
           },
         };
         const { url } = axios.post("/upload", formData, config);
-
+        
         seturl(url);
+        console.log(url)
       } catch (error) {
         seterror(error);
       }
@@ -32,8 +34,9 @@ const useUserStorage = (file) => {
       source.cancel();
     };
   }, [file]);
-
+  
   return { url, error };
+  
 };
 
 export default useUserStorage;
