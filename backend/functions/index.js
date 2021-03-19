@@ -8,7 +8,7 @@ const { v1: uuidv1 } = require("uuid");
 const app = require("express")();
 const cors = require("cors");
 app.use(cors());
- app.options('*', cors());
+
 admin.initializeApp();
 const config = {
   apiKey: "AIzaSyAzJtyyhhXUj2cFikqsfbRhtFjAoa21UCY",
@@ -48,19 +48,7 @@ const FBAuth = (req, res, next) => {
     return res.status(403).json({ error: "The user is Unauthorized" });
   }
 };
-// app.post('/upload', function (req, res) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader('Access-Control-Allow-Methods', '*');
-//   res.setHeader("Access-Control-Allow-Headers", "*");
-//   res.end();
-// });
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
-//   next();
-// });
+
 // Authentication Middleware
 const isAuthenticated = (req, res, next) => {
   let idToken;
@@ -179,26 +167,6 @@ app.post("/login", (req, res) => {
         .json({ general: "Wrong credentials, please try again" });
     });
 });
-// google signin
-// app.post("/google", (req, res) => {
-// let provider = new firebase.auth.GoogleAuthProvider();
-// firebase.auth()
-//   .signInWithPopup(provider)
-//   .then((result) => {
-//     let credential = result.credential;
-//     let token = credential.accessToken;
-//     let user = result.user;
-//     return res.status(200).json({ token });
-
-//   }).catch((error) => {
-//     let errorCode = error.code;
-//     let errorMessage = error.message;
-//     let email = error.email;
-//     let credential = error.credential;
-//     res.status(400).json({ errorMessage })
-  
-//   });
-// });
 
 //reset route
 app.post("/reset", (req, res) => {
@@ -312,7 +280,6 @@ app.post("/getInfoTest", (req, res) => {
       return res.json(tempUrl);
     });
 });
-
 
 app.post("/upload", isAuthenticated, filesUpload, async (req, res) => {
   try {
