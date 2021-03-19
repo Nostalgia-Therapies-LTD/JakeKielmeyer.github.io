@@ -67,6 +67,7 @@ const Reset = (props) => {
         setMsg(<body style={{textAlign:"center", fontSize:"1.2em", color:"green"}}>
         A reset link has been emailed to you.
         </body>)
+        setErrors({})
       })
       .catch((err) => {
         setErrors(err.response.data);

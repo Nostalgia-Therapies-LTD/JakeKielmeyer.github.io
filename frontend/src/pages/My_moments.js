@@ -7,9 +7,17 @@ import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 //jwt
 import jwtDecode from "jwt-decode";
+import firebase from "firebase/app";
 
 function My_moments() {
   const [selectedImg, setselectedImg] = useState();
+  const [uid,setUid]=useState(null)
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setUid(user.uid)
+    } 
+  });
+ // console.log(uid);
 
   return (
     <div>
@@ -44,7 +52,7 @@ function My_moments() {
             <ImgGrid1
               setselectedImg={setselectedImg}
               props={`users/${
-                jwtDecode(localStorage.FBIdToken).user_id
+                uid
               }/images`}
             />
           )}
@@ -53,9 +61,7 @@ function My_moments() {
             <Modal1
               selectedImg={selectedImg}
               setselectedImg={setselectedImg}
-              props={`users/${
-                jwtDecode(localStorage.FBIdToken).user_id
-              }/images`}
+              props={`users/${uid}/images`}
             />
           )}
           
