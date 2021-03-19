@@ -70,7 +70,7 @@ const Login = (props) => {
       .post("/login", user)
       .then((res) => {
         setLoading(false);
-        //console.log(res.data.token);
+        //console.log(res)
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         history.push("/home");
       })
@@ -98,6 +98,7 @@ const Login = (props) => {
       let isnewUser = result.additionalUserInfo.isNewUser;
       let profile=result.additionalUserInfo.profile;
       let uid=result.user.uid;
+      console.log("uid=",uid, "token=",token);
       localStorage.setItem("FBIdToken", `Bearer ${token}`);
       history.push("/home");
       const userCredential = {

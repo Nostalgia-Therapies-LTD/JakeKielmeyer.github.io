@@ -17,7 +17,7 @@ function My_moments() {
       setUid(user.uid)
     } 
   });
-  
+ // console.log(uid);
 
   return (
     <div>

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import firebase from "firebase/app";
 
 const useUserStorage = (file) => {
   //const [progress, setprogess] = useState(0);
   const [error, seterror] = useState(null);
   const [url, seturl] = useState(null);
-
+  //const [uid,setUid]=useState(null);
+ 
+  
   useEffect(() => {
     const source = axios.CancelToken.source();
 
@@ -20,10 +23,18 @@ const useUserStorage = (file) => {
             Authorization: localStorage.FBIdToken,
           },
         };
-        const { url } = axios.post("/upload", formData, config);
+        firebase.auth().onAuthStateChanged((user) => {
+          
+          if (user) {
+            console.log(user.uid)
+            const { url } = axios.post(`/upload/${user.uid}`, formData, config);
+            seturl(url);
+            
+          } 
+        });
+      
         
-        seturl(url);
-        console.log(url)
+        
       } catch (error) {
         seterror(error);
       }
