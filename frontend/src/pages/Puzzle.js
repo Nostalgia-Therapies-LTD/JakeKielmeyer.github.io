@@ -65,7 +65,7 @@ const Slide = (props) => {
     const tilePieceSide = image.naturalWidth / tileNumber;
 
     // 98px for 4x4 puzzle, 48px for 8x8 puzzle
-    const puzzlePieceSide = tileNumber === 4 ? "98" : "48";
+    const puzzlePieceSide = tileNumber === 4 ? "98" : 3 ? "131" : "48";
     canvas.width = puzzlePieceSide;
     canvas.height = puzzlePieceSide;
 
