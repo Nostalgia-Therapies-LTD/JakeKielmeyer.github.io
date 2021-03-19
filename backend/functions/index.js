@@ -43,7 +43,8 @@ const FBAuth = (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer ")
   ) {
-    idToken = req.headers.authorization.split("Bearer ")[1];
+    // idToken = req.headers.authorization.split("Bearer ")[1];
+    next();
   } else {
     return res.status(403).json({ error: "The user is Unauthorized" });
   }
@@ -96,8 +97,9 @@ app.post("/signup", (req, res) => {
     errors.email = "Must be a valid email address";
   }
   if (isEmpty(newUser.password)) errors.password = "Must not be empty";
-  if (newUser.password != newUser.confirmPassword){errors.confirmPassword = "Passwords must match";}
-  
+  if (newUser.password != newUser.confirmPassword) {
+    errors.confirmPassword = "Passwords must match";
+  }
 
   if (Object.keys(errors).length > 0) return res.status(400).json(errors);
 
@@ -127,13 +129,17 @@ app.post("/signup", (req, res) => {
     .catch((err) => {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
-        return res.status(400).json({ general: "This email address is already registered" });
+        return res
+          .status(400)
+          .json({ general: "This email address is already registered" });
       } else if (err.code === "auth/weak-password") {
         return res
           .status(400)
           .json({ password: "Password must be atleast six(6) characters" });
       } else {
-        return res.status(500).json({ general: "Something went wrong, please try again" });
+        return res
+          .status(500)
+          .json({ general: "Something went wrong, please try again" });
       }
     });
 });
@@ -146,11 +152,11 @@ app.post("/login", (req, res) => {
   };
   let errors = {};
 
-  if (isEmpty(user.email)) errors.email = 'Must not be empty';
-  if (isEmpty(user.password)) errors.password = 'Must not be empty';
-  
+  if (isEmpty(user.email)) errors.email = "Must not be empty";
+  if (isEmpty(user.password)) errors.password = "Must not be empty";
+
   if (Object.keys(errors).length > 0) return res.status(400).json(errors);
-  
+
   firebase
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
@@ -178,7 +184,7 @@ app.post("/reset", (req, res) => {
 
   if (isEmpty(emailAddress.email)) {
     errors.email = "Must not be empty";
-  } else if (!isEmail(emailAddress .email)) {
+  } else if (!isEmail(emailAddress.email)) {
     errors.email = "Must be a valid email address";
   }
   if (Object.keys(errors).length > 0) return res.status(400).json(errors);
@@ -192,8 +198,13 @@ app.post("/reset", (req, res) => {
     })
     .catch((err) => {
       if (err.code === "auth/too-many-requests") {
-      return res.status(400).json({ general: "Too many requests! Please try again later" });
-    } else return res.status(500).json({ general: "Something went wrong, please try again" });
+        return res
+          .status(400)
+          .json({ general: "Too many requests! Please try again later" });
+      } else
+        return res
+          .status(500)
+          .json({ general: "Something went wrong, please try again" });
     });
 });
 
@@ -281,17 +292,18 @@ app.post("/getInfoTest", (req, res) => {
     });
 });
 
-app.post("/upload", isAuthenticated, filesUpload, async (req, res) => {
+app.post("/upload/:uid", FBAuth, filesUpload, async (req, res) => {
   try {
+    // return res.json(req.params.uid);
     // image name to hide from attackers
     const imageName = uuidv1();
-
+    // return res.json(imageName);
     // access token for the images uploaded
     const uuid = uuidv4();
 
     // file reference
     const file = storageRef.file(
-      `userImages/${req.userId}/${imageName}${path.extname(
+      `userImages/${req.params.uid}/${imageName}${path.extname(
         req.files[0].originalname
       )}`
     );
@@ -303,12 +315,12 @@ app.post("/upload", isAuthenticated, filesUpload, async (req, res) => {
     // stored in users/userId/images collection
     const fileUrl = createPersistentDownloadUrl(
       config.storageBucket,
-      `userImages/${req.userId}/${imageName}${path.extname(
+      `userImages/${req.params.uid}/${imageName}${path.extname(
         req.files[0].originalname
       )}`,
       uuid
     );
-    await db.collection(`users/${req.userId}/images`).add({
+    await db.collection(`users/${req.params.uid}/images`).add({
       url: fileUrl,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       name: `${imageName}${path.extname(req.files[0].originalname)}`,
@@ -319,32 +331,27 @@ app.post("/upload", isAuthenticated, filesUpload, async (req, res) => {
   }
 });
 
-app.delete(
-  "/image",
+app.delete("/image/:uid", FBAuth, async (req, res) => {
+  try {
+    // get the file name
+    const { name } = req.body;
 
-  isAuthenticated,
-  async (req, res) => {
-    try {
-      // get the file name
-      const { name } = req.body;
+    // file reference
+    const file = storageRef.file(`userImages/${req.params.uid}/${name}`);
+    // delete the file
+    await file.delete();
+    // remove the file document from the firestore
+    const querySnapshots = await db
+      .collection(`users/${req.params.uid}/images`)
+      .where("name", "==", name)
+      .get();
+    querySnapshots.forEach((doc) => doc.ref.delete());
 
-      // file reference
-      const file = storageRef.file(`userImages/${req.userId}/${name}`);
-      // delete the file
-      await file.delete();
-      // remove the file document from the firestore
-      const querySnapshots = await db
-        .collection(`users/${req.userId}/images`)
-        .where("name", "==", name)
-        .get();
-      querySnapshots.forEach((doc) => doc.ref.delete());
-
-      return res.status(200).json({ message: "Deleted the file successfully" });
-    } catch (error) {
-      return res.status(404).json({ error: error.toString() });
-    }
+    return res.status(200).json({ message: "Deleted the file successfully" });
+  } catch (error) {
+    return res.status(404).json({ error: error.toString() });
   }
-);
+});
 
 //Music modules
 app.get("/getMusicInfo", (req, res) => {
