@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import useFirestore from "../../../hooks/useFirestore";
 import axios from "axios";
+import firebase from "firebase/app";
 
 function Modal1({ selectedImg, setselectedImg, props }) {
   const { docs, imgarr } = useFirestore(props);
@@ -18,7 +19,14 @@ function Modal1({ selectedImg, setselectedImg, props }) {
         name: selectedImg.name,
       },
     };
-    axios.delete("/image", config).then(() => setselectedImg(null));
+    firebase.auth().onAuthStateChanged((user) => {
+          
+      if (user) {
+        console.log(user.uid)
+         axios.delete(`/image/${user.uid}`, config).then(() => setselectedImg(null));
+      } 
+    });
+    ;
   };
 
   return (

@@ -12,7 +12,7 @@ const Upload =()=>{
         if (selected && types.includes(selected.type)){
             setfile(selected);
             seterror('');
-            console.log(selected);
+            //console.log(selected);
         }
         else{
             setfile (null);
