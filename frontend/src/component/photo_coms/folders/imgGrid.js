@@ -24,6 +24,7 @@ const ImgGrid = ({ setselectedImg, props }) => {
             />
           </motion.div>
         ))}
+       
     </div>
   );
 };
