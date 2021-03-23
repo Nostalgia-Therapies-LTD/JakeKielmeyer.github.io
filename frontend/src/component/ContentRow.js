@@ -16,10 +16,27 @@ const styles = {
     width: "18vw",
     height: "18vw",
     objectFit: "cover",
+  },
+
+  imageContainer: {
+    width: "18vw",
+    height: "18vw",
+    position: "relative",
     transition: "transform 0.5s",
     "&:hover": {
       transform: "scale(1.04,1.04)",
     },
+  },
+
+  overlay: {
+    position: "absolute",
+    bottom: "0",
+    background: "rgba(0, 0, 0, 0.5)",
+    width: "18vw",
+    height: "6vh",
+    textAlign: "center",
+    paddingTop: "15px",
+    fontSize: "20px",
   },
 };
 
@@ -34,10 +51,11 @@ function ContentRow(props) {
         <Typography variant="h5">View more</Typography>
       </Grid> */}
       {props.images.map((image) => (
-        <Grid key={image.title} item xs={3}>
+        <Grid key={image.title} item xs={3} className={classes.imageContainer}>
           <a href={image.href}>
             <img src={image.url} alt={image.title} className={classes.image} />
           </a>
+          <div className={classes.overlay}> Sample caption</div>
         </Grid>
       ))}
     </Grid>
