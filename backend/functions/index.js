@@ -31,6 +31,7 @@ const createPersistentDownloadUrl = (bucket, pathToFile, downloadToken) => {
 const firebase = require("firebase");
 const { firestore } = require("firebase-admin");
 const { ref } = require("firebase-functions/lib/providers/database");
+const { bucket } = require("firebase-functions/lib/providers/storage");
 firebase.initializeApp(config);
 
 const db = admin.firestore();
@@ -438,6 +439,26 @@ app.get("/getMusicOnClick/:musicname", async (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+});
+
+app.get("/getFoldersName", (req, res) => {
+  let names = [];
+  admin
+    .storage()
+    .bucket()
+    .getFiles()
+    .then((data) => {
+      data[0].forEach((items) => {
+        let splitItems = items.name.split("/");
+        if (
+          splitItems.length == req.body.pathlength &&
+          splitItems[0] == req.body.filename &&
+          items.name.substring(items.name.length - 1) == "/"
+        )
+          names.push(items.name);
+      });
+      return res.json(names);
     });
 });
 

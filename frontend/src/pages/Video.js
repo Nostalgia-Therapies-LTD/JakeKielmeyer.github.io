@@ -2,12 +2,6 @@ import React from "react";
 import pupper from "../images/Pupper.jpg";
 import VideoSlider from "../component/VideoSlider";
 
-//dummy backend service
-// import radioImage from "../services/imageService";
-// import { momentImage } from "../services/imageService";
-// import { tvImage } from "../services/imageService";
-// import { puzzleImage } from "../services/imageService";
-
 //mui stuff
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
