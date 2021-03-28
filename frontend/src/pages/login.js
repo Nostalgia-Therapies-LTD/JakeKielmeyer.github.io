@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { useHistory} from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -52,13 +52,14 @@ const styles = {
 };
 
 const Login = (props) => {
-  const[googleIn, setGoogleIn]=useState(false)
+ 
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+ // const [googleError, setgoogleError] = useState("");
   const history = useHistory();
   const { classes } = props;
 
@@ -93,12 +94,12 @@ const Login = (props) => {
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleAuthProvider)
     .then((result) => {
-      let acctoken = result.credential.accessToken;
+     // let acctoken = result.credential.accessToken;
       let token = result.credential.idToken;
       let isnewUser = result.additionalUserInfo.isNewUser;
       let profile=result.additionalUserInfo.profile;
       let uid=result.user.uid;
-      console.log("uid=",uid, "token=",token);
+      //console.log("uid=",uid, "token=",token);
       localStorage.setItem("FBIdToken", `Bearer ${token}`);
       history.push("/home");
       const userCredential = {
@@ -112,14 +113,11 @@ const Login = (props) => {
       if (isnewUser){
         db.doc(`/users/${userCredential.userId}`).set(userCredential)
       }
-      console.log(isnewUser,userCredential,acctoken);
+      //console.log(isnewUser,userCredential,acctoken);
       
     
   }).catch((error) => {
-    let errorCode = error.code;
-    let errorMessage = error.message;
-    let email = error.email;
-    let credential = error.credential;
+    console.log (error);
     
   });
 };
@@ -193,7 +191,7 @@ const Login = (props) => {
             not registered? sign up 
           </Button>
         </form>
-        <hr></hr>
+        <h4 className="or"><span>OR</span></h4>
         <GoogleButton style={{width:"100%", marginTop:"20px", textAlign:"center"}} 
           label='Log in with Google' type="light"  onClick={handleGoogle}/>
         <Typography className="forgotPassword" variant="subtitle1">
