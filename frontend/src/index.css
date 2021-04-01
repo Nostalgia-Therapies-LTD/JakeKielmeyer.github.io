@@ -29,8 +29,8 @@ html,
 #root {
   flex-grow: 1;
   width: 100%;
-  scroll-behavior: smooth;
-  overscroll-behavior: none;
+  /* scroll-behavior: smooth; */
+  /* overscroll-behavior: none; */
 }
 
 a {

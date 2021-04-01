@@ -31,6 +31,7 @@ const createPersistentDownloadUrl = (bucket, pathToFile, downloadToken) => {
 const firebase = require("firebase");
 const { firestore } = require("firebase-admin");
 const { ref } = require("firebase-functions/lib/providers/database");
+const { bucket } = require("firebase-functions/lib/providers/storage");
 firebase.initializeApp(config);
 
 const db = admin.firestore();
@@ -440,5 +441,55 @@ app.get("/getMusicOnClick/:musicname", async (req, res) => {
       console.error(err);
     });
 });
+
+app.post("/getFoldersName", (req, res) => {
+  let names = [];
+  admin
+    .storage()
+    .bucket()
+    .getFiles()
+    .then((data) => {
+      data[0].forEach((items) => {
+        let splitItems = items.name.split("/");
+        if (
+          // splitItems.length == req.body.pathlength &&
+          splitItems[0] == req.body.filename
+          // items.name.substring(items.name.length - 1) == "/"
+          // items.name.includes(req.body.filename)
+        )
+          names.push({
+            path: items.name,
+            token: items.metadata.metadata.firebaseStorageDownloadTokens,
+            type: items.metadata.contentType,
+          });
+      });
+      return res.json(names);
+    });
+});
+
+// app.post("/getFilesName", (req, res) => {
+//   let names = [];
+//   admin
+//     .storage()
+//     .bucket()
+//     .getFiles()
+//     .then((data) => {
+//       data[0].forEach((items) => {
+//         let splitItems = items.name.split("/");
+//         if (
+//           (splitItems.length == req.body.pathlength &&
+//             splitItems[0] == req.body.filename &&
+//             items.metadata.contentType == "image/jpeg") ||
+//           items.metadata.contentType == "video/mp4"
+//           // items.name.includes(req.body.filename)
+//         )
+//           names.push({
+//             token: items.metadata.metadata.firebaseStorageDownloadTokens,
+//             foldername: items.name,
+//           });
+//       });
+//       return res.json(names);
+//     });
+// });
 
 exports.api = functions.https.onRequest(app);
