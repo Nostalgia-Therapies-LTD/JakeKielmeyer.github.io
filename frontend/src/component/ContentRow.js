@@ -38,7 +38,9 @@ const styles = {
     boxShadow: "0 4px 8px 0",
     
   },
-};
+
+  }
+
 
 function ContentRow(props) {
   const { classes } = props;
