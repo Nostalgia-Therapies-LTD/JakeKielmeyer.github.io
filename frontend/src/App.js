@@ -5,7 +5,8 @@ import ProtectedRoute from "./component/protectedRoute";
 
 //mui stuff
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
+import { ThemeProvider } from "@material-ui/core/styles";
 import "./photo.css";
 
 //pages
@@ -29,10 +30,16 @@ import Wildlife_folder from "./component/photo_coms/folders/Wildlife_folder";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
-
-axios.defaults.baseURL=  "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
-const theme = createMuiTheme({
+axios.defaults.baseURL =
+  "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
+let theme = createMuiTheme({
   typography: {
+    h6: {
+      fontFamily: "Leviathan",
+      textTransform: "capitalize",
+      textShadow: "1px 1px 4px #000",
+    },
+
     fontFamily: "KOW, sans-serif",
   },
   palette: {
@@ -45,7 +52,8 @@ const theme = createMuiTheme({
   },
 });
 
-const token = localStorage.getItem('FBIdToken');
+theme = responsiveFontSizes(theme);
+const token = localStorage.getItem("FBIdToken");
 //console.log(token);
 //let authenticated;
 
@@ -54,8 +62,9 @@ if (token) {
   //console.log (decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem("FBIdToken");
-    window.location.href="/"};
-    //authenticated = false;
+    window.location.href = "/";
+  }
+  //authenticated = false;
   // } else {
   //   //authenticated = true;
   // }
@@ -71,32 +80,76 @@ if (token) {
 
 function App() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Router>
-      <Switch>
-      <Route exact path="/" component={Login}></Route>
-      <Route exact path="/signup" component={SignUp} ></Route>
-      <Route exact path="/reset" component={Reset} ></Route>
-      <React.Fragment>
-        <Navbar />
-        <div className="container">          
-            <ProtectedRoute exact path="/home" component={Home}></ProtectedRoute>
-            <ProtectedRoute exact path="/puzzle" component={Puzzle}></ProtectedRoute>
-            <ProtectedRoute exact path="/video" component={Video}></ProtectedRoute>
-            <ProtectedRoute exact path="/music" component={Music}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo" component={Main_photo}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/My moments" component={My_moments}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/Cats" component={Cat_folder}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/Dogs" component={Dog_folder}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/Nature" component={Nature_folder}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/Places" component={Places_folder}></ProtectedRoute>
-            <ProtectedRoute exact path="/photo/Wildlife" component={Wildlife_folder}></ProtectedRoute>
-          </div>
+        <Switch>
+          <Route exact path="/" component={Login}></Route>
+          <Route exact path="/signup" component={SignUp}></Route>
+          <Route exact path="/reset" component={Reset}></Route>
+          <React.Fragment>
+            <Navbar />
+            <div className="container">
+              <ProtectedRoute
+                exact
+                path="/home"
+                component={Home}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/puzzle"
+                component={Puzzle}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/video"
+                component={Video}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/music"
+                component={Music}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo"
+                component={Main_photo}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/My moments"
+                component={My_moments}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/Cats"
+                component={Cat_folder}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/Dogs"
+                component={Dog_folder}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/Nature"
+                component={Nature_folder}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/Places"
+                component={Places_folder}
+              ></ProtectedRoute>
+              <ProtectedRoute
+                exact
+                path="/photo/Wildlife"
+                component={Wildlife_folder}
+              ></ProtectedRoute>
+            </div>
           </React.Fragment>
         </Switch>
         <Footer />
       </Router>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
 

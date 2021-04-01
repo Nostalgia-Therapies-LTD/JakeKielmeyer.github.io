@@ -22,8 +22,16 @@ function Modal({ selectedImg, setselectedImg, props }) {
         animation={"fade"}
         timeout={12}
         indicatorContainerProps={{
-          style: { width: "0px", height: "0px", marginTop: "60%" },
+          style: {
+              marginTop: '60%', // 5
+              width: "0px",
+              height: "0px",
+          }
         }}
+      
+        // indicatorContainerProps={{
+        //   style: { width: "0px", height: "0px", marginTop: "60%" },
+        // }}
         navButtonsAlwaysVisible={true}
       >
         {selectedImg && docs.map((doc) => <img src={doc.url} alt={doc.name} />)}

@@ -9,6 +9,10 @@ import { tvImage } from "../services/imageService";
 import { puzzleImage } from "../services/imageService";
 
 //mui stuff
+import Grid from "@material-ui/core/Grid";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
@@ -28,23 +32,16 @@ const styles = {
   },
 
   contents: {
-    color: "white",
-    minHeight: "800px",
-    paddingLeft: "4rem",
-    paddingTop: "3rem",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
-   
-  },
-
-  rows: {
-    paddingBottom: "50px",
-    
+    color: "white",
+    paddingLeft: "3rem",
+    paddingBottom: "5rem",
   },
 
   rowsTitle: {
-    paddingBottom: "40px",
+    paddingTop: "4rem",
+    paddingBottom: "4rem",
     justifyContent: "space-around",
-    
   },
 };
 
@@ -52,25 +49,57 @@ const Home = (props) => {
   const { classes } = props;
   return (
     <React.Fragment>
-  <a href="photo/Dogs">
-  <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fryan-walton-pWBAwqUUWkk-unsplash.jpg?alt=media&token=82738075-659f-4a3b-b7bc-f1d115497ec0")'}}>
-        <CssBaseLine />
-        <Box mt={9}>
-          <Typography variant="h3">Dashing Dogs</Typography>
-          <Box mt={5}>
-            <Typography variant="h4">Do you and your loved one have a soft spot for dogs?</Typography>
-            <Typography variant="h4">Check out out this new Nostalgic Moments album</Typography>
-            <Typography variant="h4">and reminsice about four legged friends!</Typography>
+      <a href="photo/Dogs">
+        <div
+          className="welcome"
+          style={{
+            backgroundImage:
+              'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fryan-walton-pWBAwqUUWkk-unsplash.jpg?alt=media&token=82738075-659f-4a3b-b7bc-f1d115497ec0")',
+          }}
+        >
+          <CssBaseLine />
+          <Box mt={9}>
+            <Typography variant="h3">Dashing Dogs</Typography>
+            <Box mt={5}>
+              <Typography variant="h4">
+                Do you and your loved one have a soft spot for dogs?
+              </Typography>
+              <Typography variant="h4">
+                Check out out this new Nostalgic Moments album
+              </Typography>
+              <Typography variant="h4">
+                and reminsice about four legged friends!
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-  </div>
-  </a>
+        </div>
+      </a>
+
       <div className={classes.contents}>
-        <ContentRow rowName="Nostalgia Radio" images={radioImage}  />
-        <ContentRow rowName="Nostalgia Moments" images={momentImage}/>
+        <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgia Radio</Typography>
+        </Grid>
+        <ContentRow rowName="Nostalgia Radio" images={radioImage} />
+
+        <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgia Moments</Typography>
+        </Grid>
+        <ContentRow rowName="Nostalgia Moments" images={momentImage} />
+
+        <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgia Moments</Typography>
+        </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
+
+        <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgia Puzzles</Typography>
+        </Grid>
         <ContentRow rowName="Puzzles" images={puzzleImage} />
       </div>
+      {/* <ContentRow rowName="Nostalgia Radio" images={radioImage} />
+      <ContentRow rowName="Nostalgia Moments" images={momentImage} />
+      <ContentRow rowName="Nostalgia TV" images={tvImage} />
+      <ContentRow rowName="Puzzles" images={puzzleImage} /> */}
     </React.Fragment>
   );
 };

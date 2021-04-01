@@ -15,6 +15,8 @@ const styles = (theme) => ({
   slideImageFocus: {
     width: "20rem !important",
     outline: "none",
+    position: "relative",
+    marginRight: "5em",
   },
   slideImageAction: {
     margin: "10px",
@@ -29,10 +31,7 @@ const PuzzleCard = (props) => {
   const { classes, src, id, handleClick } = props;
 
   return (
-    <div
-      style={{ position: "realtive", marginRight: "5em" }}
-      className={classes.slideImageFocus}
-    >
+    <div className={classes.slideImageFocus}>
       <img src={src} id={id} className={classes.slideImage} alt={id} />
       <Box ml={9}>
         <div className={classes.slideImageAction}>
