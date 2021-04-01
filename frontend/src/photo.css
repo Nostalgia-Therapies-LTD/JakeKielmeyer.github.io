@@ -160,7 +160,6 @@ form {
 }
 
 
-
 /* modal styles */
 .backdrop {
   position: fixed;
@@ -171,17 +170,20 @@ form {
   height: 100%;
   background: rgba(0, 0, 0, 0.952);
 }
+
 .backdrop img {
   display: block;
   z-index: 50015;
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 90%;
+  max-width: 85%;
   max-height: 85%;
   transform: translate(-50%, -50%);
   box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 }
+
+
 
 .or {
   width: 100%; 

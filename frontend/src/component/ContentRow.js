@@ -1,64 +1,67 @@
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 const styles = {
-  rows: {
-    paddingBottom: "50px",
+  row: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    overflow: "hidden",
   },
 
-  rowsTitle: {
-    paddingBottom: "40px",
-    justifyContent: "space-around",
+  gridList: {
+    flexWrap: "noWrap",
+    transform: "translateZ(0)",
+    "&::-webkit-scrollbar": {
+      width: "2px",
+    },
   },
-
-  image: {
-    width: "18vw",
-    height: "18vw",
-    objectFit: "cover",
-  },
-
-  imageContainer: {
-    width: "18vw",
-    height: "18vw",
-    position: "relative",
+  gridListTile: {
+    width: "18rem !important",
+    height: "18rem !important",
+    marginRight: "5rem",
     transition: "transform 0.5s",
     "&:hover": {
       transform: "scale(1.04,1.04)",
     },
   },
 
-  overlay: {
-    position: "absolute",
-    bottom: "0",
-    background: "rgba(0, 0, 0, 0.5)",
-    width: "18vw",
-    height: "6vh",
-    textAlign: "center",
-    paddingTop: "15px",
-    fontSize: "20px",
+  image: {
+    objectFit: "cover",
+    width: "18rem",
+    height: "18rem",
   },
 };
 
 function ContentRow(props) {
   const { classes } = props;
   return (
-    <Grid container className={classes.rows}>
-      <Grid item xs={11} className={classes.rowsTitle}>
-        <Typography variant="h4">{props.rowName}</Typography>
-      </Grid>
-      {/* <Grid item xs={1} className={classes.rowsTitle}>
-        <Typography variant="h5">View more</Typography>
-      </Grid> */}
-      {props.images.map((image) => (
-        <Grid key={image.title} item xs={3} className={classes.imageContainer}>
-          <a href={image.href}>
-            <img src={image.url} alt={image.title} className={classes.image} />
-          </a>
-          <div className={classes.overlay}> Sample caption</div>
-        </Grid>
-      ))}
-    </Grid>
+    <div className={classes.row}>
+      <GridList className={classes.gridList} cols={2.5}>
+        {props.images.map((image) => (
+          <GridListTile key={image.title} className={classes.gridListTile}>
+            <a href={image.href}>
+              <img
+                src={image.url}
+                alt={image.caption}
+                className={classes.image}
+              />
+
+              <GridListTileBar
+                title={image.caption}
+                classes={{
+                  root: classes.titleBar,
+                  title: classes.title,
+                }}
+              />
+            </a>
+          </GridListTile>
+        ))}
+      </GridList>
+    </div>
   );
 }
 
