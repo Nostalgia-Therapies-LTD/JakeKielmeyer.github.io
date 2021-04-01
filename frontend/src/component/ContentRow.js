@@ -1,6 +1,4 @@
-import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
@@ -31,10 +29,17 @@ const styles = {
 
   image: {
     objectFit: "cover",
-    width: "18rem",
-    height: "18rem",
+    width: "17.8rem",
+    height: "17.6rem",
+    boxSizing:"border-box",
+    border: "2px solid rgba(245, 245, 245, 0.76)",
+    borderRadius: "2%",
+    boxShadow: "0 4px 8px 0",
+    
   },
-};
+
+  }
+
 
 function ContentRow(props) {
   const { classes } = props;
