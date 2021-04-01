@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 //mui stuff
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import Typography from "@material-ui/core/Typography";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -15,7 +17,7 @@ const styles = {
 
   brandName: {
     color: "#3fa9f5",
-    fontSize: "1.18rem",
+    // fontSize: "1.18rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
     textShadow: "1px 1px 4px #000",
@@ -46,7 +48,7 @@ function Navbar(props) {
       <ToolBar className={classes.navContainer}>
         <Link to="/home">
           <Button color="inherit" className={classes.brandName}>
-            Nostalgia Therapy
+            <Typography variant="h6">Nostalgia Therapy</Typography>
           </Button>
         </Link>{" "}
         <Link to="/music">
