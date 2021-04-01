@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import pupper from "../images/Pupper.jpg";
 import VideoSlider from "../component/VideoSlider";
 
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 // import IconButton from "@material-ui/core/IconButton";
 // import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 // import Skeleton from "@material-ui/lab/Skeleton";
@@ -14,7 +15,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 // import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 //axios
-//import axios from "axios";
+import axios from "axios";
 
 //External Styles
 import "../css/videoStyle.css";
@@ -53,12 +54,68 @@ const useStyles = makeStyles({
     paddingBottom: "40px",
     justifyContent: "space-around",
   },
+
+  circProgress: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
 
 function Video() {
-  //const [allUrls, setallUrls] = useState(null);
-
+  //states
+  const [firstLevelFolderName, setfirstLevelFolderName] = useState(null);
+  const [folderName, setfolderName] = useState(null);
+  const [ifChanged, setifChanged] = useState(false);
+  //styles
   const classes = useStyles();
+
+  const repeatMovieCode = firstLevelFolderName ? (
+    <div>
+      {firstLevelFolderName.map((element) => (
+        <div>
+          <VideoSlider
+            genre={element.split("/")[1]}
+            path={element}
+            obj={folderName}
+          />
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className={classes.circProgress}>
+      <CircularProgress disableShrink />
+    </div>
+  );
+
+  //effects
+  useEffect(() => {
+    axios
+      .post("/getFoldersName", {
+        filename: "movies",
+      })
+      .then((item) => {
+        setfolderName(item);
+      });
+  }, []);
+
+  useEffect(() => {
+    // console.log("What the phase?", folderName);
+    // let tempArr = folderNameObject;
+    let arr = [];
+    if (folderName != null) {
+      folderName.data.forEach((obj) => {
+        let tempVar = obj.path.split("/");
+        if (
+          obj.type == "application/x-www-form-urlencoded;charset=UTF-8" &&
+          tempVar.length == 3
+        ) {
+          arr.push(obj.path);
+        }
+      });
+      setfirstLevelFolderName(arr);
+    }
+  }, [folderName]);
 
   return (
     <div>
@@ -77,12 +134,7 @@ function Video() {
           </Box>
         </Box>
       </div>
-      <div className={classes.contents}>
-        <VideoSlider genre="Bonanza" />
-        <VideoSlider genre="Commercials" />
-        <VideoSlider genre="Leave it to Beaver" />
-        <VideoSlider genre="Hollywood Palace" />
-      </div>
+      <div className={classes.contents}>{repeatMovieCode}</div>
     </div>
   );
 }

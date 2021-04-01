@@ -442,7 +442,7 @@ app.get("/getMusicOnClick/:musicname", async (req, res) => {
     });
 });
 
-app.get("/getFoldersName", (req, res) => {
+app.post("/getFoldersName", (req, res) => {
   let names = [];
   admin
     .storage()
@@ -452,14 +452,44 @@ app.get("/getFoldersName", (req, res) => {
       data[0].forEach((items) => {
         let splitItems = items.name.split("/");
         if (
-          splitItems.length == req.body.pathlength &&
-          splitItems[0] == req.body.filename &&
-          items.name.substring(items.name.length - 1) == "/"
+          // splitItems.length == req.body.pathlength &&
+          splitItems[0] == req.body.filename
+          // items.name.substring(items.name.length - 1) == "/"
+          // items.name.includes(req.body.filename)
         )
-          names.push(items.name);
+          names.push({
+            path: items.name,
+            token: items.metadata.metadata.firebaseStorageDownloadTokens,
+            type: items.metadata.contentType,
+          });
       });
       return res.json(names);
     });
 });
+
+// app.post("/getFilesName", (req, res) => {
+//   let names = [];
+//   admin
+//     .storage()
+//     .bucket()
+//     .getFiles()
+//     .then((data) => {
+//       data[0].forEach((items) => {
+//         let splitItems = items.name.split("/");
+//         if (
+//           (splitItems.length == req.body.pathlength &&
+//             splitItems[0] == req.body.filename &&
+//             items.metadata.contentType == "image/jpeg") ||
+//           items.metadata.contentType == "video/mp4"
+//           // items.name.includes(req.body.filename)
+//         )
+//           names.push({
+//             token: items.metadata.metadata.firebaseStorageDownloadTokens,
+//             foldername: items.name,
+//           });
+//       });
+//       return res.json(names);
+//     });
+// });
 
 exports.api = functions.https.onRequest(app);
