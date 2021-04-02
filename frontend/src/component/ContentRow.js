@@ -17,6 +17,7 @@ const styles = {
       width: "2px",
     },
   },
+  
   gridListTile: {
     width: "18rem !important",
     height: "18rem !important",

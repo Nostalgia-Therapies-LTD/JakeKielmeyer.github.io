@@ -84,7 +84,7 @@ const Home = (props) => {
         <ContentRow rowName="Nostalgia Moments" images={momentImage} />
 
         <Grid item xs={11} className={classes.rowsTitle}>
-          <Typography variant="h4">Nostalgia Moments</Typography>
+          <Typography variant="h4">Nostalgia TV</Typography>
         </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
 
@@ -102,3 +102,4 @@ const Home = (props) => {
 };
 
 export default withStyles(styles)(Home);
+
