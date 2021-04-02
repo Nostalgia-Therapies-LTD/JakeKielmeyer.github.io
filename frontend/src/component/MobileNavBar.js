@@ -142,7 +142,7 @@ export default function MobileNavbar() {
         }}
       >
         <Toolbar>
-        <Link to="/">
+        <Link to="/home">
         <Typography variant="h6" noWrap className={classes.title}>
             Nostalgia Therapy
           </Typography>
