@@ -36,6 +36,7 @@ const styles = {
     fontFamily: "KOJ",
     fontSize: "5rem",
     display: "flex",
+    textShadow: "1px 1px 4px #000",
     textTransform: "capitalize",
     '@media (min-width:760px)': {
       padding: "0 .25rem",
