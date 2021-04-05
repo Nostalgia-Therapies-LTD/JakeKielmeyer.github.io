@@ -2,6 +2,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
+
 const styles = {
   row: {
     display: "flex",
@@ -24,7 +25,7 @@ const styles = {
     marginRight: "5rem",
     transition: "transform 0.5s",
     "&:hover": {
-      transform: "scale(1.04,1.04)",
+      transform: "scale(1.04,1.01)",
     },
   },
 
@@ -38,6 +39,33 @@ const styles = {
     boxShadow: "0 4px 8px 0",
     
   },
+
+  title:{
+    overflow: "hidden",
+    fontSize: "1.3rem",
+    lineHeight: "24px",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    },
+
+    titleBar:{
+    left: "2px",
+    right: "2px",
+    bottom:"2px",
+    height: "4em",
+    display: "flex",
+    position: "absolute",
+    background: "rgba(0, 0, 0, 0.65)",
+    alignItems: "center",
+    fontFamily: "KOW, sans-serif",
+    border:"2%",
+    transition: "height .7s",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, .9)",
+      height:"98.5%",
+    
+    },
+},
 
   }
 
@@ -55,13 +83,14 @@ function ContentRow(props) {
                 alt={image.caption}
                 className={classes.image}
               />
-
+              
               <GridListTileBar
                 title={image.caption}
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,
                 }}
+                style={{textAlign:"center"}}
               />
             </a>
           </GridListTile>

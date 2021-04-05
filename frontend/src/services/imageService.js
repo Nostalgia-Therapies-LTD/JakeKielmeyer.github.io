@@ -6,6 +6,8 @@ import moment1 from "../images/moments/My Moments.png";
 import moment2 from "../images/moments/terence.jpg";
 import moment3 from "../images/moments/erik.jpg";
 import moment4 from "../images/moments/Animals.jpg";
+import moment5 from "../images/moments/Nature.jpg";
+import moment6 from "../images/moments/Panda.jpg";
 
 import tv1 from "../images/tv/Bonanza.jpg";
 import tv2 from "../images/tv/Commercial.PNG";
@@ -44,14 +46,14 @@ export const momentImage = [
     url: moment1,
     title: "moments",
     href: "photo/My moments",
-    caption:"Nostalgia Moments"
+    caption:"Your Nostalgia Moments"
   },
 
   {
     url: moment2,
     title: "Places",
     href: "photo/Places",
-    caption:"Popular Places"
+    caption:"Famous Places"
   },
   {
     url: moment3,
@@ -65,6 +67,21 @@ export const momentImage = [
     href: "photo/Dogs",
     caption:"Dhashing Dogs"
   },
+
+  {
+    url: moment5,
+    title: "Nature",
+    href: "photo/Nature",
+    caption:"Mother Nature"
+  },
+
+  {
+    url: moment6,
+    title: "Wildlife",
+    href: "photo/Wildlife",
+    caption:"Wonderful Wildlife"
+  },
+
 
 ];
 

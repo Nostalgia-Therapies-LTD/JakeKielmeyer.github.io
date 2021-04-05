@@ -57,7 +57,7 @@ function Modal1({ selectedImg, setselectedImg, props }) {
         animation={"fade"}
         timeout={12}
         indicatorContainerProps={{
-          style: { visibility:"hidden", position:"absolute", top:"50%"},
+          style: { width: "0px", height: "0px", marginTop: "60%" },
         }}
         navButtonsAlwaysVisible={true}
       >
