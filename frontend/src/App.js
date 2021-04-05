@@ -8,7 +8,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
 import { ThemeProvider } from "@material-ui/core/styles";
 import "./photo.css";
-
+import MobileNavbar from "./component/MobileNavBar";
 //pages
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
@@ -88,6 +88,7 @@ function App() {
           <Route exact path="/reset" component={Reset}></Route>
           <React.Fragment>
             <Navbar />
+            <MobileNavbar/>
             <div className="container">
               <ProtectedRoute
                 exact

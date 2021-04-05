@@ -18,6 +18,7 @@ const styles = {
       width: "2px",
     },
   },
+  
   gridListTile: {
     width: "18rem !important",
     height: "18rem !important",
@@ -39,6 +40,33 @@ const styles = {
     
   },
 
+  title:{
+    overflow: "hidden",
+    fontSize: "1.3rem",
+    lineHeight: "24px",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    },
+
+    titleBar:{
+    left: "2px",
+    right: "2px",
+    bottom:"2px",
+    height: "4em",
+    display: "flex",
+    position: "absolute",
+    background: "rgba(0, 0, 0, 0.65)",
+    alignItems: "center",
+    fontFamily: "KOW, sans-serif",
+    border:"2%",
+    transition: "height .7s",
+    "&:hover": {
+      backgroundColor: "rgba(0, 0, 0, .9)",
+      height:"98.5%",
+    
+    },
+},
+
   }
 
 
@@ -55,7 +83,7 @@ function ContentRow(props) {
                 alt={image.caption}
                 className={classes.image}
               />
-
+              
               <GridListTileBar
                 title={image.caption}
                 classes={{
