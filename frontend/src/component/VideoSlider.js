@@ -80,6 +80,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     fontSize: "20px",
+    // fontFamily: "Arial",
   },
 
   modal: {
@@ -139,6 +140,34 @@ const useStyles = makeStyles({
   appBar: {
     backgroundColor: "rgba(0,0,0,0)",
     boxShadow: "none",
+    padding: "0",
+    margin: "0",
+  },
+
+  closeButton: {
+    width: "100%",
+    margin: "0",
+    borderRadius: "0",
+    backgroundColor: "rgba(0,0,0,1)",
+    color: "rgba(255,255,255,0.7)",
+    fontFamily: "Arial",
+    fontStyle: "normal",
+    fontVariantLigatures: "normal",
+    fontVariantCaps: "normal",
+    fontVariantNumeric: "normal",
+    fontVariantEastAsian: "normal",
+    fontWeight: "400",
+    fontStretch: "normal",
+    fontSize: "13.3333px",
+    lineHeight: "normal",
+    textTransform: "capitalize",
+    padding: "12px 20px",
+    transition: "0.3s",
+    "&:hover": {
+      backgroundColor: "rgba(225,226,220,255)",
+      color: "rgba(0,0,0,1)",
+      fontFamily: "Arial",
+    },
   },
 });
 
@@ -205,18 +234,29 @@ function VideoSlider(props) {
       TransitionComponent={Transition}
       style={{ zIndex: dialogZIndex }}
     >
-      <AppBar className={classes.appBar}>
-        <Toolbar>
-          <IconButton
+      <div className="closeButtonDiv">
+        <AppBar className={classes.appBar}>
+          {/* <Toolbar> */}
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            onClick={handleDialClose}
+            className={classes.closeButton}
+          >
+            Close
+          </Button>
+          {/* <IconButton
             edge="start"
             color="inherit"
             onClick={handleDialClose}
             aria-label="close"
           >
             <CloseIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+          </IconButton> */}
+          {/* </Toolbar> */}
+        </AppBar>
+      </div>
       <div className="videoPlayer" id="videoPlayer">
         <div className="videoWrapper" id="videoWrapper">
           <video
@@ -458,7 +498,7 @@ function VideoSlider(props) {
   useEffect(() => {
     if (modalContentMovImg != null) {
       setOpen(true);
-      document.body.style.overflow = "hidden";
+      // document.body.style.overflow = "hidden";
     }
   }, [modalContentMovImg]);
 
@@ -622,6 +662,7 @@ function VideoSlider(props) {
   const handleClose = () => {
     setOpen(false);
     document.body.style.overflow = null;
+    // document.body.style.overflow = "visible";
   };
 
   const modalValues = open ? (
@@ -678,7 +719,12 @@ function VideoSlider(props) {
                     onClickImages(names.path.split("/")[2].split(".")[0])
                   }
                 />
-                <div className="caption">
+                <div
+                  className="caption"
+                  onClick={() =>
+                    onClickImages(names.path.split("/")[2].split(".")[0])
+                  }
+                >
                   <div className="captionText">
                     {names.path.split("/")[2].split(".")[0]}
                   </div>
