@@ -18,10 +18,10 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '@media (max-width:1024px)': {
+    '@media (min-width:770px)': {
       display: "none",
     },
-    '@media (max-width:736px)': {
+    '@media (max-width:768px)': {
       display: "flex",
     },
   },
@@ -133,12 +133,11 @@ export default function MobileNavbar() {
     <div className={classes.root}>
       {/* <CssBaseline /> */}
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
         style = {{
-          background: "linear-gradient(to left top,  #cbcbcb, white)",
+          position: "static", background: "linear-gradient(to left top,  #cbcbcb, white)",
         }}
       >
         <Toolbar>
