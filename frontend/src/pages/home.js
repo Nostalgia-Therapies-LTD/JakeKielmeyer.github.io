@@ -10,9 +10,6 @@ import { puzzleImage } from "../services/imageService";
 
 //mui stuff
 import Grid from "@material-ui/core/Grid";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
@@ -87,7 +84,9 @@ const Home = (props) => {
         <ContentRow rowName="Nostalgia Moments" images={momentImage} />
 
         <Grid item xs={11} className={classes.rowsTitle}>
-          <Typography variant="h4">Nostalgia Moments</Typography>
+
+          <Typography variant="h4">Nostalgia TV</Typography>
+
         </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
 
@@ -105,3 +104,4 @@ const Home = (props) => {
 };
 
 export default withStyles(styles)(Home);
+

@@ -13,11 +13,13 @@ const styles = {
     background: "transparent",
     boxShadow: "none",
     paddingLeft: "2rem",
+    '@media (max-width:760px)': {
+      display: "none",
+    },
   },
 
   brandName: {
     color: "#3fa9f5",
-    // fontSize: "1.18rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
     textShadow: "1px 1px 4px #000",
@@ -26,14 +28,20 @@ const styles = {
   navContainer: {
     display: "flex",
     color: "white",
-    width: "60vw",
     justifyContent: "space-between",
   },
 
   navLink: {
+    padding: "0 3rem",
     fontFamily: "KOJ",
-    fontSize: "1.15rem",
+    fontSize: "5rem",
+    display: "flex",
     textShadow: "1px 1px 4px #000",
+    textTransform: "capitalize",
+    '@media (min-width:760px)': {
+      padding: "0 .25rem",
+      fontSize: '1.5rem',
+   },
   },
 };
 
@@ -86,3 +94,4 @@ function Navbar(props) {
 }
 
 export default withStyles(styles)(Navbar);
+
