@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
+    textShadow: "none",
     marginRight: "45rem",
     '@media (max-width:812px)': {
       width: "30%",
