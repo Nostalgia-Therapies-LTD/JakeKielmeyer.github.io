@@ -29,19 +29,82 @@
   color: red;
  }
 
+ /* Banner Section on all pages */
 .welcome {
   color: white;
   display: flex;
   padding-left: 4rem;
-  min-height: 600px;
-  background-size: contain;
+  min-height: 800px;
+  background-size: cover;
   background-image: url(images/Pupper.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
 
+/* Large Screens */
+/* iPad Custom Landscape */
+@media only screen and (max-width: 1024px) {
+  .welcome {
+    min-height: 650px;
+  }
+}
 
+/* iPad Custom Portrait*/
+@media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .welcome {
+    min-height: 600px;
+  }
+}
+
+/* General Breaks/Responsivness */
+@media only screen and (max-width: 768px) and (max-height: 768px) {
+  .welcome {
+    min-height: 400px;
+  }
+}
+
+/* General Breaks/Responsivness */
+@media only screen and (max-width: 740px) and (max-height: 740px){
+  .welcome {
+    min-height: 400px;
+  }
+}
+
+/* Samsung S9 Landscape */
+@media only screen and (max-width: 740px) and (max-height: 360px){
+  .welcome {
+    min-height: 290px;
+  }
+}
+
+/* iPhone 6/7/8 Plus Portrait*/ 
+@media only screen and (max-width: 414px) {
+  .welcome {
+    min-height: 400px;
+  }
+}
+
+/* iPhone 6/7/8 Plus Landscape*/ 
+@media only screen and (max-width: 736px) and (max-height: 414px) {
+  .welcome {
+    min-height: 350px;
+  }
+}
+
+/* 
+iPhone 6/7/8 Portrait*/
+@media only screen and (max-width: 375px) {
+  .welcome {
+    min-height: 375px;
+  }
+}
+
+/* iPhone 6/7/8 Landscape*/
+@media only screen and (max-width: 667px) and (max-height: 375px){
+  .welcome {
+    min-height: 300px;
+  }
+}
 
 .Photocontent {
   margin-bottom: 100px;

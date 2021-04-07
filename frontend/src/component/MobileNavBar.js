@@ -166,6 +166,7 @@ export default function MobileNavbar() {
         classes={{
           paper: classes.drawerPaper,
         }}
+        style = {{width: "0"}}
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
