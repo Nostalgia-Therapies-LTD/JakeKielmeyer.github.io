@@ -17,15 +17,16 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = {
   welcome: {
-    color: "white",
-    display: "flex",
-    paddingLeft: "4rem",
-    minHeight: "600px",
-    backgroundSize: "cover",
-    backgroundImage: `url(${pupper})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
+    minHeight: "800px",
+    // color: "white",
+    // display: "flex",
+    // paddingLeft: "4rem",
+    // minHeight: "600px",
+    // backgroundSize: "cover",
+    // backgroundImage: `url(${pupper})`,
+    // backgroundRepeat: "no-repeat",
+    // backgroundPosition: "center",
+    // backgroundAttachment: "fixed",
   },
 
   contents: {
