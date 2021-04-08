@@ -18,10 +18,10 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '@media (max-width:1024px)': {
+    '@media (min-width:770px)': {
       display: "none",
     },
-    '@media (max-width:736px)': {
+    '@media (max-width:768px)': {
       display: "flex",
     },
   },
@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
+    textShadow: "none",
     marginRight: "45rem",
     '@media (max-width:812px)': {
       width: "30%",
@@ -133,12 +134,11 @@ export default function MobileNavbar() {
     <div className={classes.root}>
       {/* <CssBaseline /> */}
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
         style = {{
-          background: "linear-gradient(to left top,  #cbcbcb, white)",
+          position: "static", background: "linear-gradient(to left top,  #cbcbcb, white)",
         }}
       >
         <Toolbar>
@@ -166,6 +166,7 @@ export default function MobileNavbar() {
         classes={{
           paper: classes.drawerPaper,
         }}
+        style = {{width: "0"}}
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
