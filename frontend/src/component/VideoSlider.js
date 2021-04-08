@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-//import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 
@@ -13,8 +12,6 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CancelIcon from "@material-ui/icons/Cancel";
 import Divider from "@material-ui/core/Divider";
 import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Fade from "@material-ui/core/Fade";
@@ -26,15 +23,11 @@ import Dialog from "@material-ui/core/Dialog";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
-// import Divider from "@material-ui/core/Divider";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
-// import Button from "@material-ui/core/Button";
 import headerImage from "../images/movie/header4.jpg";
 
 //axios
@@ -67,8 +60,11 @@ const useStyles = makeStyles({
 
   texts: {
     textAlign: "left",
-    backgroundColor: "#eeeee4",
+    backgroundColor: "white",
     height: "100%",
+    color: "black",
+    margin: "0",
+    padding: "0",
   },
   caption: {
     position: "relative",
@@ -80,7 +76,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     fontSize: "20px",
-    // fontFamily: "Arial",
   },
 
   modal: {
@@ -95,7 +90,6 @@ const useStyles = makeStyles({
     height: "80vh",
     width: "80vw",
     outline: "none",
-    // overflowY: "auto",
     borderRadius: "7px",
   },
 
@@ -103,6 +97,8 @@ const useStyles = makeStyles({
     height: "40vh",
     position: "relative",
     backgroundImage: `url(${headerImage})`,
+    objectFit: "fill",
+    backgroundSize: "cover",
   },
 
   fadeHeader: {
@@ -127,7 +123,7 @@ const useStyles = makeStyles({
 
   gridList: {
     width: "100%",
-    height: "100%",
+    height: "28vh",
     padding: "20px",
   },
 
@@ -177,12 +173,8 @@ function VideoSlider(props) {
   const [allUrls, setallUrls] = useState(null);
   const [imageIndex, setimageIndex] = useState(0);
   const [carouselAvailableImages, setcarouselAvailableImages] = useState(5);
-  // const [windowSize, setWindowSize] = useState(window.innerWidth);
-  // const [carouselScrollLeft, setcarouselScrollLeft] = useState(0);
-  // const [pageLoadCount, setpageLoadCount] = useState(0);
   const [buttonName, setbuttonName] = useState(null);
   const [runOnce, setrunOnce] = useState(true);
-  //const [showVideo, setShowVideo] = useState(true);
   const [movieIndex, setmovieIndex] = useState(null);
   const [folderNames, setfolderNames] = useState(null);
   const [modalContentState, setmodalContentState] = useState(null);
@@ -191,6 +183,12 @@ function VideoSlider(props) {
   const [openDial, setOpenDial] = useState(false);
   const [dialogZIndex, setdialogZIndex] = useState(-1300);
   const [movieURL, setmovieURL] = useState(null);
+  const [modalDescription, setmodalDescription] = useState(null);
+  const [modalHeaderImage, setmodalHeaderImage] = useState(null);
+  const [randomImage, setrandomImage] = useState(null);
+  const [modaltitle, setmodaltitle] = useState(null);
+  const [currentMovieURL, setcurrentMovieURL] = useState(null);
+  const [videoPlayIndex, setvideoPlayIndex] = useState(null);
 
   const handleDialClickOpen = () => {
     setOpenDial(true);
@@ -200,7 +198,6 @@ function VideoSlider(props) {
     let myModal = document.getElementById("movieModal");
     if (myModal != null) myModal.style.zIndex = 1400;
     setmovieURL(null);
-    // setOpenDial(false);
     setdialogZIndex(-1300);
   };
 
@@ -209,24 +206,6 @@ function VideoSlider(props) {
   });
 
   const body = (
-    // <div className="videoPlayer" id="videoPlayer">
-    //   <div className="videoWrapper" id="videoWrapper">
-    //     <video
-    //       autoPlay="autoplay"
-    //       allowFullScreen="true"
-    //       width="100%"
-    //       controls
-    //       controlsList="nodownload"
-    //       disablePictureInPicture
-    //       id="videoFile"
-    //       onEnded={() => playNextVideo()}
-    //     >
-    //       <source type="video/mp4" />
-    //     </video>
-    //     <IconButton className="closeButton" onClick={closeVideoPage}>
-    //       <CancelIcon className="closeButtonIcon" />
-    //     </IconButton>
-    //   </div>
     <Dialog
       fullScreen
       open={openDial}
@@ -236,7 +215,6 @@ function VideoSlider(props) {
     >
       <div className="closeButtonDiv">
         <AppBar className={classes.appBar}>
-          {/* <Toolbar> */}
           <Button
             variant="contained"
             color="primary"
@@ -246,22 +224,13 @@ function VideoSlider(props) {
           >
             Close
           </Button>
-          {/* <IconButton
-            edge="start"
-            color="inherit"
-            onClick={handleDialClose}
-            aria-label="close"
-          >
-            <CloseIcon />
-          </IconButton> */}
-          {/* </Toolbar> */}
         </AppBar>
       </div>
       <div className="videoPlayer" id="videoPlayer">
         <div className="videoWrapper" id="videoWrapper">
           <video
             autoPlay="autoplay"
-            allowFullScreen="true"
+            allowFullScreen={true}
             width="100%"
             controls
             controlsList="nodownload"
@@ -272,52 +241,25 @@ function VideoSlider(props) {
           >
             <source type="video/mp4" />
           </video>
-          {/* <IconButton className="closeButton" onClick={closeVideoPage}>
-            <CancelIcon className="closeButtonIcon" />
-          </IconButton> */}
         </div>
       </div>
     </Dialog>
-    // </div>
   );
 
   function playNextVideo() {
-    const modalName = document.getElementById("videoPlayer");
-    const videoFile = document.getElementById("videoFile");
-
-    const elements = document.getElementsByClassName("flexContainer");
-    const videodivider = document.getElementsByClassName("videoDivider");
-    const videotitle = document.getElementsByClassName("videoTitle");
-    const appbar = document.getElementsByClassName("MuiAppBar-root");
-
-    videoFile.pause();
-    modalName.style.display = "none";
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.display = "flex";
+    if (videoPlayIndex != null && currentMovieURL != null) {
+      let indx = videoPlayIndex;
+      indx++;
+      let movieUr = currentMovieURL;
+      if (indx < movieUr.length) {
+        setmovieURL(movieUr[indx]);
+        setvideoPlayIndex(indx);
+      } else {
+        indx = 0;
+        setmovieURL(movieUr[indx]);
+        setvideoPlayIndex(indx);
+      }
     }
-    for (var j = 0; j < videodivider.length; j++) {
-      videodivider[j].style.display = "flex";
-    }
-    for (var k = 0; k < videotitle.length; k++) {
-      videotitle[k].style.display = "flex";
-    }
-    for (var m = 0; m < appbar.length; m++) {
-      appbar[m].style.display = "flex";
-    }
-    // if (movieIndex < allUrls.length - 1) {
-    //   const movIndex = movieIndex + 1;
-    //   console.log("index", movIndex);
-    //   setmovieIndex(movIndex);
-    //   const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
-    //   const videoFileName = document.getElementById("videoFile");
-    //   videoFileName.src = url;
-    // } else {
-    //   const movIndex = 0;
-    //   setmovieIndex(movIndex);
-    //   const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${allUrls[movIndex].movieLocation}?alt=media&token=${allUrls[movIndex].movieToken}`;
-    //   const videoFileName = document.getElementById("videoFile");
-    //   videoFileName.src = url;
-    // }
   }
 
   function clickPrevious() {
@@ -391,91 +333,70 @@ function VideoSlider(props) {
     for (var m = 0; m < appbar.length; m++) {
       appbar[m].style.display = "flex";
     }
-    // setShowVideo(false);
   }
 
-  // function playVideo(token, location, index) {
-  //   setmovieIndex(index);
-  //   const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location}?alt=media&token=${token}`;
-  //   const elements = document.getElementsByClassName("flexContainer");
-  //   const videodivider = document.getElementsByClassName("videoDivider");
-  //   const videotitle = document.getElementsByClassName("videoTitle");
-  //   const appbar = document.getElementsByClassName("MuiAppBar-root");
-
-  //   const modalName = document.getElementById("videoPlayer");
-  //   const videoFileName = document.getElementById("videoFile");
-  //   videoFileName.src = url;
-
-  //   videoFileName.style.display = "flex";
-  //   modalName.style.display = "flex";
-  //   for (var i = 0; i < elements.length; i++) {
-  //     elements[i].style.display = "none";
-  //   }
-  //   for (var j = 0; j < videodivider.length; j++) {
-  //     videodivider[j].style.display = "none";
-  //   }
-  //   for (var k = 0; k < videotitle.length; k++) {
-  //     videotitle[k].style.display = "none";
-  //   }
-  //   for (var m = 0; m < appbar.length; m++) {
-  //     appbar[m].style.display = "none";
-  //   }
-  // }
-
-  function playVideo(token, location) {
+  function playVideo(token, location, indx) {
+    setvideoPlayIndex(indx);
     const url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${location.replace(
       /\//g,
       "%2F"
     )}.mp4?alt=media&token=${token}`;
     setmovieURL(url);
-    // const elements = document.getElementsByClassName("flexContainer");
-    // const videodivider = document.getElementsByClassName("videoDivider");
-    // const videotitle = document.getElementsByClassName("videoTitle");
-    // const appbar = document.getElementsByClassName("MuiAppBar-root");
-
-    // const modalName = document.getElementById("videoPlayer");
-    // const videoFileName = document.getElementById("videoFile");
-    // videoFileName.src = url;
     let myModal = document.getElementById("movieModal");
     myModal.style.zIndex = 1200;
-    // setOpenDial(true);
     setdialogZIndex(1300);
-
-    // videoFileName.style.display = "flex";
-    // modalName.style.display = "flex";
-    // for (var i = 0; i < elements.length; i++) {
-    //   elements[i].style.display = "none";
-    // }
-    // for (var j = 0; j < videodivider.length; j++) {
-    //   videodivider[j].style.display = "none";
-    // }
-    // for (var k = 0; k < videotitle.length; k++) {
-    //   videotitle[k].style.display = "none";
-    // }
-    // for (var m = 0; m < appbar.length; m++) {
-    //   appbar[m].style.display = "none";
-    // }
   }
 
   function onClickImages(genreCat) {
-    if (modalContentState != null) {
+    if (modalContentState != null && modalDescription != null) {
       let outputArr = [];
-      modalContentState.forEach((value, key) => {
-        if (key.split("/")[key.split("/").length - 2] == genreCat) {
+      let arr = [];
+      let movieUrl = [];
+      modalContentState.forEach((value, indx) => {
+        if (
+          value.path.split("/")[value.path.split("/").length - 2] == genreCat
+        ) {
+          setmodaltitle(value.path.split("/")[2]);
+          let modalHeaderUrl = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${value.path.replace(
+            /\//g,
+            "%2F"
+          )}.jpg?alt=media&token=${value.tokens.imageToken}`;
+          arr.push(modalHeaderUrl.replace(/ /g, "%20"));
+
+          movieUrl.push(
+            `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${value.path.replace(
+              /\//g,
+              "%2F"
+            )}.mp4?alt=media&token=${value.tokens.movieToken}`
+          );
+
           outputArr.push(
             <div className={classes.videoImagesContainer}>
-              <img
-                src={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${key.replace(
-                  /\//g,
-                  "%2F"
-                )}.jpg?alt=media&token=${value.imageToken}`}
-                className={classes.imgOfMovies}
-              ></img>
-
+              <Card className="carousel-items">
+                <CardMedia
+                  className={classes.media}
+                  image={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${value.path.replace(
+                    /\//g,
+                    "%2F"
+                  )}.jpg?alt=media&token=${value.tokens.imageToken}`}
+                />
+                <CardContent className={classes.texts}>
+                  <Typography gutterBottom className="cardTitle">
+                    {typeof modalDescription.get(`${value.path}.mp4`) !=
+                    "undefined" ? (
+                      modalDescription.get(`${value.path}.mp4`).name
+                    ) : (
+                      <div></div>
+                    )}
+                  </Typography>
+                </CardContent>
+              </Card>
               <IconButton className="playButtons">
                 <PlayCircleFilledIcon
                   fontSize="large"
-                  onClick={() => playVideo(value.movieToken, key)}
+                  onClick={() =>
+                    playVideo(value.tokens.movieToken, value.path, indx)
+                  }
                 />
               </IconButton>
             </div>
@@ -483,10 +404,22 @@ function VideoSlider(props) {
         }
       });
       setmodalContentMovImg(outputArr);
+      setmodalHeaderImage(arr);
+      setcurrentMovieURL(movieUrl);
     }
   }
 
   //useeffects
+  useEffect(() => {
+    if (modalHeaderImage != null) {
+      let endRand = modalHeaderImage.length;
+      let randomNum = Math.floor(Math.random() * endRand);
+      let arr = modalHeaderImage;
+      let url = arr[randomNum];
+      setrandomImage(url);
+    }
+  }, [modalHeaderImage]);
+
   useEffect(() => {
     if (dialogZIndex == 1300) {
       setOpenDial(true);
@@ -498,7 +431,6 @@ function VideoSlider(props) {
   useEffect(() => {
     if (modalContentMovImg != null) {
       setOpen(true);
-      // document.body.style.overflow = "hidden";
     }
   }, [modalContentMovImg]);
 
@@ -572,31 +504,40 @@ function VideoSlider(props) {
     }
   });
 
-  // useEffect(() => {
-  //   if (localStorage.getItem(props.genre)) {
-  //     console.log(
-  //       "Information data:",
-  //       JSON.parse(localStorage.getItem(props.genre))
-  //     );
-  //     setallUrls(JSON.parse(localStorage.getItem(props.genre)));
-  //   } else {
-  //     axios
-  //       .get(`/getInfo/${props.genre}`)
-  //       .then((res) => {
-  //         return res.data;
-  //       })
-  //       .then((obj) => {
-  //         axios.post(`/getInfoTest`, obj).then((info) => {
-  //           console.log("Information data before caching:", info.data);
-  //           setallUrls(info.data);
-  //           localStorage.setItem(props.genre, JSON.stringify(info.data));
-  //         });
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [props.genre]);
+  useEffect(() => {
+    let map = new Map();
+    if (props.path != null && props.nextP != null) {
+      if (localStorage.getItem(props.nextP)) {
+        JSON.parse(localStorage.getItem(props.nextP)).forEach((items) => {
+          map.set(items.path, {
+            desc: items.description,
+            name: items.name,
+            genre: items.genre,
+          });
+        });
+      } else {
+        props.nextP.forEach((item) => {
+          if (item.includes(props.path)) {
+            axios
+              .post(`/getMovieFilesPath`, { genre: item.split("/")[2] })
+              .then((res) => {
+                res.data.forEach((data) => {
+                  map.set(data.path, {
+                    name: data.name,
+                    desc: data.description,
+                    genre: data.genre,
+                  });
+                });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        });
+        setmodalDescription(map);
+      }
+    }
+  }, [props.nextP, props.path]);
 
   useEffect(() => {
     if (props.obj != null) {
@@ -608,7 +549,6 @@ function VideoSlider(props) {
           items.path.trim().split("/").length === 3 &&
           items.type === "image/jpeg"
         ) {
-          // console.log("path encode:", items.path.replace(/\//g, "%2F"));
           tempArr.push(items);
         } else if (
           items.path.includes(props.path) &&
@@ -639,30 +579,19 @@ function VideoSlider(props) {
         }
       });
       setfolderNames(tempArr);
-      setmodalContentState(map);
+      setmodalContentState(
+        Array.from(map).map(([path, tokens]) => ({
+          path,
+          tokens,
+        }))
+      );
     }
   }, [props.obj]);
 
-  // const modalContentArr=[];
-  // const modalContentMovImgElements = modalContentMovImg ? (
-  //   <div>
-  //     {modalContentMovImg.map((items) => (
-  //       <div>{items}</div>
-  //     ))}
-  //   </div>
-  // ) : (
-  //   <div></div>
-  // );
-
-  // const handleOpen = (genreCat) => {
-  // console.log("Genre Name:", genreCat);
-  // onClickImages(genreCat);
-  // };
-
   const handleClose = () => {
     setOpen(false);
+    setrandomImage(null);
     document.body.style.overflow = null;
-    // document.body.style.overflow = "visible";
   };
 
   const modalValues = open ? (
@@ -681,16 +610,26 @@ function VideoSlider(props) {
     >
       <Fade in={open}>
         <div className={classes.modalcontent}>
-          <div className={classes.modalContentHeader}>
+          <div
+            className={classes.modalContentHeader}
+            style={{ backgroundImage: `url(${randomImage})` }}
+          >
             <div className={classes.fadeHeader}></div>
           </div>
-          <GridList className={classes.gridList} cols={4}>
-            {/* <div className={classes.modalContainingImgMovies}> */}
-            {modalContentMovImg.map((items, key) => (
-              <GridListTile key={key}>{items}</GridListTile>
-            ))}
-            {/* </div> */}
-          </GridList>
+          <div>
+            {modaltitle != null ? (
+              <div className="modalTitleBar">{modaltitle}</div>
+            ) : (
+              <div></div>
+            )}
+          </div>
+          <div className="gridListController">
+            <GridList className={classes.gridList} cols={4}>
+              {modalContentMovImg.map((items, key) => (
+                <GridListTile key={key}>{items}</GridListTile>
+              ))}
+            </GridList>
+          </div>
         </div>
       </Fade>
     </Modal>
@@ -782,7 +721,6 @@ function VideoSlider(props) {
                       {val.movieDesc}
                     </Typography>
                   </CardContent>
-                  {/* </CardActionArea> */}
                 </Card>
                 <IconButton className="playButtons">
                   <PlayCircleFilledIcon
@@ -822,11 +760,6 @@ function VideoSlider(props) {
       <Typography variant="h5" component="h3" className="videoTitle">
         {props.genre}
       </Typography>
-      {/* <Divider className="videoDivider" /> */}
-      {/* {testGeturl} */}
-      {/* {body} */}
-      {/* {testFolderNames} */}
-
       {testFolderNames}
       {modalValues}
       {body}

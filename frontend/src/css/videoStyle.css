@@ -338,7 +338,7 @@ element.style {
   /* top: -50px;
   left: -130px; */
   left: 50% !important;
-  top: 50% !important;
+  top: 32% !important;
   transform: translate(-50%, -50%) !important;
   color: rgba(0, 0, 0, 0.7) !important;
 }
@@ -701,6 +701,31 @@ element.style {
 .fadeInBottom {
   animation-name: fadeInBottom;
 }
+
+.cardTitle {
+  margin: 0 !important;
+}
+
+.modalTitleBar {
+  margin: 20px 20px 0px 20px;
+  font-size: 2em;
+}
+
+.gridListController {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  overflow: hidden;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  /* flex-direction: column; */
+
+  /* backgroundColor: theme.palette.background.paper, */
+}
+
+/* keyframes */
 @keyframes fadeInBottom {
   from {
     opacity: 0;
