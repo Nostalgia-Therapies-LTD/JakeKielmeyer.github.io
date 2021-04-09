@@ -8,11 +8,6 @@ import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-// import IconButton from "@material-ui/core/IconButton";
-// import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-// import Skeleton from "@material-ui/lab/Skeleton";
-// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-// import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 //axios
 import axios from "axios";
@@ -67,26 +62,29 @@ function Video() {
   const [firstLevelFolderName, setfirstLevelFolderName] = useState(null);
   const [folderName, setfolderName] = useState(null);
   const [ifChanged, setifChanged] = useState(false);
+  const [nextPath, setnextPath] = useState(null);
   //styles
   const classes = useStyles();
 
-  const repeatMovieCode = firstLevelFolderName ? (
-    <div>
-      {firstLevelFolderName.map((element) => (
-        <div>
-          <VideoSlider
-            genre={element.split("/")[1]}
-            path={element}
-            obj={folderName}
-          />
-        </div>
-      ))}
-    </div>
-  ) : (
-    <div className={classes.circProgress}>
-      <CircularProgress disableShrink />
-    </div>
-  );
+  const repeatMovieCode =
+    firstLevelFolderName && nextPath ? (
+      <div>
+        {firstLevelFolderName.map((element) => (
+          <div>
+            <VideoSlider
+              genre={element.split("/")[1]}
+              path={element}
+              obj={folderName}
+              nextP={nextPath}
+            />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className={classes.circProgress}>
+        <CircularProgress disableShrink />
+      </div>
+    );
 
   //effects
   useEffect(() => {
@@ -100,9 +98,8 @@ function Video() {
   }, []);
 
   useEffect(() => {
-    // console.log("What the phase?", folderName);
-    // let tempArr = folderNameObject;
     let arr = [];
+    let arrNextPath = [];
     if (folderName != null) {
       folderName.data.forEach((obj) => {
         let tempVar = obj.path.split("/");
@@ -111,9 +108,15 @@ function Video() {
           tempVar.length == 3
         ) {
           arr.push(obj.path);
+        } else if (
+          obj.type == "application/x-www-form-urlencoded;charset=UTF-8" &&
+          tempVar.length == 4
+        ) {
+          arrNextPath.push(obj.path);
         }
       });
       setfirstLevelFolderName(arr);
+      setnextPath(arrNextPath);
     }
   }, [folderName]);
 

@@ -467,6 +467,24 @@ app.post("/getFoldersName", (req, res) => {
     });
 });
 
+app.post("/getMovieFilesPath", (req, res) => {
+  let arr = [];
+  db.collection("movie")
+    .where("genre", "==", req.body.genre)
+    .get()
+    .then((items) => {
+      items.forEach((item) => {
+        arr.push({
+          name: item.data().name,
+          genre: item.data().genre,
+          description: item.data().description,
+          path: item.data().path,
+        });
+      });
+      return res.json(arr);
+    });
+});
+
 // app.post("/getFilesName", (req, res) => {
 //   let names = [];
 //   admin
