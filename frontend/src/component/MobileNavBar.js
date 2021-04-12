@@ -177,9 +177,9 @@ export default function MobileNavbar() {
           <ul>
           <Link to="/home">
           <Button color="inherit" className={classes.navLink}>
-            <Typography color="inherit">Home</Typography>
+           Home{" "}
           </Button>
-        </Link>{" "}
+        </Link>
         <Link to="/music">
           <Button color="inherit" className={classes.navLink}>
             Music{" "}
