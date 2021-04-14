@@ -59,6 +59,11 @@ function Navbar(props) {
             <Typography variant="h6">Nostalgia Therapy</Typography>
           </Button>
         </Link>{" "}
+        <Link to="/photo">
+          <Button color="inherit" className={classes.navLink}>
+            Photos{" "}
+          </Button>
+        </Link>
         <Link to="/music">
           <Button color="inherit" className={classes.navLink}>
             Music{" "}
@@ -67,11 +72,6 @@ function Navbar(props) {
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
             Video
-          </Button>
-        </Link>
-        <Link to="/photo">
-          <Button color="inherit" className={classes.navLink}>
-            Photos{" "}
           </Button>
         </Link>
         <Link to="/puzzle">

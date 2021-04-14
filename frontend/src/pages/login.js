@@ -19,10 +19,16 @@ import GoogleButton from 'react-google-button';
 import axios from "axios";
 
 const styles = {
-  form: {
-    paddingTop: "100px",
-    height: "100vh",
-    // backgroundColor: "rgba(0, 0, 0, 0.9)",
+  formBody: {
+    margin: "0 auto",
+    padding: "0 5%",
+    width: "50%",
+    minHeight: "90vh",
+  },
+  formContent: {
+    padding: "55px",
+    textAlign: "left",
+    width: "100%",
   },
   logo: {
     fontFamily: "Leviathan",
@@ -33,10 +39,13 @@ const styles = {
     marginTop: "10px",
   },
   
+  forgotPassword: {
+    marginRight: "50px",
+  },
+
   button: {
     marginTop: "20px",
     position: "relative",
- 
   },
 
   progress: {
@@ -47,7 +56,12 @@ const styles = {
     color:"red",
     fontSize:"1rem",
     marginTop:'10px'
-  }
+  },
+
+  header: {
+    marginTop: "25px",
+    paddingLeft: "2rem",
+  },
 
 };
 
@@ -121,18 +135,23 @@ const Login = (props) => {
     
   });
 };
-
   
   return (
-    <Grid container className={classes.form}>
-      <CssBaseline />
-      <Grid item sm />
-      <Grid item sm>
-        <Typography className={classes.logo} variant="h5">
+    <div>
+      <header className={classes.header}>
+      <Typography className={classes.logo} variant="h5">
           Nostalgia Therapy
+      </Typography>
+      </header>
+<CssBaseline/>
+    <div className={classes.formBody}>
+      <div className={classes.formContent}>
+      <Typography variant="h4" style={{fontSize: "2rem"}}>
+          Login
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
+          
             id="email"
             name="email"
             type="email"
@@ -166,40 +185,49 @@ const Login = (props) => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
             className={classes.button}
             onSubmit={handleSubmit}
             fullWidth
             disabled={loading}
+            style = {{textTransform: "none", borderRadius: "4px"}}
           >
-            {" "}
-            log in
+          <Typography variant = "h5">
+          {" "}
+            Login
+          </Typography>
+
             {loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
-    
-          <Button
-            type="link"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            fullWidth
-            href="/signup"
-          >
-            {" "}
-            not registered? sign up 
-          </Button>
         </form>
-        <h4 className="or"><span>OR</span></h4>
-        <GoogleButton style={{width:"100%", marginTop:"20px", textAlign:"center"}} 
-          label='Log in with Google' type="light"  onClick={handleGoogle}/>
+        <GoogleButton style={{width: "100%"}} 
+          label='Log in with Google' type="light"  onClick={handleGoogle}/>          
+        
         <Typography className="forgotPassword" variant="subtitle1">
           <a href="/reset">Forgot password?</a>
-          </Typography>
-      </Grid>
-      <Grid item sm />
-    </Grid>
+        </Typography>
+       
+       <div style={{textAlign: "left",}}>
+       <h4 className="or"><span>OR</span></h4>
+        <Button
+          type="link"
+          variant="contained"
+          className={classes.button}
+          fullWidth
+          href="/signup"
+          style = {{textTransform: "none", borderRadius: "4px",}}
+        >
+          <Typography variant = "h5">{" "}Sign up </Typography>
+        </Button>          
+
+       </div>
+
+      </div>
+       
+    </div>
+    </div>
+   
   );
 };
 
