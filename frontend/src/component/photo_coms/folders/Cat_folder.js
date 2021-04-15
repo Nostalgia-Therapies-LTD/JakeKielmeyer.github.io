@@ -10,6 +10,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 
 function Cat_folder() {
     const [selectedImg, setselectedImg] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
       
   return (
     <div>
@@ -32,8 +33,10 @@ function Cat_folder() {
        Cute Cats {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="cats" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal props="cats" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="cats" setselectedImg={setselectedImg}  setModalOpen={setModalOpen}/>
+      {selectedImg  && <Modal props="cats" selectedImg={selectedImg} setselectedImg={setselectedImg} 
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}/>}
     </div>
     </div>
     </div>

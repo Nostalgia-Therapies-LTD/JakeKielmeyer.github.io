@@ -10,7 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
-import Classic_Cars from "../../src/images/moments/Classic Cars.jpg";
+//import Classic_Cars from "../../src/images/moments/Classic Cars.jpg";
 import pupper from "../images/Pupper.jpg";
 //import Folder2 from './comps/Folder2';
 //import Folder3 from './comps/Folder3';

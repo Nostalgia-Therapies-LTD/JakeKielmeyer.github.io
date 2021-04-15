@@ -7,7 +7,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 
 function Nature_folder() {
     const [selectedImg, setselectedImg] = useState();
- 
+    const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>
       <div className="welcome" style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fnature%2Fneven-krcmarek-3ym-ev0Pe58-unsplash.jpg?alt=media&token=8b074837-d184-49a0-b133-c8a617b7f2f0)"}}>
@@ -29,8 +29,10 @@ function Nature_folder() {
        Mother Nature {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="nature" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal props="nature" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="nature" setselectedImg={setselectedImg} setModalOpen={setModalOpen} />
+      {selectedImg  && <Modal props="nature" selectedImg={selectedImg} setselectedImg={setselectedImg}
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}/>}
     </div>
     </div>
     </div>

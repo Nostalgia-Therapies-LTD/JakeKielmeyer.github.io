@@ -2,7 +2,7 @@ import React from "react";
 import useFirestore from "../../../hooks/useFirestore";
 import { motion } from "framer-motion";
 
-const ImgGrid1 = ({ setselectedImg, props }) => {
+const ImgGrid1 = ({ setselectedImg,setModalOpen,props }) => {
   const { docs } = useFirestore(props);
 
   return (
@@ -14,7 +14,10 @@ const ImgGrid1 = ({ setselectedImg, props }) => {
             key={doc.id}
             layout
             whileHover={{ opacity: 1 }}
-            onClick={() => setselectedImg(doc)}
+            onClick={() => {
+              setselectedImg(doc)
+              setModalOpen(true)}
+            }
           >
             <motion.img
               src={doc.url}

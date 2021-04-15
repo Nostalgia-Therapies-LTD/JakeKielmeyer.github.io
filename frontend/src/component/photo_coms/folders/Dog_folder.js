@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 function Dog_folder() {
     const [selectedImg, setselectedImg] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
  
   return (
     <div>
@@ -29,8 +30,10 @@ function Dog_folder() {
        Dashing Dogs {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="dogs" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal props="dogs" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="dogs" setselectedImg={setselectedImg} setModalOpen={setModalOpen} />
+      {selectedImg  && <Modal props="dogs" selectedImg={selectedImg} setselectedImg={setselectedImg}
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}/>}
     </div>
     </div>
     </div>

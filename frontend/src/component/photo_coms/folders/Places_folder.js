@@ -10,7 +10,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 
 function Places_folder() {
     const [selectedImg, setselectedImg] = useState();
-      
+    const [modalOpen, setModalOpen] = useState(false); 
   return (
     <div>
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fplaces%2Fshan-elahi-DDiLYt_F88w-unsplash.jpg617?alt=media&token=91a772d8-9644-4c6b-9e5f-0c6e9e230875")'}}>
@@ -32,8 +32,10 @@ function Places_folder() {
        Famous Places {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="places" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal props="places" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="places" setselectedImg={setselectedImg} setModalOpen={setModalOpen} />
+      {selectedImg  && <Modal props="places" selectedImg={selectedImg} setselectedImg={setselectedImg}
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}/>}
     </div>
     </div>
     </div>
