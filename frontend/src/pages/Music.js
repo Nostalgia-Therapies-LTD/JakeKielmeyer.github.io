@@ -2,36 +2,23 @@ import React, { useState, useEffect } from "react";
 import pupper from "../images/Pupper.jpg";
 import MusicPlayer from "../component/MusicPlayer";
 
-//dummy backend service
-// import radioImage from "../services/imageService";
-// import { momentImage } from "../services/imageService";
-// import { tvImage } from "../services/imageService";
-// import { puzzleImage } from "../services/imageService";
-
 //mui stuff
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-// import IconButton from "@material-ui/core/IconButton";
-// import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-// import Skeleton from "@material-ui/lab/Skeleton";
-// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-// import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
-import PauseIcon from "@material-ui/icons/Pause";
-import Skeleton from "@material-ui/lab/Skeleton";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import Slider from "@material-ui/core/Slider";
+import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 
 //axios
 import axios from "axios";
@@ -131,7 +118,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   rowsTitle: {
-    // position: "relative",
     paddingBottom: "40px",
     justifyContent: "space-around",
   },
@@ -202,7 +188,6 @@ function Music() {
   }
 
   function playMusicPlayer() {
-    console.log(childData);
     setshowStopButton(null);
     let musicID = document.getElementById("parentAudioPlayer");
     musicID.play();
@@ -215,9 +200,7 @@ function Music() {
             ]
           }`
         )
-        .then((res) => {
-          // console.log(res);
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -281,12 +264,16 @@ function Music() {
                       aria-label="play/pause"
                       onClick={() => stopMusic()}
                     >
-                      <PauseIcon className={classes.playIcon} />
+                      <PauseCircleOutlineIcon className={classes.playIcon} />
                     </IconButton>
                   )}
 
-                  <IconButton aria-label="next" className={classes.nextButton}>
-                    <SkipNextIcon onClick={() => playMusic()} />
+                  <IconButton
+                    aria-label="next"
+                    onClick={() => playMusic()}
+                    className={classes.nextButton}
+                  >
+                    <SkipNextIcon />
                   </IconButton>
                   <div className="musicSlider">
                     <PrettoSlider
@@ -307,7 +294,7 @@ function Music() {
       </Grid>
     </div>
   ) : (
-    <div>Loading...</div>
+    <div></div>
   );
 
   const musicComp = musicGenre ? (
@@ -335,7 +322,6 @@ function Music() {
   //Effects
   useEffect(() => {
     if (counter != null) {
-      console.log("music playing is changed");
       setmusicPlaying(
         childData[counter].musicAdd.split("%2F")[
           childData[counter].musicAdd.split("%2F").length - 1
@@ -344,7 +330,8 @@ function Music() {
       let url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${childData[counter].musicAdd}?alt=media&token=${childData[counter].musicToken}`;
       let musicID = document.getElementById("parentAudioPlayer");
       musicID.src = url;
-
+      setshowStopButton(null);
+      musicID.play();
       if (showStopButton) {
       } else {
         musicID.play();
@@ -357,9 +344,7 @@ function Music() {
               ]
             }`
           )
-          .then((res) => {
-            // console.log(res);
-          })
+          .then((res) => {})
           .catch((err) => {
             console.log(err);
           });
@@ -395,7 +380,6 @@ function Music() {
 
   useEffect(() => {
     if (childData != null) {
-      console.log("counter is zero now");
       let chiDataSize = childData.length - 1;
       let counterVal = counter;
 
@@ -438,9 +422,6 @@ function Music() {
       </div>
       <div className={classes.contents}>
         {musicComp}
-        {/* <div style={{ marginTop: 50 }}>
-          {childData ? <div>{childData[0].musicAdd}</div> : <div>Goozoo</div>}
-        </div> */}
         <div className="containMusicPlayer">{getMusicName}</div>
         {/* having for loop to read the name of the folders in music on storage and return the music component*/}
       </div>

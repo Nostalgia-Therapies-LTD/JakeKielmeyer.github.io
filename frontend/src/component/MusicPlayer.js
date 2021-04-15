@@ -1,24 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 
 //material-UI
-import IconButton from "@material-ui/core/IconButton";
-//import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import Skeleton from "@material-ui/lab/Skeleton";
-// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-// import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-// import CancelIcon from "@material-ui/icons/Cancel";
-// import Divider from "@material-ui/core/Divider";
-// import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
-import PauseIcon from "@material-ui/icons/Pause";
 
 //axios
 import axios from "axios";
@@ -117,18 +103,22 @@ function MusicPlayer(props) {
   const theme = useTheme();
 
   const [musicName, setmusicName] = useState(null);
-  const [counter, setcounter] = useState(null);
-  const [musicPlaying, setmusicPlaying] = useState(null);
-  const [showStopButton, setshowStopButton] = useState(1);
-  const [musicAl, setmusicAl] = useState(null);
-  const [musicTr, setmusicTr] = useState(null);
-  const [musicArt, setmusicArt] = useState(null);
+  const [musicImages, setmusicImages] = useState(null);
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
-  useEffect(() => {});
+  // useEffect(() => {});
 
   useEffect(() => {
+    axios
+      .post("/getMusicImage", { name: props.folderName })
+      .then((dat) => {
+        setmusicImages(dat);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     if (localStorage.getItem(props.folderName)) {
       setmusicName(JSON.parse(localStorage.getItem(props.folderName)));
     } else {
@@ -144,92 +134,8 @@ function MusicPlayer(props) {
     }
   }, [props.folderName]);
 
-  useEffect(() => {
-    if (counter != null) {
-      setmusicPlaying(
-        musicName[counter].musicAdd.split("%2F")[
-          musicName[counter].musicAdd.split("%2F").length - 1
-        ]
-      );
-      let url = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${musicName[counter].musicAdd}?alt=media&token=${musicName[counter].musicToken}`;
-      let musicID = document.getElementById(`musicAudio${props.folderName}`);
-      musicID.src = url;
-
-      if (showStopButton) {
-      } else {
-        musicID.play();
-
-        axios
-          .get(
-            `/getMusicOnClick/${
-              musicName[counter].musicAdd.split("%2F")[
-                musicName[counter].musicAdd.split("%2F").length - 1
-              ]
-            }`
-          )
-          .then((res) => {
-            // console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }
-  }, [counter]);
-
-  useEffect(() => {
-    if (musicPlaying) {
-      axios
-        .get(`/getMusicInformation/${musicPlaying}`)
-        .then((res) => {
-          setmusicAl(res.data[0].musicAlbum);
-          setmusicArt(res.data[0].musicTrack);
-          setmusicTr(res.data[0].musicArtist);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [musicPlaying]);
-
-  function playMusic() {
-    counter !== musicName.length - 1 ? setcounter(counter + 1) : setcounter(0);
-  }
-
-  function changeCounter() {
-    if (counter == null) {
-      setcounter(0);
-    }
-  }
-
   function playMusicPlayer() {
     props.childToParentCallback(musicName);
-
-    setshowStopButton(null);
-    let musicID = document.getElementById(`musicAudio${props.folderName}`);
-    musicID.play();
-    if (musicID.currentTime == 0) {
-      axios
-        .get(
-          `/getMusicOnClick/${
-            musicName[counter].musicAdd.split("%2F")[
-              musicName[counter].musicAdd.split("%2F").length - 1
-            ]
-          }`
-        )
-        .then((res) => {
-          // console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-
-  function stopMusic() {
-    setshowStopButton(1);
-    let musicID = document.getElementById(`musicAudio${props.folderName}`);
-    musicID.pause();
   }
 
   const getMusicName = musicName ? (
@@ -237,61 +143,17 @@ function MusicPlayer(props) {
       <Grid container spacing={3} className={classes.gridContainer}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <audio
-              controls
-              controlsList="nodownload"
-              className="audioFiles hidden"
-              id={`musicAudio${props.folderName}`}
-              onLoadStart={() => {
-                changeCounter();
-              }}
-              onEnded={() => {
-                playMusic();
-              }}
-            >
-              <source type="audio/mpeg"></source>
-            </audio>
-
-            <Card className={classes.musicCard}>
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {musicArt}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicAl}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicTr}
-                  </Typography>
-                </CardContent>
-                <div className={classes.controls}>
-                  {showStopButton ? (
-                    <IconButton
-                      aria-label="play/pause"
-                      onClick={() => playMusicPlayer()}
-                    >
-                      <PlayArrowIcon className={classes.playIcon} />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="play/pause"
-                      onClick={() => stopMusic()}
-                    >
-                      <PauseIcon className={classes.playIcon} />
-                    </IconButton>
-                  )}
-
-                  <IconButton aria-label="next" className={classes.nextButton}>
-                    <SkipNextIcon onClick={() => playMusic()} />
-                  </IconButton>
-                </div>
+            {musicImages ? (
+              <div className="musicImageContainer">
+                <img
+                  src={musicImages.data.path}
+                  className="musicImage"
+                  onClick={() => playMusicPlayer()}
+                />
               </div>
-              <CardMedia
-                className={classes.cover}
-                title="Live from space album cover"
-              />
-            </Card>
+            ) : (
+              <div></div>
+            )}
           </Paper>
         </Grid>
       </Grid>
