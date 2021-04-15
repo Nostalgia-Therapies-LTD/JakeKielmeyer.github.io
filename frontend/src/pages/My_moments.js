@@ -11,6 +11,7 @@ import firebase from "firebase/app";
 
 function My_moments() {
   const [selectedImg, setselectedImg] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [uid,setUid]=useState(null)
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -18,7 +19,7 @@ function My_moments() {
     } 
   });
  // console.log(uid);
-
+ //console.log(modalOpen)
   return (
     <div>
       <div className="welcome">
@@ -51,6 +52,7 @@ function My_moments() {
           {localStorage.FBIdToken && (
             <ImgGrid1
               setselectedImg={setselectedImg}
+              setModalOpen={setModalOpen}
               props={`users/${
                 uid
               }/images`}
@@ -59,6 +61,8 @@ function My_moments() {
           
           {selectedImg && (
             <Modal1
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
               selectedImg={selectedImg}
               setselectedImg={setselectedImg}
               props={`users/${uid}/images`}
@@ -68,6 +72,7 @@ function My_moments() {
         </div>
       </div>
     </div>
+  
   );
 }
 

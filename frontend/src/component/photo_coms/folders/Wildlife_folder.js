@@ -10,7 +10,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 
 function Wildlife_folder() {
     const [selectedImg, setselectedImg] = useState();
-      
+    const [modalOpen, setModalOpen] = useState(false); 
   return (
     <div>
       <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fwildlife%2Figor-talanov-SeVOHQ4FQYQ-unsplash.jpg305?alt=media&token=21f9cb30-173e-4ac0-9846-ebe5896a4146")'}}>
@@ -32,8 +32,10 @@ function Wildlife_folder() {
        Wonderful Wildlife {" "}
      </Typography>
     <div className="PhotoApp">
-      <ImgGrid1 props="wildlife" setselectedImg={setselectedImg}  />
-      {selectedImg  && <Modal props="wildlife" selectedImg={selectedImg} setselectedImg={setselectedImg}/>}
+      <ImgGrid1 props="wildlife" setselectedImg={setselectedImg}  setModalOpen={setModalOpen}/>
+      {selectedImg  && <Modal props="wildlife" selectedImg={selectedImg} setselectedImg={setselectedImg}
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}/>}
     </div>
     </div>
     </div>
