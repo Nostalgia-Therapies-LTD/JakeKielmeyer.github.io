@@ -510,4 +510,17 @@ app.post("/getMovieFilesPath", (req, res) => {
 //     });
 // });
 
+app.post("/getMusicImage", (req, res) => {
+  let arrTemp = [];
+  db.collection("stations")
+    .where("name", "==", req.body.name)
+    .get()
+    .then((items) => {
+      return res.json(items.docs[0].data());
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 exports.api = functions.https.onRequest(app);

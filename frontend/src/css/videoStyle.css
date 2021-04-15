@@ -1,10 +1,54 @@
 body,
 html {
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   padding-right: 0px !important;
-  padding-bottom: 0px !important;
+  /* padding-bottom: 0px !important; */
   /* overflow: visible !important; */
+  /* overflow: hidden; */
+  overflow-x: hidden;
+}
+
+.gridStyle {
+  padding: 0px !important;
+}
+
+.containMusicPlayer {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  left: 0px;
+  bottom: -8px;
+  width: 100%;
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+
+.musicSlider {
+  /* width: auto !important; */
+  position: relative;
+  margin-left: 20px;
+  margin-top: 6px;
+  width: 40%;
+  min-width: 100px;
+  margin-right: auto;
+  /* position: relative;
+  top: 0px;
+  left: 20px; */
+  /* float: left; */
+}
+
+.musicImageContainer {
+  position: relative;
+  margin-left: auto;
+  width: 100%;
+}
+
+.musicImage {
+  position: relative;
+  margin-left: auto;
+  width: 100%;
+  cursor: pointer;
 }
 
 body::-webkit-scrollbar-track-piece:start {
@@ -584,16 +628,17 @@ element.style {
   right: 0;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   object-fit: fill;
   cursor: pointer;
-
+  border: 1.5px solid rgba(245, 245, 245, 0.76);
+  border-radius: 2%;
   opacity: 1;
   display: block;
   /* width: 100%; */
   /* height: auto; */
   transition: 0.5s ease;
   backface-visibility: hidden;
+  box-sizing: border-box;
 }
 
 #imageContainers:hover .carousel-items {
