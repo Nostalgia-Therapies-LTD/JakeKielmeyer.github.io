@@ -203,6 +203,8 @@ function MusicPlayer(props) {
   }
 
   function playMusicPlayer() {
+    props.childToParentCallback(musicName);
+
     setshowStopButton(null);
     let musicID = document.getElementById(`musicAudio${props.folderName}`);
     musicID.play();
@@ -264,16 +266,6 @@ function MusicPlayer(props) {
                   </Typography>
                 </CardContent>
                 <div className={classes.controls}>
-                  {/* <IconButton
-                    aria-label="previous"
-                    className={classes.previousButton}
-                  >
-                    {theme.direction === "rtl" ? (
-                      <SkipNextIcon />
-                    ) : (
-                      <SkipPreviousIcon />
-                    )}
-                  </IconButton> */}
                   {showStopButton ? (
                     <IconButton
                       aria-label="play/pause"
@@ -297,7 +289,6 @@ function MusicPlayer(props) {
               </div>
               <CardMedia
                 className={classes.cover}
-                // image="someImages.jpg"
                 title="Live from space album cover"
               />
             </Card>

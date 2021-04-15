@@ -510,4 +510,29 @@ app.post("/getMovieFilesPath", (req, res) => {
 //     });
 // });
 
+app.get("/getMusicImage", (req, res) => {
+  let arrTemp = [];
+  db.collection("stations")
+    .get()
+    .then((items) => {
+      let m = items.docs[0].data().name;
+      console.log(m);
+      arrTemp.push({ name: m });
+      // m.forEach((doc) => {
+      //   arrTemp.push(doc);
+      // });
+      // return res.json(data.docs[0].data().name);
+      // return res.json(items.docs[1].data());
+      // return res.json(m[0].data());
+      // items.docs.forEach((item) => {
+      //   arrTemp.push({ name: item.data().name });
+      // return res.json(item.data().name);
+      // });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return res.json(arrTemp);
+});
+
 exports.api = functions.https.onRequest(app);
