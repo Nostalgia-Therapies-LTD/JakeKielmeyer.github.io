@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import pupper from "../images/Pupper.jpg";
+import Bonanza from "../images/tv/Bonanza.jpg";
 import VideoSlider from "../component/VideoSlider";
 
 //mui stuff
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
     paddingLeft: "4rem",
     minHeight: "600px",
     backgroundSize: "cover",
-    backgroundImage: `url(${pupper})`,
+    backgroundImage: `url(${Bonanza})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
@@ -126,7 +127,7 @@ function Video() {
         className="welcome"
         style={{
           backgroundImage:
-            'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movieImages%2FBonanza.jpg?alt=media&token=6a85b5be-1cf1-4d80-bfce-39ad988b803b")',
+            'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/movies%2FBonanza.jpg?alt=media&token=1edcccae-15b1-4901-946c-59c2d24f3ccc")',
         }}
       >
         <CssBaseLine />

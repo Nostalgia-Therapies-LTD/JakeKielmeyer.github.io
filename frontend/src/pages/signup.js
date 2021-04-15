@@ -15,11 +15,16 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 
 const styles = {
-  form: {
-    paddingTop: "100px",
-    height: "100vh",
-    
-    // backgroundColor: "rgba(0, 0, 0, 0.9)",
+  formBody: {
+    margin: "0 auto",
+    padding: "0 5%",
+    width: "50%",
+    minHeight: "90vh",
+  },
+  formContent: {
+    padding: "55px",
+    textAlign: "left",
+    width: "100%",
   },
   logo: {
     fontFamily: "Leviathan",
@@ -33,6 +38,8 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+    textTransform: "none", 
+    borderRadius: "4px",
   },
 
   progress: {
@@ -45,7 +52,11 @@ const styles = {
     color:"red",
     fontSize:"1rem",
     marginTop:'10px'
-  }
+  },
+  header: {
+    marginTop: "25px",
+    paddingLeft: "2rem",
+  },
 };
 
 const SignUp = (props) => {
@@ -96,12 +107,17 @@ const SignUp = (props) => {
     }
   };
   return (
-    <Grid container className={classes.form}>
-      <CssBaseline />
-      <Grid item sm />
-      <Grid item sm>
-        <Typography className={classes.logo} variant="h5">
+<div>
+<header className={classes.header}>
+      <Typography className={classes.logo} variant="h5">
           Nostalgia Therapy
+      </Typography>
+      </header>
+      <CssBaseline />
+    <div className={classes.formBody}>
+    <div className={classes.formContent}>
+    <Typography variant="h4" style={{fontSize: "2rem"}}>
+          Sign up
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
         <TextField
@@ -149,53 +165,43 @@ const SignUp = (props) => {
             onChange={handleChange}
             fullWidth
           />
-          <TextField
-            id="standard-confirmpassword-input"
-            type="password"
-            name="confirmPassword"
-            label="Confirm Password"
-            value={user.confirmPassword}
-            className={classes.textField}
-            helperText={errors.confirmPassword}
-            error={errors.confirmPassword ? true : false}
-            onChange={handleChange}
-            fullWidth
-          />
+
            {errors.general && (
             <Typography variant="body2" className={classes.customError}>
               {errors.general}
             </Typography>
           )}
+
           <Button
             type="submit"
             variant="contained"
-            color="primary"
             className={classes.button}
             onSubmit={handleSubmit}
             fullWidth
             disabled={loading}
           >
-            {" "}
-            sign up
+            <Typography variant = "h5">{" "}Sign up </Typography>
             {loading && (
               <CircularProgress size={30} className={classes.progress} />
             )}
           </Button>
+          <h4 className="or"><span>OR</span></h4>
           <Button
             type="link"
             variant="contained"
-            color="primary"
             className={classes.button}
             fullWidth
             href="/"
           >
-            {" "}
-            Already have an account? log in 
+            <Typography variant = "h5">{" "}Login </Typography>
           </Button>
         </form>
-      </Grid>
-      <Grid item sm />
-    </Grid>
+    </div>
+    </div>
+
+       
+</div>
+         
   );
 };
 
