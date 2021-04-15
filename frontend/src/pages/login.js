@@ -29,6 +29,8 @@ const styles = {
     padding: "55px",
     textAlign: "left",
     width: "100%",
+    marginTop:"15%",
+    boxShadow:" 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   },
   logo: {
     fontFamily: "Leviathan",
