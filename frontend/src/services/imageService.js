@@ -33,12 +33,6 @@ const radioImage = [
     href: "music",
     caption:"Boomer Heyday!"
   },
-  {
-    url: radio3,
-    title: "Classic Rock",
-    href: "music",
-    caption:"70s Time Machine!"
-  },
 ];
 
 export const momentImage = [

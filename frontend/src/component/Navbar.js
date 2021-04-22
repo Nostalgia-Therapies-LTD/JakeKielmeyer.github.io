@@ -74,11 +74,11 @@ function Navbar(props) {
             Video
           </Button>
         </Link>
-        <Link to="/puzzle">
+        {/* <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
           </Button>
-        </Link>
+        </Link> */}
         <Link to="/">
           <Button
             color="inherit"

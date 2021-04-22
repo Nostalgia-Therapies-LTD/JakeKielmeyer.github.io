@@ -91,10 +91,10 @@ const Home = (props) => {
         </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
 
-        <Grid item xs={11} className={classes.rowsTitle}>
+        {/* <Grid item xs={11} className={classes.rowsTitle}>
           <Typography variant="h4">Nostalgia Puzzles</Typography>
         </Grid>
-        <ContentRow rowName="Puzzles" images={puzzleImage} />
+        <ContentRow rowName="Puzzles" images={puzzleImage} /> */}
       </div>
       {/* <ContentRow rowName="Nostalgia Radio" images={radioImage} />
       <ContentRow rowName="Nostalgia Moments" images={momentImage} />

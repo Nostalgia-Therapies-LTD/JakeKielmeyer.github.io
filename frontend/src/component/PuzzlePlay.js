@@ -25,7 +25,8 @@ const Puzzle = (props) => {
   const puzzleBackground = puzzlePiecesProps.background;
 
   //selecting 98px for 4x4 puzzle (16 puzzle pieces) and 48px for 8x8
-  const puzzlePiecesLength = puzzlePieces.length === 16 ? 98 : 9 ? 131.2 : 48;
+  const puzzlePiecesLength =
+    puzzlePieces.length === 16 ? 98 : puzzlePieces.length === 9 ? 131.2 : 48;
 
   //creating object to keep track of the index of the pieces
   const puzzleTilesUnshuffled = puzzlePieces.map((puzzlePiece, index) => ({
@@ -78,6 +79,7 @@ const Puzzle = (props) => {
         style={{
           textAlign: "center",
           outline: "none",
+          height: "auto",
         }}
       >
         <IconButton
@@ -95,10 +97,10 @@ const Puzzle = (props) => {
           {/* react-beautiful-dnd components start here */}
           <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>
             {/* puzzle board */}
-            <Grid item sm={6} xs={12}>
+            <Grid item lg={6} md={12}>
               <div
                 style={{
-                  marginTop: 80,
+                  marginTop: "100px",
                   margin: "auto",
                   width: 400,
                   height: 400,
@@ -157,10 +159,10 @@ const Puzzle = (props) => {
             </Grid>
 
             {/* Solve Board */}
-            <Grid item sm={6} xs={12}>
+            <Grid item lg={6} md={12}>
               <div
                 style={{
-                  marginTop: 80,
+                  marginTop: "100px",
                   margin: "auto",
                   width: 400,
                   height: 400,

@@ -14,11 +14,20 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 
 const styles = {
-  form: {
-    paddingTop: "100px",
-    height: "100vh",
-    // backgroundColor: "rgba(0, 0, 0, 0.9)",
+  formBody: {
+    margin: "0 auto",
+    padding: "0 5%",
+    width: "50%",
+    minHeight: "90vh",
   },
+  formContent: {
+    padding: "55px",
+    textAlign: "left",
+    width: "100%",
+    marginTop:"15%",
+    boxShadow:" 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
+
   logo: {
     fontFamily: "Leviathan",
     color: "#3fa9f5",
@@ -45,7 +54,11 @@ const styles = {
     color:"red",
     fontSize:"1rem",
     marginTop:'10px'
-  }
+  },
+  header: {
+    marginTop: "25px",
+    paddingLeft: "2rem",
+  },
 };
 
 const Reset = (props) => {
@@ -81,58 +94,65 @@ const Reset = (props) => {
   };
 
   return (
-    <Grid container className={classes.form}>
-      <CssBaseline />
-      <Grid item sm />
-      <Grid item sm>
-        <Typography className={classes.logo} variant="h5">
+<div>
+<CssBaseline />
+<header className={classes.header}>
+      <Typography className={classes.logo} variant="h5">
           Nostalgia Therapy
-        </Typography>
-        <Typography className={classes.textField2} variant="body1">
-          Please enter your registered email address and you will recieve a link to create a new password via email.
-        </Typography>
-        <form noValidate onSubmit={handleSubmit}>
-          <TextField
-            id="email"
-            name="email"
-            type="email"
-            label="Email"
-            value={user.email}
-            className={classes.textField}
-            helperText={errors.email}
-            error={errors.email ? true : false}
-            onChange={handleChange}
-            fullWidth
-          />
-           
-          {errors.general && (
-            <Typography variant="body2" className={classes.customError}>
-              {errors.general}
-            </Typography>
-          )}
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            onSubmit={handleSubmit}
-            fullWidth
-            disabled={loading}
-          >
-            {" "}
-            Send Request
-            {loading && (
-              <CircularProgress size={30} className={classes.progress} />
-            )}
-          </Button>
-        </form>
-        <Typography className="forgotPassword" variant="subtitle1">
-           <a href="/login"> Back to log in </a>
-        </Typography>
-        {msg}
-      </Grid>
-      <Grid item sm />
-    </Grid>
+      </Typography>
+      </header>
+      <div className={classes.formBody}>
+      <div className={classes.formContent}>
+      <Typography variant="h4" style={{fontSize: "2rem"}}>
+          Reset your password
+        </Typography>   
+<Typography className={classes.textField2} variant="body1">
+  Enter your Nostalgia Therapy email address to receive the link to reset your password
+</Typography>
+<form noValidate onSubmit={handleSubmit}>
+  <TextField
+    id="email"
+    name="email"
+    type="email"
+    label="Email"
+    value={user.email}
+    className={classes.textField}
+    helperText={errors.email}
+    error={errors.email ? true : false}
+    onChange={handleChange}
+    fullWidth
+  />
+   
+  {errors.general && (
+    <Typography variant="body2" className={classes.customError}>
+      {errors.general}
+    </Typography>
+  )}
+  <Button
+          type="link"
+          variant="contained"
+          className={classes.button}
+          fullWidth
+          href="/signup"
+          style = {{textTransform: "none", borderRadius: "4px",}}
+        >
+    {" "}
+    Reset Password
+    {loading && (
+      <CircularProgress size={30} className={classes.progress} />
+    )}
+  </Button>
+</form>
+<Typography className="forgotPassword" variant="subtitle1">
+   <a href="/login"> Back to log in </a>
+</Typography>
+{msg}
+      </div>
+      </div>
+
+    
+</div>
+     
   );
 };
 
