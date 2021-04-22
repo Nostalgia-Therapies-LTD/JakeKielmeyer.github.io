@@ -5,6 +5,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
+
+// Provided Content
+
 const useStyles = makeStyles((theme) => ({
   modal: {
   backgroundColor: "rgba(30, 30, 36, 0.92)",
@@ -21,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   img:{
    margin:"auto",
    display:"block",
-   width:"220vh",
-   height:"90vh",
+  //  width:"220vh",
+  //  height:"90vh",
     maxWidth: "70%",
     maxHeight: "70%",
     boxSizing:"border-box",

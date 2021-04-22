@@ -74,15 +74,16 @@ const Home = (props) => {
       </a>
 
       <div className={classes.contents}>
+
+      <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgic Moments</Typography>
+        </Grid>
+        <ContentRow rowName="Nostalgic Moments" images={momentImage} />
+
         <Grid item xs={11} className={classes.rowsTitle}>
           <Typography variant="h4">Nostalgia Radio</Typography>
         </Grid>
         <ContentRow rowName="Nostalgia Radio" images={radioImage} />
-
-        <Grid item xs={11} className={classes.rowsTitle}>
-          <Typography variant="h4">Nostalgia Moments</Typography>
-        </Grid>
-        <ContentRow rowName="Nostalgia Moments" images={momentImage} />
 
         <Grid item xs={11} className={classes.rowsTitle}>
 
