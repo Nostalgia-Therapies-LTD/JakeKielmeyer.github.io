@@ -3,7 +3,7 @@ import Animals from "../../src/images/moments/Animals.jpg";
 import erik from "../../src/images/moments/erik.jpg";
 import panda from "../../src/images/moments/Panda.jpg";
 import rush from "../../src/images/moments/terence.jpg";
-import My_Moments from "../../src/images/moments/My Moments.png";
+import My_Moments from "../../src/images/moments/MyMoments.jpg";
 import Nature from "../../src/images/moments/Nature.jpg";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -30,7 +30,7 @@ function Main_photo(props) {
           style={{ color: "white", paddingLeft: "4rem" }}
         >
           {" "}
-          Albums {" "}
+          Picture Albums {" "}
         </Typography>
       <div className="PhotoApp" >
       <form className="img-grid">
@@ -39,7 +39,9 @@ function Main_photo(props) {
       onClick={()=>{props.history.push("/photo/My moments")}} 
       style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit", 
       border:"none", borderRight:"2.5px solid whiteSmoke"}}  >
-      <img src={My_Moments} alt="My Moments"/></button>
+      <img src={My_Moments} alt="My Moments"/>
+      <div className="black"><a>My Moments</a></div>
+      </button>
 
       <button className="img-wrap" 
       onClick={()=>{props.history.push("/photo/Cats")}}>
@@ -55,7 +57,7 @@ function Main_photo(props) {
       <button className="img-wrap" 
       onClick={()=>{props.history.push("/photo/Dogs")}}>
         <img src={Animals} alt="dog"/>
-        <div className="black"><a>Dhashing Dogs</a></div>
+        <div className="black"><a>Dashing Dogs</a></div>
         </button>
 
       <button className="img-wrap"
