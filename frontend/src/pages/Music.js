@@ -242,18 +242,6 @@ function Music() {
 
             <Card className={classes.musicCard}>
               <div className={classes.details}>
-                {/* <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {musicArt}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicAl}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicTr}
-                  </Typography>
-                </CardContent> */}
-
                 <div className={classes.controls}>
                   <div className="musicPlayerTitle">
                     <Typography
@@ -444,10 +432,12 @@ function Music() {
           <Typography variant="h3">Welcome to Nostalgia Radio</Typography>
           <Box mt={5}>
             <Typography variant="h4">
-              With stations like Pop-Socks! and Boomer Heyday,
+              With stations like Pop-Socks! Boomer Heyday,
             </Typography>
             <Typography variant="h4">
-              there's great music for everyone </Typography>
+              and 70's time machine,there's great{" "}
+            </Typography>
+            <Typography variant="h4">music for everyone </Typography>
           </Box>
         </Box>
       </div>
