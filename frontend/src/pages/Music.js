@@ -444,12 +444,10 @@ function Music() {
           <Typography variant="h3">Welcome to Nostalgia Radio</Typography>
           <Box mt={5}>
             <Typography variant="h4">
-              With stations like Pop-Socks! Boomer Heyday,
+              With stations like Pop-Socks! and Boomer Heyday,
             </Typography>
             <Typography variant="h4">
-              and 70's time machine,there's great{" "}
-            </Typography>
-            <Typography variant="h4">music for everyone </Typography>
+              there's great music for everyone </Typography>
           </Box>
         </Box>
       </div>

@@ -74,15 +74,16 @@ const Home = (props) => {
       </a>
 
       <div className={classes.contents}>
+
+      <Grid item xs={11} className={classes.rowsTitle}>
+          <Typography variant="h4">Nostalgic Moments</Typography>
+        </Grid>
+        <ContentRow rowName="Nostalgic Moments" images={momentImage} />
+
         <Grid item xs={11} className={classes.rowsTitle}>
           <Typography variant="h4">Nostalgia Radio</Typography>
         </Grid>
         <ContentRow rowName="Nostalgia Radio" images={radioImage} />
-
-        <Grid item xs={11} className={classes.rowsTitle}>
-          <Typography variant="h4">Nostalgia Moments</Typography>
-        </Grid>
-        <ContentRow rowName="Nostalgia Moments" images={momentImage} />
 
         <Grid item xs={11} className={classes.rowsTitle}>
 
@@ -91,10 +92,10 @@ const Home = (props) => {
         </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
 
-        <Grid item xs={11} className={classes.rowsTitle}>
+        {/* <Grid item xs={11} className={classes.rowsTitle}>
           <Typography variant="h4">Nostalgia Puzzles</Typography>
         </Grid>
-        <ContentRow rowName="Puzzles" images={puzzleImage} />
+        <ContentRow rowName="Puzzles" images={puzzleImage} /> */}
       </div>
       {/* <ContentRow rowName="Nostalgia Radio" images={radioImage} />
       <ContentRow rowName="Nostalgia Moments" images={momentImage} />
