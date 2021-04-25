@@ -551,7 +551,7 @@ function VideoSlider(props) {
 
   return (
     <div className="container">
-      <Typography variant="h5" component="h3" className="videoTitle">
+      <Typography variant="h4" component="h3" className="videoTitle">
         {props.genre}
       </Typography>
       {testFolderNames}
