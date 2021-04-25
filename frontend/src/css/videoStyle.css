@@ -623,7 +623,6 @@ element.style {
   scroll-snap-type: x proximity;
   scroll-padding-inline-start: 2rem;
   overflow-y: hidden;
-  /* overflow: hidden; */
 }
 
 .flexContainer::-webkit-scrollbar {
@@ -636,7 +635,6 @@ element.style {
   gap: 1ex;
   margin: 0;
   position: relative;
-  /* text-align: center; */
   cursor: pointer;
   user-select: none;
 }
@@ -660,8 +658,6 @@ element.style {
 
 .innerImgContainer {
   display: inline-block;
-  /* inline-size: 150px;
-  block-size: 150px; */
   inline-size: 17.8rem;
   block-size: 17.8rem;
   border-radius: 4px;
@@ -686,19 +682,18 @@ element.style {
   width: 200px;
   margin: 10px;
   color: aliceblue;
-  /* margin-right: 10px; */
   min-width: 100px;
   max-width: 400px;
   padding-left: 25px;
 }
 
 #imageContainers:hover .captionText {
+  animation-name: onHoverAnimation;
   height: 17.6rem;
   transition: height 0.8s;
 }
 
 #imageContainers:hover .caption {
-  /* opacity: 1; */
   height: 17.6rem;
   transition: height 0.8s;
 }
@@ -714,6 +709,13 @@ element.style {
 }
 
 .captionText {
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
   transition: height 0.15s;
   position: relative;
   display: flex;
@@ -724,14 +726,8 @@ element.style {
   width: 100%;
   height: 4rem;
   background-color: rgba(0, 0, 0, 0.65);
-  color: rgba(255, 255, 255, 1);
-  /* font-family: Arial, Helvetica, sans-serif; */
   cursor: pointer;
 }
-
-/* .carousel-items:hover{
-
-} */
 
 .splide__arrow--next {
   right: 0em;
@@ -768,7 +764,6 @@ element.style {
   display: none;
 }
 
-/* Caption fadeIn */
 .cssanimation,
 .cssanimation span {
   animation-duration: 1s;
@@ -796,14 +791,10 @@ element.style {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
   overflow: hidden;
   height: auto;
   flex-direction: column;
   justify-content: center;
-  /* flex-direction: column; */
-
-  /* backgroundColor: theme.palette.background.paper, */
 }
 
 /* keyframes */
@@ -814,6 +805,15 @@ element.style {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes onHoverAnimation {
+  0% {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 1);
   }
 }
 /* Media */
