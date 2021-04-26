@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "20px",
     flexGrow: 1,
     backgroundColor: "rgba(0, 0, 0, 0.9)",
+    bottom: "0",
   },
   paper: {
     position: "relative",
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     width: "110%",
     // marginRight: "auto",
     // backgroundColor: "rgba(249,222,169,255)",
-    backgroundColor: "rgba(213,183,185,255)",
+    backgroundColor: "rgb(64, 64, 64)",
 
     // borderTop: "4mm solid #eab676 !important",
   },
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   nextButton: {
-    color: "rgba(0, 0, 0, 0.9) !important",
+    color: "rgba(255,255,255,1) !important",
   },
 
   controls: {
@@ -98,7 +99,8 @@ const useStyles = makeStyles((theme) => ({
   playIcon: {
     height: 38,
     width: 38,
-    color: "rgba(0, 0, 0, 0.9) !important",
+    // color: "rgba(0, 0, 0, 0.9) !important",
+    color: "rgba(255,255,255,1)",
   },
 
   contents: {
@@ -108,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "1rem",
     paddingRight: "1rem",
     paddingTop: "3rem",
-    paddingBottom: "20px",
+    // paddingBottom: "20px",
     // marginBottom: "100px",
     backgroundColor: "rgba(0, 0, 0, 0.9)",
   },
@@ -240,18 +242,37 @@ function Music() {
 
             <Card className={classes.musicCard}>
               <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {musicArt}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicAl}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {musicTr}
-                  </Typography>
-                </CardContent>
                 <div className={classes.controls}>
+                  <div className="musicPlayerTitle">
+                    <Typography
+                      component="h5"
+                      variant="h5"
+                      display="block"
+                      align="left"
+                    >
+                      {musicArt}
+                    </Typography>
+
+                    <Typography
+                      variant="subtitle1"
+                      color="textSecondary"
+                      display="block"
+                      align="left"
+                      color="inherit"
+                    >
+                      {musicAl}
+                    </Typography>
+
+                    <Typography
+                      variant="subtitle1"
+                      color="textSecondary"
+                      display="block"
+                      align="left"
+                      color="inherit"
+                    >
+                      {musicTr}
+                    </Typography>
+                  </div>
                   {showStopButton ? (
                     <IconButton
                       aria-label="play/pause"
@@ -275,12 +296,12 @@ function Music() {
                   >
                     <SkipNextIcon />
                   </IconButton>
-                  <div className="musicSlider">
-                    <PrettoSlider
+                  {/* <div className="musicSlider"> */}
+                  {/* <PrettoSlider
                       valueLabelDisplay="off"
                       aria-label="pretto slider"
-                    />
-                  </div>
+                    /> */}
+                  {/* </div> */}
                 </div>
               </div>
 
@@ -411,15 +432,18 @@ function Music() {
           <Typography variant="h3">Welcome to Nostalgia Radio</Typography>
           <Box mt={5}>
             <Typography variant="h4">
-              With stations like Pop-Socks! and Boomer Heyday,
+              With stations like Pop-Socks! Boomer Heyday,
             </Typography>
             <Typography variant="h4">
-              there's great music for everyone </Typography>
+              and 70's time machine,there's great{" "}
+            </Typography>
+            <Typography variant="h4">music for everyone </Typography>
           </Box>
         </Box>
       </div>
       <div className={classes.contents}>
         {musicComp}
+        <div className="emptyInvisibleDiv"></div>
         <div className="containMusicPlayer">{getMusicName}</div>
         {/* having for loop to read the name of the folders in music on storage and return the music component*/}
       </div>

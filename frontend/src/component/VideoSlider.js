@@ -170,12 +170,6 @@ const useStyles = makeStyles({
 function VideoSlider(props) {
   const classes = useStyles();
 
-  const [allUrls, setallUrls] = useState(null);
-  const [imageIndex, setimageIndex] = useState(0);
-  const [carouselAvailableImages, setcarouselAvailableImages] = useState(5);
-  const [buttonName, setbuttonName] = useState(null);
-  const [runOnce, setrunOnce] = useState(true);
-  const [movieIndex, setmovieIndex] = useState(null);
   const [folderNames, setfolderNames] = useState(null);
   const [modalContentState, setmodalContentState] = useState(null);
   const [modalContentMovImg, setmodalContentMovImg] = useState(null);
@@ -259,54 +253,6 @@ function VideoSlider(props) {
         setmovieURL(movieUr[indx]);
         setvideoPlayIndex(indx);
       }
-    }
-  }
-
-  function clickPrevious() {
-    const gap = 6;
-    const carousel = document.getElementById(`carousel${props.genre}`),
-      content = document.getElementById(`content${props.genre}`),
-      next = document.getElementById(`next${props.genre}`),
-      prev = document.getElementById(`prev${props.genre}`);
-    let width = carousel.offsetWidth;
-    if (carousel.scrollLeft - width - gap <= 0) {
-      setbuttonName("prev1");
-    } else {
-      setbuttonName("prev2");
-    }
-
-    if (carousel.scrollLeft - width - gap <= 0) {
-      prev.style.display = "none";
-    }
-    if (!content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
-      next.style.display = "flex";
-    }
-  }
-
-  function clickNext() {
-    const gap = 6;
-    const carousel = document.getElementById(`carousel${props.genre}`),
-      content = document.getElementById(`content${props.genre}`),
-      next = document.getElementById(`next${props.genre}`),
-      prev = document.getElementById(`prev${props.genre}`),
-      imageContainer = document.getElementsByClassName(
-        `imageContainers${props.genre}`
-      );
-    let width = carousel.offsetWidth;
-    if (
-      imageContainer[imageIndex + carouselAvailableImages].offsetLeft +
-        carouselAvailableImages * (imageContainer[0].offsetWidth + gap) <
-      content.scrollWidth
-    ) {
-      setbuttonName("next1");
-    } else {
-      setbuttonName("next2");
-    }
-    if (carousel.scrollWidth !== 0) {
-      prev.style.display = "flex";
-    }
-    if (content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
-      next.style.display = "none";
     }
   }
 
@@ -433,76 +379,6 @@ function VideoSlider(props) {
       setOpen(true);
     }
   }, [modalContentMovImg]);
-
-  useEffect(() => {
-    if (buttonName === "prev1") {
-      setimageIndex(0);
-    } else if (buttonName === "prev2") {
-      setimageIndex(imageIndex - carouselAvailableImages);
-    } else if (buttonName === "next1") {
-      setimageIndex(imageIndex + carouselAvailableImages);
-    } else if (buttonName === "next2") {
-      const imageContainer = document.getElementsByClassName(
-        `imageContainers${props.genre}`
-      );
-      setimageIndex(imageContainer.length - carouselAvailableImages);
-    }
-  }, [buttonName]);
-
-  useEffect(() => {
-    let gap = 6;
-    let width = null;
-    const carousel = document.getElementById(`carousel${props.genre}`);
-    if (carousel) {
-      width = carousel.offsetWidth;
-      if (buttonName === "prev1" || buttonName === "prev2") {
-        carousel.scrollBy(-(width + gap), 0);
-      } else if (buttonName === "next1" || buttonName === "next2") {
-        carousel.scrollBy(width + gap, 0);
-      }
-    }
-  }, [imageIndex]);
-
-  useEffect(() => {
-    function handleResize() {
-      const carousel = document.getElementById(`carousel${props.genre}`);
-      const imageContainer = document.getElementsByClassName(
-        `imageContainers${props.genre}`
-      );
-      if (carousel) {
-        carousel.scrollLeft = imageContainer[imageIndex].offsetLeft;
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const gap = 6;
-    const carousel = document.getElementById(`carousel${props.genre}`),
-      content = document.getElementById(`content${props.genre}`),
-      next = document.getElementById(`next${props.genre}`),
-      prev = document.getElementById(`prev${props.genre}`),
-      imageContainer = document.getElementsByClassName(
-        `imageContainers${props.genre}`
-      );
-
-    if (carousel && runOnce) {
-      let width = carousel.offsetWidth;
-      setrunOnce(false);
-      if (content.scrollWidth - width - gap <= carousel.scrollLeft) {
-        next.style.display = "none";
-      } else {
-        next.style.display = "flex";
-      }
-      if (carousel.scrollLeft <= 0) {
-        prev.style.display = "none";
-      } else {
-        prev.style.display = "flex";
-      }
-    }
-  });
 
   useEffect(() => {
     let map = new Map();
@@ -639,125 +515,43 @@ function VideoSlider(props) {
 
   const testFolderNames = folderNames ? (
     //testing
-    <div className="flexContainer">
-      <div id={`wrapper${props.genre}`} className="wrapper">
-        <div id={`carousel${props.genre}`} className="carousel">
-          <div id={`content${props.genre}`} className="content">
-            {folderNames.map((names, ind) => (
-              <div
-                id="imageContainers"
-                className={`imageContainers${props.genre}`}
-              >
-                <img
-                  src={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${names.path.replace(
-                    /\//g,
-                    "%2F"
-                  )}?alt=media&token=${names.token}`}
-                  className="carousel-items"
-                  onClick={() =>
-                    onClickImages(names.path.split("/")[2].split(".")[0])
-                  }
-                />
-                <div
-                  className="caption"
-                  onClick={() =>
-                    onClickImages(names.path.split("/")[2].split(".")[0])
-                  }
-                >
-                  <div className="captionText">
-                    {names.path.split("/")[2].split(".")[0]}
-                  </div>
-                </div>
+    <section className="videoSection">
+      <div className="flexContainer">
+        {folderNames.map((names, ind) => (
+          <div className="imageContainer" id="imageContainers">
+            <div className="innerImgContainer">
+              <img
+                src={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${names.path.replace(
+                  /\//g,
+                  "%2F"
+                )}?alt=media&token=${names.token}`}
+                className="carousel-items"
+                onClick={() =>
+                  onClickImages(names.path.split("/")[2].split(".")[0])
+                }
+              />
+            </div>
+            <div
+              className="caption"
+              onClick={() =>
+                onClickImages(names.path.split("/")[2].split(".")[0])
+              }
+            >
+              <div className="captionText">
+                {names.path.split("/")[2].split(".")[0]}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-        <IconButton
-          className="prevButton"
-          id={`prev${props.genre}`}
-          onClick={clickPrevious}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-
-        <IconButton
-          className="nextButton"
-          id={`next${props.genre}`}
-          onClick={clickNext}
-        >
-          <ArrowForwardIosIcon />
-        </IconButton>
+        ))}
       </div>
-    </div>
+    </section>
   ) : (
     <div>Loading...</div>
   );
 
-  const testGeturl = allUrls ? (
-    <div className="flexContainer">
-      <div id={`wrapper${props.genre}`} className="wrapper">
-        <div id={`carousel${props.genre}`} className="carousel">
-          <div id={`content${props.genre}`} className="content">
-            {allUrls.map((val, ind) => (
-              <div
-                id="imageContainers"
-                className={`imageContainers${props.genre}`}
-              >
-                <Card className="carousel-items">
-                  <CardMedia
-                    className={classes.media}
-                    image={`https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${val.imageLocation}?alt=media&token=${val.imageToken}`}
-                    title="Movie Title"
-                  />
-                  <CardContent className={classes.texts}>
-                    <Typography gutterBottom variant="h7" component="h4">
-                      {val.movieName}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      {val.movieDesc}
-                    </Typography>
-                  </CardContent>
-                </Card>
-                <IconButton className="playButtons">
-                  <PlayCircleFilledIcon
-                    fontSize="large"
-                    onClick={() =>
-                      playVideo(val.movieToken, val.movieLocation, ind, allUrls)
-                    }
-                  />
-                </IconButton>
-              </div>
-            ))}
-          </div>
-        </div>
-        <IconButton
-          className="prevButton"
-          id={`prev${props.genre}`}
-          onClick={clickPrevious}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-
-        <IconButton
-          className="nextButton"
-          id={`next${props.genre}`}
-          onClick={clickNext}
-        >
-          <ArrowForwardIosIcon />
-        </IconButton>
-      </div>
-    </div>
-  ) : (
-    <Skeleton variant="rect" width={300} height={200} />
-  );
-
   return (
     <div className="container">
-      <Typography variant="h5" component="h3" className="videoTitle">
+      <Typography variant="h4" component="h3" className="videoTitle">
         {props.genre}
       </Typography>
       {testFolderNames}
