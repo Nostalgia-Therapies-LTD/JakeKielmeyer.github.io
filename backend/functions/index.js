@@ -98,9 +98,9 @@ app.post("/signup", (req, res) => {
     errors.email = "Must be a valid email address";
   }
   if (isEmpty(newUser.password)) errors.password = "Must not be empty";
-  if (newUser.password != newUser.confirmPassword) {
-    errors.confirmPassword = "Passwords must match";
-  }
+  // if (newUser.password != newUser.confirmPassword) {
+  //   errors.confirmPassword = "Passwords must match";
+  // }
 
   if (Object.keys(errors).length > 0) return res.status(400).json(errors);
 

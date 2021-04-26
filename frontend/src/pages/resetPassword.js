@@ -4,7 +4,6 @@ import { useState } from "react";
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -19,6 +18,7 @@ const styles = {
     padding: "0 5%",
     width: "50%",
     minHeight: "90vh",
+    minWidth:"300px"
   },
   formContent: {
     padding: "55px",
@@ -44,6 +44,8 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+    color:"white",
+    backgroundColor:"#3fa9f5", 
   },
 
   progress: {

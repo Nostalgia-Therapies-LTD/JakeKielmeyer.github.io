@@ -8,7 +8,6 @@ import { db } from "../config";
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -24,9 +23,10 @@ const styles = {
     padding: "0 5%",
     width: "50%",
     minHeight: "90vh",
+    minWidth:"300px",
   },
   formContent: {
-    padding: "55px",
+    padding: "2.5em",
     textAlign: "left",
     width: "100%",
     marginTop:"15%",
@@ -48,6 +48,8 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+    color:"white",
+    backgroundColor:"#3fa9f5",
   },
 
   progress: {
@@ -65,7 +67,17 @@ const styles = {
     paddingLeft: "2rem",
   },
 
-};
+  google:{
+    width: "100%",
+    fontFamily:"KOW, sans-serif",
+    fontWeight:"400",
+    fontSize:"1.3rem",
+    lineHeight:"2.5",
+    backgroundColor:"#ED2939",
+    color:"white"
+  }
+}
+  
 
 const Login = (props) => {
  
@@ -203,7 +215,8 @@ const Login = (props) => {
             )}
           </Button>
         </form>
-        <GoogleButton style={{width: "100%"}} 
+        <GoogleButton style={{width: "100%", fontFamily:"KOW, sans-serif",fontWeight:"400",
+        fontSize:"1.25rem", lineHeight:"2.5", backgroundColor:"white", color:"grey"}} 
           label='Log in with Google' type="light"  onClick={handleGoogle}/>          
         
         <Typography className="forgotPassword" variant="subtitle1">
