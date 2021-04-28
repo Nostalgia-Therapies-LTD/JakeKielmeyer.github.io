@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ImgGrid1 from "../component/photo_coms/folders/imgGrid1";
+import ImgGrid from "../component/photo_coms/folders/imgGrid";
 import Upload from "../component/photo_coms/folders/Upload";
 import Modal1 from "../component/photo_coms/folders/modal1";
 import Typography from "@material-ui/core/Typography";
@@ -50,7 +50,7 @@ function My_moments() {
             </div>
 </div>
           {localStorage.FBIdToken && (
-            <ImgGrid1
+            <ImgGrid
               setselectedImg={setselectedImg}
               setModalOpen={setModalOpen}
               props={`users/${

@@ -44,8 +44,11 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+    textTransform: "none", 
+    borderRadius: "4px",
     color:"white",
-    backgroundColor:"#3fa9f5", 
+    backgroundColor:"#3fa9f5",
+
   },
 
   progress: {
@@ -136,13 +139,11 @@ const Reset = (props) => {
           className={classes.button}
           fullWidth
           href="/signup"
-          style = {{textTransform: "none", borderRadius: "4px",}}
         >
-    {" "}
-    Reset Password
-    {loading && (
-      <CircularProgress size={30} className={classes.progress} />
-    )}
+   <Typography variant = "h5">{" "} Reset Password </Typography>
+            {loading && (
+              <CircularProgress size={30} className={classes.progress} />
+            )}
   </Button>
 </form>
 <Typography className="forgotPassword" variant="subtitle1">
