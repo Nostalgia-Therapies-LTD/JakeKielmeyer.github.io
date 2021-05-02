@@ -14,7 +14,7 @@ import Login from "./pages/login";
 import SignUp from "./pages/signup";
 import Reset from "./pages/resetPassword";
 import Home from "./pages/home";
-import Puzzle from "./pages/Puzzle";
+//mport Puzzle from "./pages/Puzzle";
 import Footer from "./component/Footer";
 import Video from "./pages/Video";
 import Music from "./pages/Music";
@@ -95,11 +95,11 @@ function App() {
                 path="/home"
                 component={Home}
               ></ProtectedRoute>
-              <ProtectedRoute
+              {/* <ProtectedRoute
                 exact
                 path="/puzzle"
                 component={Puzzle}
-              ></ProtectedRoute>
+              ></ProtectedRoute> */}
               <ProtectedRoute
                 exact
                 path="/video"

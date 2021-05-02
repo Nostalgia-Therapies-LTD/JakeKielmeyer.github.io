@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import useFirestore from "../../../hooks/useFirestore";
+import useFirestore1 from "../../../hooks/useFirestore1";
 import axios from "axios";
 import firebase from "firebase/app";
 import Modal from "@material-ui/core/Modal";
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Modal1({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
-  const { docs, imgarr } = useFirestore(props);
+  const { docs, imgarr } = useFirestore1(props);
   const classes = useStyles();
  
   const handleClose = (e) => {

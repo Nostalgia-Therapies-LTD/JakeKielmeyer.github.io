@@ -5,7 +5,8 @@ const useFirestore = (collection) => {
   const [docs, setdocs] = useState([]);
   const [imgarr, setimgarr] = useState([]);
 
-  useEffect(() => {
+
+ useEffect(() => {
     let documents = [];
     let arr = [];
     let unsub = null;

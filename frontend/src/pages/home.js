@@ -1,12 +1,12 @@
 import React from "react";
-import pupper from "../images/Pupper.jpg";
+//import pupper from "../images/Pupper.jpg";
 import ContentRow from "../component/ContentRow";
 
 //dummy backend service
 import radioImage from "../services/imageService";
 import { momentImage } from "../services/imageService";
 import { tvImage } from "../services/imageService";
-import { puzzleImage } from "../services/imageService";
+//import { puzzleImage } from "../services/imageService";
 
 //mui stuff
 import Grid from "@material-ui/core/Grid";
