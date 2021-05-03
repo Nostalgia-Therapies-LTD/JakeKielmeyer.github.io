@@ -6,9 +6,7 @@ const useFirestore = (collection) => {
   const [imgarr, setimgarr] = useState([]);
 
   useEffect(() => {
-    let documents = [];
-    let arr = [];
-    let unsub = null;
+    // let unsub = null;
     if (
       localStorage.getItem(collection + "1") &&
       localStorage.getItem(collection + "2")
@@ -18,10 +16,12 @@ const useFirestore = (collection) => {
       setdocs(snap1);
       setimgarr(snap2);
     } else {
-      unsub = db
+      const unsub = db
         .collection(collection)
         .orderBy("createdAt", "desc")
         .onSnapshot((snap) => {
+          let documents = [];
+          let arr = [];
           // console.log("first", snap);
           snap.forEach((doc) => {
             console.log(doc.data());
