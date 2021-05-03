@@ -5,7 +5,6 @@ import {useHistory } from "react-router-dom";
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,6 +19,7 @@ const styles = {
     padding: "0 5%",
     width: "50%",
     minHeight: "90vh",
+    minWidth:"300px",
   },
   formContent: {
     padding: "55px",
@@ -42,6 +42,9 @@ const styles = {
     position: "relative",
     textTransform: "none", 
     borderRadius: "4px",
+    color:"white",
+    backgroundColor:"#3fa9f5",
+
   },
 
   progress: {
@@ -66,8 +69,8 @@ const SignUp = (props) => {
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
+    // confirmPassword: ''
     
   });
   const [loading, setLoading] = useState(false);
@@ -96,17 +99,15 @@ const SignUp = (props) => {
 
   const handleChange = (event) => {
     if (event.target.name === "firstName") {
-      setUser({ firstName:event.target.value, lastName:user.lastName, email: user.email, password: user.password, confirmPassword: user.comfirmPassword});
+      setUser({ firstName:event.target.value, lastName:user.lastName, email: user.email, password: user.password});
     }else if (event.target.name === "lastName") {
-      setUser({ firstName:user.firstName, lastName:event.target.value, email: user.email, password: user.password, confirmPassword: user.comfirmPassword});
+      setUser({ firstName:user.firstName, lastName:event.target.value, email: user.email, password: user.password});
     }
     else if (event.target.name === "email") {
-      setUser({ firstName:user.firstName, lastName:user.lastName, email: event.target.value, password: user.password, confirmPassword: user.comfirmPassword});
+      setUser({ firstName:user.firstName, lastName:user.lastName, email: event.target.value, password: user.password});
     } else if (event.target.name === "password") {
-      setUser({ firstName:user.firstName, lastName:user.lastName, email: user.email, password: event.target.value, confirmPassword: user.comfirmPassword});
-    } else if (event.target.name === "confirmPassword") {
-      setUser({ firstName:user.firstName, lastName:user.lastName, email: user.email, password: user.password, confirmPassword: event.target.value });
-    }
+      setUser({ firstName:user.firstName, lastName:user.lastName, email: user.email, password: event.target.value});
+    } 
   };
   return (
 <div>

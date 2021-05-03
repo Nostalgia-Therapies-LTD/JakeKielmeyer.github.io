@@ -6,7 +6,9 @@ const useFirestore = (collection) => {
   const [imgarr, setimgarr] = useState([]);
 
   useEffect(() => {
-    // let unsub = null;
+    let documents = [];
+    let arr = [];
+    let unsub = null;
     if (
       localStorage.getItem(collection + "1") &&
       localStorage.getItem(collection + "2")

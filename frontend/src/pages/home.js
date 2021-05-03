@@ -6,7 +6,7 @@ import ContentRow from "../component/ContentRow";
 import radioImage from "../services/imageService";
 import { momentImage } from "../services/imageService";
 import { tvImage } from "../services/imageService";
-import { puzzleImage } from "../services/imageService";
+//import { puzzleImage } from "../services/imageService";
 
 //mui stuff
 import Grid from "@material-ui/core/Grid";
