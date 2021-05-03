@@ -1,5 +1,5 @@
-import React from "react";
-//import pupper from "../images/Pupper.jpg";
+import React, { useEffect } from "react";
+// import pupper from "../images/Pupper.jpg";
 import ContentRow from "../component/ContentRow";
 
 //dummy backend service
@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { db } from "../config";
 
 const styles = {
   welcome: {
@@ -45,6 +46,39 @@ const styles = {
 
 const Home = (props) => {
   const { classes } = props;
+  const userID = localStorage.getItem("norman");
+
+  // const sendToCkeckOut = async (userID) => {
+  //   const docRef = await db
+  //     .collection("customers")
+  //     .doc(props.location.state.userID)
+  //     .collection("checkout_sessions")
+  //     .add({
+  //       price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
+  //       success_url: window.location.origin,
+  //       cancel_url: window.location.origin,
+  //     });
+  //   // Wait for the CheckoutSession to get attached by the extension
+  //   docRef.onSnapshot(async (snap) => {
+  //     const { error, sessionId } = snap.data();
+  //     if (error) {
+  //       // Show an error to your customer and
+  //       // inspect your Cloud Function logs in the Firebase console.
+  //       alert(`An error occured: ${error.message}`);
+  //     }
+  //     if (sessionId) {
+  //       // We have a session, let's redirect to Checkout
+  //       // Init Stripe
+  //       const stripe = await getStripe();
+  //       stripe.redirectToCheckout({ sessionId });
+  //     }
+  //   });
+  // };
+
+  useEffect(() => {
+    if (userID) db.collection("customers").doc(userID).set({ Home: true });
+  }, []);
+
   return (
     <React.Fragment>
       <a href="photo/Dogs">
@@ -74,8 +108,7 @@ const Home = (props) => {
       </a>
 
       <div className={classes.contents}>
-
-      <Grid item xs={11} className={classes.rowsTitle}>
+        <Grid item xs={11} className={classes.rowsTitle}>
           <Typography variant="h4">Nostalgic Moments</Typography>
         </Grid>
         <ContentRow rowName="Nostalgic Moments" images={momentImage} />
@@ -86,9 +119,7 @@ const Home = (props) => {
         <ContentRow rowName="Nostalgia Radio" images={radioImage} />
 
         <Grid item xs={11} className={classes.rowsTitle}>
-
           <Typography variant="h4">Nostalgia TV</Typography>
-
         </Grid>
         <ContentRow rowName="Nostalgia TV" images={tvImage} />
 
@@ -101,9 +132,9 @@ const Home = (props) => {
       <ContentRow rowName="Nostalgia Moments" images={momentImage} />
       <ContentRow rowName="Nostalgia TV" images={tvImage} />
       <ContentRow rowName="Puzzles" images={puzzleImage} /> */}
+      {/* <Subscription /> */}
     </React.Fragment>
   );
 };
 
 export default withStyles(styles)(Home);
-
