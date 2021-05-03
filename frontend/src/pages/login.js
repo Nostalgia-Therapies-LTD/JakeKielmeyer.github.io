@@ -219,7 +219,15 @@ const Login = (props) => {
             </Button>
           </form>
           <GoogleButton
-            style={{ width: "100%" }}
+            style={{
+              width: "100%",
+              fontFamily: "KOW, sans-serif",
+              fontWeight: "400",
+              fontSize: "1.25rem",
+              lineHeight: "2.5",
+              backgroundColor: "white",
+              color: "grey",
+            }}
             label="Log in with Google"
             type="light"
             onClick={handleGoogle}
