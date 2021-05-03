@@ -18,12 +18,10 @@ const useFirestore = (collection) => {
       setdocs(snap1);
       setimgarr(snap2);
     } else {
-      const unsub = db
+      unsub = db
         .collection(collection)
         .orderBy("createdAt", "desc")
         .onSnapshot((snap) => {
-          let documents = [];
-          let arr = [];
           // console.log("first", snap);
           snap.forEach((doc) => {
             console.log(doc.data());

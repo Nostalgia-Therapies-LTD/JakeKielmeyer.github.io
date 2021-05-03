@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import pupper from "../images/Pupper.jpg";
+// import pupper from "../images/Pupper.jpg";
 import ContentRow from "../component/ContentRow";
 
 //dummy backend service
@@ -14,7 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import CssBaseLine from "@material-ui/core/CssBaseline";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Subscription from "../component/Subscription";
 import { db } from "../config";
 
 const styles = {
@@ -77,7 +76,7 @@ const Home = (props) => {
   // };
 
   useEffect(() => {
-    db.collection("customers").doc(userID).set({ Home: true });
+    if (userID) db.collection("customers").doc(userID).set({ Home: true });
   }, []);
 
   return (

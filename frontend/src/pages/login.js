@@ -4,13 +4,10 @@ import { useHistory } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/auth";
 import { db } from "../config";
-import { loadStripe } from "@stripe/stripe-js";
-import getStripe from "../component/getStripe";
 
 //mui stuff
 import withStyles from "@material-ui/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -26,9 +23,10 @@ const styles = {
     padding: "0 5%",
     width: "50%",
     minHeight: "90vh",
+    minWidth: "300px",
   },
   formContent: {
-    padding: "55px",
+    padding: "2.5em",
     textAlign: "left",
     width: "100%",
     marginTop: "15%",
@@ -50,6 +48,8 @@ const styles = {
   button: {
     marginTop: "20px",
     position: "relative",
+    color: "white",
+    backgroundColor: "#3fa9f5",
   },
 
   progress: {
@@ -66,6 +66,16 @@ const styles = {
     marginTop: "25px",
     paddingLeft: "2rem",
   },
+
+  google: {
+    width: "100%",
+    fontFamily: "KOW, sans-serif",
+    fontWeight: "400",
+    fontSize: "1.3rem",
+    lineHeight: "2.5",
+    backgroundColor: "#ED2939",
+    color: "white",
+  },
 };
 
 const Login = (props) => {
@@ -75,7 +85,6 @@ const Login = (props) => {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [isCalled, setIsCalled] = useState(true);
   // var isCalled = true;
   // const [googleError, setgoogleError] = useState("");
   const history = useHistory();
@@ -89,8 +98,9 @@ const Login = (props) => {
       .post("/login", user)
       .then((res) => {
         setLoading(false);
-        //console.log(res)
+        console.log("input data:", res);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
+        // console.log(res.data());
         history.push("/home");
       })
       .catch((err) => {
@@ -123,9 +133,6 @@ const Login = (props) => {
         localStorage.setItem("norman", uid);
         const isLocation = db.collection("customers").doc(uid);
         if (isLocation) {
-          // isLocation.get().then((dat) => {
-          // let isHome = dat.data().home;
-          // console.log("Seriously?", isHome);
           isLocation.collection("subscriptions").onSnapshot((snapShot) => {
             if (snapShot.docs.length !== 0) {
               console.log("Home");
