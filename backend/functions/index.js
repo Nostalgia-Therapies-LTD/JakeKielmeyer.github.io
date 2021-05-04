@@ -125,7 +125,7 @@ app.post("/signup", (req, res) => {
       return db.doc(`/users/${userCredential.userId}`).set(userCredential);
     })
     .then(() => {
-      return res.status(201).json({ token });
+      return res.status(201).json({ token: token, userId: userId });
     })
     .catch((err) => {
       console.error(err);
