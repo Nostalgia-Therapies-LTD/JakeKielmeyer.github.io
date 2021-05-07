@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 // import useStorage from "../../../hooks/useStorage";
 import useUserStorage from "../../../hooks/useUserStorage";
 
-const PhotoFile = ({ file, setfile }) => {
+const PhotoFile = ({ files, setfiles }) => {
   // const url= useStorage(file);
-  const url = useUserStorage(file);
+  const url = useUserStorage(files);
   
   useEffect(() => {
+    
     if (url) {
-      setfile(null);
+      
+      setfiles([]);
     }
-  }, [url, setfile]);
+  }, [url, setfiles]);
 
   return <div></div>;
 };

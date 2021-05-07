@@ -294,43 +294,53 @@ app.post("/getInfoTest", (req, res) => {
     });
 });
 
-app.post("/upload/:uid", FBAuth, filesUpload, async (req, res) => {
-  try {
-    // return res.json(req.params.uid);
-    // image name to hide from attackers
-    const imageName = uuidv1();
-    // return res.json(imageName);
-    // access token for the images uploaded
-    const uuid = uuidv4();
+app.post("/upload/:uid",FBAuth,filesUpload, async (req, res) => {
+  
+  const allUrl=[]
+  const allFiles = req.files
+  await Promise.all(allFiles.map( async (eachFile) => {
+    try {
+      // return res.json(req.params.uid);
+      // image name to hide from attackers
+      const imageName = uuidv1();
+      // return res.json(imageName);
+      // access token for the images uploaded
+      const uuid = uuidv4();
+  
+      // file reference
+      const file = storageRef.file(
+        `userImages/${req.params.uid}/${imageName}${path.extname(
+          eachFile.originalname
+        )}`
+      );
+      await file.save(eachFile.buffer, {
+        metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
+      });
+  
+      // store the details in firestore
+      // stored in users/userId/images collection
+      const fileUrl = createPersistentDownloadUrl(
+        config.storageBucket,
+        `userImages/${req.params.uid}/${imageName}${path.extname(
+          eachFile.originalname
+        )}`,
+        uuid
+      );
+  
+      allUrl.push(fileUrl)
+      
+      await db.collection(`users/${req.params.uid}/images`).add({
+        url: fileUrl,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        name: `${imageName}${path.extname(eachFile.originalname)}`,
+      });
+      res.status(200).json({ url: allUrl });
+    } catch (error) {
+      return res.status(404).json({ error: error.toString() });
+    }
 
-    // file reference
-    const file = storageRef.file(
-      `userImages/${req.params.uid}/${imageName}${path.extname(
-        req.files[0].originalname
-      )}`
-    );
-    await file.save(req.files[0].buffer, {
-      metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
-    });
-
-    // store the details in firestore
-    // stored in users/userId/images collection
-    const fileUrl = createPersistentDownloadUrl(
-      config.storageBucket,
-      `userImages/${req.params.uid}/${imageName}${path.extname(
-        req.files[0].originalname
-      )}`,
-      uuid
-    );
-    await db.collection(`users/${req.params.uid}/images`).add({
-      url: fileUrl,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      name: `${imageName}${path.extname(req.files[0].originalname)}`,
-    });
-    res.status(200).json({ url: fileUrl });
-  } catch (error) {
-    return res.status(404).json({ error: error.toString() });
-  }
+  }) )
+  
 });
 
 app.delete("/image/:uid", FBAuth, async (req, res) => {
