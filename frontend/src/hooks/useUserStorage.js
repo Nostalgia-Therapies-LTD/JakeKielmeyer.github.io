@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import firebase from "firebase/app";
+import Upload from "../component/photo_coms/folders/Upload";
 
-const useUserStorage = (file) => {
-  //const [progress, setprogess] = useState(0);
+const useUserStorage = (files) => {
   const [error, seterror] = useState(null);
   const [url, seturl] = useState(null);
-  //const [uid,setUid]=useState(null);
- 
-  
+
   useEffect(() => {
     const source = axios.CancelToken.source();
-
+    //console.log(files);
     const uploadFile = async () => {
+      //[...files].map( (eachFile) => {
       try {
         const formData = new FormData();
-        formData.append("file", file);
+
+        [...files].forEach((file) => {
+          formData.append("file", file);
+        });
+
         const config = {
           headers: {
             "content-type": "multipart/form-data",
@@ -24,30 +27,24 @@ const useUserStorage = (file) => {
           },
         };
         firebase.auth().onAuthStateChanged((user) => {
-          
           if (user) {
-            console.log(user.uid)
             const { url } = axios.post(`/upload/${user.uid}`, formData, config);
+            
             seturl(url);
             
-          } 
+          }
         });
-      
-        
-        
       } catch (error) {
         seterror(error);
       }
     };
-
     uploadFile();
     return () => {
       source.cancel();
     };
-  }, [file]);
-  
+  }, [files]);
+
   return { url, error };
-  
 };
 
 export default useUserStorage;
