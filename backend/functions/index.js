@@ -157,15 +157,16 @@ app.post("/login", (req, res) => {
   if (isEmpty(user.password)) errors.password = "Must not be empty";
 
   if (Object.keys(errors).length > 0) return res.status(400).json(errors);
-
+  let userId;
   firebase
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
     .then((data) => {
+      userId = data.user.uid;
       return data.user.getIdToken();
     })
     .then((idToken) => {
-      return res.status(200).json({ token: idToken });
+      return res.status(200).json({ token: idToken, userId: userId });
     })
     .catch((err) => {
       console.error(err);
