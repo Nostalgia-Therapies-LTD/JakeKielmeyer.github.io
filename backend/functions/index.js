@@ -537,7 +537,7 @@ app.post("/checkSubscription", (req, res) => {
   db.collection("customers")
     .doc(req.body.uid)
     .collection("subscriptions")
-    .where("cancel_at_period_end", "==", true)
+    .where("cancel_at_period_end", "==", false)
     .limit(1)
     .get()
     .then((snap) => {

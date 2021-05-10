@@ -29,7 +29,6 @@ import Subscription from "./component/Subscription";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
 import Payment from "./component/Payment";
-import DeleteSubscription from "./component/DeleteSubscription";
 
 //jwt
 import jwtDecode from "jwt-decode";
@@ -92,11 +91,6 @@ function App() {
           <Route exact path="/signup" component={SignUp}></Route>
           <Route exact path="/reset" component={Reset}></Route>
           <Route exact path="/subscription" component={Subscription}></Route>
-          <Route
-            exact
-            path="/deleteSubscription"
-            component={DeleteSubscription}
-          ></Route>
           <Route exact path="/terms" component={Terms}></Route>
           <Route exact path="/privacy" component={Privacy}></Route>
           <Route exact path="/payment_management" component={Payment}></Route>

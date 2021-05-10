@@ -112,32 +112,42 @@ const Login = (props) => {
         setLoading(false);
         console.log(uid);
         localStorage.setItem("norman", uid);
-        const isLocation = db.collection("customers").doc(uid);
-        if (isLocation) {
-          isLocation.collection("subscriptions").onSnapshot((snapShot) => {
-            if (snapShot.docs.length !== 0) {
-              console.log("Ah khodaye", snapShot.docs);
-              isLocation
-                .collection("subscriptions")
-                .where("cancel_at_period_end", "===", false)
-                .limit(1)
-                .get()
-                .then((snapShot) => {
-                  console.log("Ah khodaye man:", snapShot.data());
-                  if (snapShot.docs.length != 0) {
-                    console.log("Home:");
-                    history.push({ pathname: "/home" });
-                  } else {
-                    console.log("Subscription");
-                    history.push({ pathname: "/subscription" });
-                  }
-                });
-            } else {
-              console.log("Subscription");
-              history.push({ pathname: "/subscription" });
-            }
-          });
-        }
+
+        axios.post("/checkSubscription", { uid: uid }).then((output) => {
+          console.log("very good:", output.data);
+          if (output.data.length != 0) {
+            console.log("Home:");
+            history.push({ pathname: "/home" });
+          } else {
+            console.log("Subscription");
+            history.push({ pathname: "/subscription" });
+          }
+        });
+
+        // const isLocation = db.collection("customers").doc(uid);
+        // if (isLocation) {
+        //   isLocation.collection("subscriptions").onSnapshot((snapShot) => {
+        //     if (snapShot.docs.length !== 0) {
+        //       console.log("Ah khodaye", snapShot.docs);
+        //       isLocation
+        //         .collection("subscriptions")
+        //         .where("cancel_at_period_end", "===", false)
+        //         .limit(1)
+        //         .get()
+        //         .then((snapShot) => {
+        //           console.log("Ah khodaye man:", snapShot.data());
+        //           if (snapShot.docs.length != 0) {
+
+        //           } else {
+
+        //           }
+        //         });
+        //     } else {
+        //       console.log("Subscription");
+        //       history.push({ pathname: "/subscription" });
+        //     }
+        //   });
+        // }
         // ...
       })
       .catch((error) => {
