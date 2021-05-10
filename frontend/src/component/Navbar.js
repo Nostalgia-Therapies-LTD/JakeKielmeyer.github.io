@@ -13,7 +13,7 @@ const styles = {
     background: "transparent",
     boxShadow: "none",
     paddingLeft: "2rem",
-    '@media (max-width:760px)': {
+    "@media (max-width:760px)": {
       display: "none",
     },
   },
@@ -38,10 +38,10 @@ const styles = {
     display: "flex",
     textShadow: "1px 1px 4px #000",
     textTransform: "capitalize",
-    '@media (min-width:760px)': {
+    "@media (min-width:760px)": {
       padding: "0 .25rem",
-      fontSize: '1.5rem',
-   },
+      fontSize: "1.5rem",
+    },
   },
 };
 
@@ -74,6 +74,11 @@ function Navbar(props) {
             Video
           </Button>
         </Link>
+        <Link to="/payment_management">
+          <Button color="inherit" className={classes.navLink}>
+            Payment
+          </Button>
+        </Link>
         {/* <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
@@ -94,4 +99,3 @@ function Navbar(props) {
 }
 
 export default withStyles(styles)(Navbar);
-
