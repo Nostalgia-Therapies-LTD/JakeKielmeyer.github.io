@@ -1,6 +1,8 @@
 import firebase from "firebase/app";
 import "firebase/storage";
 import "firebase/firestore";
+import "firebase/functions";
+import "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyAzJtyyhhXUj2cFikqsfbRhtFjAoa21UCY",
@@ -18,4 +20,8 @@ const storage = firebase.storage();
 const apiUrl = "https://us-central1-nostalgiadev-1f319.cloudfunctions.net/api";
 const db = firebase.firestore();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
-export {config, db, storage, timestamp, apiUrl };
+const app = firebase.app();
+// export function app() {
+//   return firebase.app();
+// }
+export { config, db, storage, timestamp, apiUrl, app };

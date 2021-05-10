@@ -28,6 +28,7 @@ import Wildlife_folder from "./component/photo_coms/folders/Wildlife_folder";
 import Subscription from "./component/Subscription";
 import Terms from "./pages/terms";
 import Privacy from "./pages/privacy";
+import Payment from "./component/Payment";
 
 //jwt
 import jwtDecode from "jwt-decode";
@@ -92,6 +93,7 @@ function App() {
           <Route exact path="/subscription" component={Subscription}></Route>
           <Route exact path="/terms" component={Terms}></Route>
           <Route exact path="/privacy" component={Privacy}></Route>
+          <Route exact path="/payment_management" component={Payment}></Route>
           <React.Fragment>
             <Navbar />
             <MobileNavbar />

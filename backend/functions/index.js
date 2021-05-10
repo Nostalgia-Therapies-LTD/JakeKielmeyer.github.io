@@ -294,53 +294,52 @@ app.post("/getInfoTest", (req, res) => {
     });
 });
 
-app.post("/upload/:uid",FBAuth,filesUpload, async (req, res) => {
-  
-  const allUrl=[]
-  const allFiles = req.files
-  await Promise.all(allFiles.map( async (eachFile) => {
-    try {
-      // return res.json(req.params.uid);
-      // image name to hide from attackers
-      const imageName = uuidv1();
-      // return res.json(imageName);
-      // access token for the images uploaded
-      const uuid = uuidv4();
-  
-      // file reference
-      const file = storageRef.file(
-        `userImages/${req.params.uid}/${imageName}${path.extname(
-          eachFile.originalname
-        )}`
-      );
-      await file.save(eachFile.buffer, {
-        metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
-      });
-  
-      // store the details in firestore
-      // stored in users/userId/images collection
-      const fileUrl = createPersistentDownloadUrl(
-        config.storageBucket,
-        `userImages/${req.params.uid}/${imageName}${path.extname(
-          eachFile.originalname
-        )}`,
-        uuid
-      );
-  
-      allUrl.push(fileUrl)
-      
-      await db.collection(`users/${req.params.uid}/images`).add({
-        url: fileUrl,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        name: `${imageName}${path.extname(eachFile.originalname)}`,
-      });
-      res.status(200).json({ url: allUrl });
-    } catch (error) {
-      return res.status(404).json({ error: error.toString() });
-    }
+app.post("/upload/:uid", FBAuth, filesUpload, async (req, res) => {
+  const allUrl = [];
+  const allFiles = req.files;
+  await Promise.all(
+    allFiles.map(async (eachFile) => {
+      try {
+        // return res.json(req.params.uid);
+        // image name to hide from attackers
+        const imageName = uuidv1();
+        // return res.json(imageName);
+        // access token for the images uploaded
+        const uuid = uuidv4();
 
-  }) )
-  
+        // file reference
+        const file = storageRef.file(
+          `userImages/${req.params.uid}/${imageName}${path.extname(
+            eachFile.originalname
+          )}`
+        );
+        await file.save(eachFile.buffer, {
+          metadata: { metadata: { firebaseStorageDownloadTokens: uuid } },
+        });
+
+        // store the details in firestore
+        // stored in users/userId/images collection
+        const fileUrl = createPersistentDownloadUrl(
+          config.storageBucket,
+          `userImages/${req.params.uid}/${imageName}${path.extname(
+            eachFile.originalname
+          )}`,
+          uuid
+        );
+
+        allUrl.push(fileUrl);
+
+        await db.collection(`users/${req.params.uid}/images`).add({
+          url: fileUrl,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          name: `${imageName}${path.extname(eachFile.originalname)}`,
+        });
+        res.status(200).json({ url: allUrl });
+      } catch (error) {
+        return res.status(404).json({ error: error.toString() });
+      }
+    })
+  );
 });
 
 app.delete("/image/:uid", FBAuth, async (req, res) => {
@@ -531,6 +530,18 @@ app.post("/getMusicImage", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+});
+
+app.post("/checkSubscription", (req, res) => {
+  db.collection("customers")
+    .doc(req.body.uid)
+    .collection("subscriptions")
+    .where("cancel_at_period_end", "==", false)
+    .limit(1)
+    .get()
+    .then((snap) => {
+      return res.json(snap.docs);
     });
 });
 
