@@ -26,7 +26,7 @@ function Subscription(props) {
       .add({
         price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
         success_url: "http://localhost:3000/home",
-        cancel_url: window.location.origin,
+        cancel_url: "http://localhost:3000/deleteSubscription",
       });
     docRef.onSnapshot(async (snap) => {
       const { error, sessionId } = snap.data();
