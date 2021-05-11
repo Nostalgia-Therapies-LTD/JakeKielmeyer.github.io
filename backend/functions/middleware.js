@@ -8,7 +8,7 @@ exports.filesUpload = function (req, res, next) {
     headers: req.headers,
     limits: {
       // Cloud functions impose this restriction anyway
-      fileSize: 10 * 1024 * 1024,
+      fileSize: 20 * 1024 * 1024,
     },
   });
 

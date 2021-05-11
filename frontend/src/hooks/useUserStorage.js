@@ -26,14 +26,26 @@ const useUserStorage = (files) => {
             Authorization: localStorage.FBIdToken,
           },
         };
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            const { url } = axios.post(`/upload/${user.uid}`, formData, config);
+        const userID = localStorage.getItem("norman");
+        //console.log("uid=",userID)
+        //  firebase.auth().onAuthStateChanged((user) => {
+        //    console.log("user",user);
+        //    console.log("uid",user.uid)})
+
+        //   if (user) {
+        //     const { url } = axios.post(`/upload/${user.uid}`, formData, config);
             
-            seturl(url);
+        //     seturl(url);
             
-          }
-        });
+        //   }
+        // });
+        if (userID) {
+           const { url } = axios.post(`/upload/${userID}`, formData, config);
+              
+             seturl(url);
+              
+            }
+
       } catch (error) {
         seterror(error);
       }
