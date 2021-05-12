@@ -114,12 +114,12 @@ const Login = (props) => {
         localStorage.setItem("norman", uid);
 
         axios.post("/checkSubscription", { uid: uid }).then((output) => {
-          console.log("very good:", output.data);
+          //console.log("very good:", output.data);
           if (output.data.length != 0) {
-            console.log("Home:");
+            //console.log("Home:");
             history.push({ pathname: "/home" });
           } else {
-            console.log("Subscription");
+            //console.log("Subscription");
             history.push({ pathname: "/subscription" });
           }
         });

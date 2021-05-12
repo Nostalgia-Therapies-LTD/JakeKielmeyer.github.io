@@ -22,6 +22,7 @@ const ImgGrid = ({ setselectedImg,setModalOpen,props }) => {
             <motion.img
               src={doc.url}
               alt={doc.name}
+              key={doc.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             />
