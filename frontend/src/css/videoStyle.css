@@ -829,3 +829,12 @@ element.style {
 @media only screen and (min-width: 422px) {
   /* add later */
 }
+
+@media only screen and (max-width: 420px) {
+  .grid__list__tile {
+    width: 80% !important;
+  }
+  .MuiGridList-root {
+    justify-content: center !important;
+  }
+}
