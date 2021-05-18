@@ -116,14 +116,19 @@ function Modal1({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
         name: selectedImg.name,
       },
     };
-    firebase.auth().onAuthStateChanged((user) => {
+    // firebase.auth().onAuthStateChanged((user) => {
           
-      if (user) {
-        console.log(user.uid)
-         axios.delete(`/image/${user.uid}`, config).then(() => setselectedImg(null));
-      } 
-    });
-    ;
+    //   if (user) {
+    //     console.log(user.uid)
+    //      axios.delete(`/image/${user.uid}`, config).then(() => setselectedImg(null));
+    //   } 
+    // });
+    const userID = localStorage.getItem("norman");
+    if (userID) {
+        //console.log(userID)
+           axios.delete(`/image/${userID}`, config).then(() => setselectedImg(null));
+        } 
+
   };
   
   
@@ -156,7 +161,7 @@ return (
         }}
         // navButtonsAlwaysVisible={true}
       >
-        {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} />)}
+        {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id}/>)}
       </Carousel>
       <button className="delete" onClick={handleDelete}>
         Delete

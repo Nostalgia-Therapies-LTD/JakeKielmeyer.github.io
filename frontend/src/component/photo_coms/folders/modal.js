@@ -122,7 +122,7 @@ function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
         }}
         // navButtonsAlwaysVisible={true}
       >
-        {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} />)}
+        {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id} />)}
       </Carousel>
       </div>
       </div> 
