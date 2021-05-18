@@ -502,7 +502,9 @@ function VideoSlider(props) {
           <div className="gridListController">
             <GridList className={classes.gridList} cols={4}>
               {modalContentMovImg.map((items, key) => (
-                <GridListTile key={key}>{items}</GridListTile>
+                <GridListTile key={key} className="grid__list__tile">
+                  {items}
+                </GridListTile>
               ))}
             </GridList>
           </div>
