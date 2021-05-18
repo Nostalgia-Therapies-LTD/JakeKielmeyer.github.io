@@ -76,7 +76,7 @@ function Navbar(props) {
         </Link>
         <Link to="/payment_management">
           <Button color="inherit" className={classes.navLink}>
-            Payment
+            Account Settings
           </Button>
         </Link>
         {/* <Link to="/puzzle">

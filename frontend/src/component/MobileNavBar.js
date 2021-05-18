@@ -195,6 +195,11 @@ export default function MobileNavbar() {
             Video
           </Button>
         </Link>
+        <Link to="/payment_management">
+          <Button color="inherit" className={classes.navLink}>
+            Account
+          </Button>
+        </Link>
         {/* <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
