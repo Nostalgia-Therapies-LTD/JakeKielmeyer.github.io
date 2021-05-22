@@ -18,7 +18,8 @@ html {
 }
 
 .containMusicPlayer {
-  position: absolute;
+  position: fixed;
+  z-index: 10000000000;
   margin: 0px;
   padding: 0px;
   left: 0px;
@@ -411,25 +412,25 @@ element.style {
   position: absolute;
   /* right: 0;
   bottom: 0; */
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   outline: none;
-  z-index: 12 !important;
-  /* width: 100vw;
-  height: 100vh; */
+  z-index: 12 !important; */
+  width: 100vw;
+  max-height: 100%;
   /* width: 100%;
   height: 100%; */
   /* object-fit: contain; */
   /* padding-top: 25px; */
 
-  min-width: 100%;
+  /* min-width: 100%;
   min-height: 100%;
   width: auto;
-  height: auto;
+  height: auto; */
   /* z-index: -100; */
-  background-size: cover;
-  overflow: hidden;
+  /* background-size: cover;
+  overflow: hidden; */
 }
 
 .closeButtonDiv {
@@ -440,6 +441,7 @@ element.style {
   height: 41px;
 }
 .videoPlayer {
+  overflow: hidden;
   /* width: 100vw;
   height: 100vh; */
   width: 100%;
@@ -467,8 +469,8 @@ element.style {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 100vw;
-  height: 100vh; */
+  width: 100vw;
+  /*height: 100vh; */
   /* width: 100%; */
 }
 

@@ -122,6 +122,7 @@ function MusicPlayer(props) {
     if (localStorage.getItem(props.folderName)) {
       setmusicName(JSON.parse(localStorage.getItem(props.folderName)));
     } else {
+      console.log(props.folderName);
       axios
         .get(`/getMusics/${props.folderName}`)
         .then((res) => {
