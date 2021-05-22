@@ -95,7 +95,37 @@ const useStyles = makeStyles((theme) => ({
     height:"70vh",
   },
 
-    },
+    // iPhone X/XS iOS12
+    '@media (max-width:375px) and (max-height: 812px) and (orientation:portrait)': {
+      width:"50vh",
+      height:"50vh",
+  },
+  
+  '@media (max-width:812px) and (max-height: 375px) and (orientation:landscape)': {
+    width:"100vh",
+    height:"65vh",
+  },
+  
+  // iPhone X/XS 12 Portrait
+  '@media (max-width: 375px) and (max-height: 812px)': {
+    paddingRight: "17px",
+    paddingLeft: "17px",
+  },
+  
+  
+  // iPhone 6/7/8 Regular and Plus Portrait
+  '@media (max-width: 414px) and (max-height: 736px)': {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+  },
+  
+  
+  // Galaxy S9 Portrait
+  '@media (max-width: 360px) and (max-height: 740px)': {
+    paddingRight: "10px",
+    paddingLeft: "10px",
+  },
+},
     
   }));
 
@@ -159,7 +189,7 @@ return (
         indicatorContainerProps={{
           style: { width: "0px", height: "0px" },
         }}
-        // navButtonsAlwaysVisible={true}
+        navButtonsAlwaysVisible={true}
       >
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id}/>)}
       </Carousel>

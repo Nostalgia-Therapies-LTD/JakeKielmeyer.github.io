@@ -1,5 +1,9 @@
 import radio1 from "../images/radio/sock_2.png";
 import radio2 from "../images/radio/Boom_1.png";
+import radio3 from "../images/radio/ac_2.png";
+import radio4 from "../images/radio/fdr_3.png";
+import radio5 from "../images/radio/superman3.png";
+import radio6 from "../images/radio/shadow_2.png";
 
 import moment1 from "../images/moments/MyMoments.jpg";
 import moment2 from "../images/moments/terence.jpg";
@@ -31,6 +35,30 @@ const radioImage = [
     title: "60s",
     href: "music",
     caption:"Biggest hits and bands of the 60s"
+  },
+  {
+    url: radio3,
+    title: "60s",
+    href: "music",
+    caption:"The Hillarious Comedy Series"
+  },
+  {
+    url: radio4,
+    title: "60s",
+    href: "music",
+    caption:"Messages from President Roosevelt"
+  },
+  {
+    url: radio5,
+    title: "60s",
+    href: "music",
+    caption:"The Classic Radio Show"
+  },
+  {
+    url: radio6,
+    title: "60s",
+    href: "music",
+    caption:"The Classic Mystery Series"
   },
 ];
 
