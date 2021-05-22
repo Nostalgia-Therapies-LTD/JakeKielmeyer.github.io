@@ -225,7 +225,7 @@ function VideoSlider(props) {
           <video
             autoPlay="autoplay"
             allowFullScreen={true}
-            width="100%"
+            // width="100%"
             controls
             controlsList="nodownload"
             disablePictureInPicture

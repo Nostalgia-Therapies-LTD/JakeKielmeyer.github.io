@@ -343,6 +343,11 @@ function Music() {
   //Effects
   useEffect(() => {
     if (counter != null) {
+      console.log(
+        childData[counter].musicAdd.split("%2F")[
+          childData[counter].musicAdd.split("%2F").length - 1
+        ]
+      );
       setmusicPlaying(
         childData[counter].musicAdd.split("%2F")[
           childData[counter].musicAdd.split("%2F").length - 1
