@@ -51,27 +51,6 @@ const FBAuth = (req, res, next) => {
   }
 };
 
-// Authentication Middleware
-const isAuthenticated = (req, res, next) => {
-  let idToken;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer ")
-  ) {
-    idToken = req.headers.authorization.split("Bearer ")[1];
-    admin
-      .auth()
-      .verifyIdToken(idToken)
-      .then((decodedToken) => {
-        const { uid } = decodedToken;
-        req.userId = uid;
-        next();
-      });
-  } else {
-    return res.status(403).json({ error: "The user is Unauthorized" });
-  }
-};
-
 const isEmail = (email) => {
   const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (email.match(regEx)) return true;
@@ -234,9 +213,9 @@ app.get("/getInfo/:genre", (req, res) => {
 
 //extract all info about the video
 app.post("/getInfoTest", (req, res) => {
-  let movieUrl = [];
-  let finalObj = [];
-  let tempUrl = [];
+  // let movieUrl = [];
+  // let finalObj = [];
+  // let tempUrl = [];
   let data = req.body;
   let dataArray = [];
   data.forEach((dat) => {
@@ -297,6 +276,7 @@ app.post("/getInfoTest", (req, res) => {
 app.post("/upload/:uid", FBAuth, filesUpload, async (req, res) => {
   const allUrl = [];
   const allFiles = req.files;
+  console.log(req.files.foo)
   await Promise.all(
     allFiles.map(async (eachFile) => {
       try {

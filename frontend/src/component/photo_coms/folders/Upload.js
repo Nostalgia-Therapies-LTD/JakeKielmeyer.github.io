@@ -5,7 +5,7 @@ const Upload = () => {
   const [files, setfiles] = useState([]);
   const [error, seterror] = useState(null);
   //const types =['image/jpeg','image/png'];
-
+  //const [size,setSize]=useState(0);
   const changeHandler = (e) => {
     e.preventDefault();
     let selected = e.target.files;

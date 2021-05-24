@@ -8,7 +8,6 @@ const useFirestore = (collection) => {
   useEffect(() => {
     let documents = [];
     let arr = [];
-    let unsub = null;
     if (
       localStorage.getItem(collection + "1") &&
       localStorage.getItem(collection + "2")
@@ -18,13 +17,13 @@ const useFirestore = (collection) => {
       setdocs(snap1);
       setimgarr(snap2);
     } else {
-      unsub = db
+       db
         .collection(collection)
         .orderBy("createdAt", "desc")
         .onSnapshot((snap) => {
           // console.log("first", snap);
           snap.forEach((doc) => {
-            console.log(doc.data());
+            //console.log(doc.data());
             documents.push({ ...doc.data(), id: doc.id });
             arr.push(doc.id);
           });

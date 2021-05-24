@@ -2,14 +2,12 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import useFirestore1 from "../../../hooks/useFirestore1";
 import axios from "axios";
-import firebase from "firebase/app";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 
 // My Moments Content
-
 const useStyles = makeStyles((theme) => ({
   modal: {
     backgroundColor: "rgba(30, 30, 36, 0.92)",
@@ -146,13 +144,7 @@ function Modal1({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
         name: selectedImg.name,
       },
     };
-    // firebase.auth().onAuthStateChanged((user) => {
-          
-    //   if (user) {
-    //     console.log(user.uid)
-    //      axios.delete(`/image/${user.uid}`, config).then(() => setselectedImg(null));
-    //   } 
-    // });
+ 
     const userID = localStorage.getItem("norman");
     if (userID) {
         //console.log(userID)
@@ -174,10 +166,6 @@ return (
  
      <Fade in={modalOpen}>
        <div style={{textAlign:"center"}}>
-       
-      {/* <button className="close"  onClick={handleClose}>
-        Close
-      </button> */}
     
       <div>
       <Carousel
