@@ -11,7 +11,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
@@ -193,7 +192,7 @@ function Music() {
     setshowStopButton(null);
     let musicID = document.getElementById("parentAudioPlayer");
     musicID.play();
-    if (musicID.currentTime == 0) {
+    if (musicID.currentTime === 0) {
       axios
         .get(
           `/getMusicOnClick/${
@@ -343,6 +342,11 @@ function Music() {
   //Effects
   useEffect(() => {
     if (counter != null) {
+      console.log(
+        childData[counter].musicAdd.split("%2F")[
+          childData[counter].musicAdd.split("%2F").length - 1
+        ]
+      );
       setmusicPlaying(
         childData[counter].musicAdd.split("%2F")[
           childData[counter].musicAdd.split("%2F").length - 1

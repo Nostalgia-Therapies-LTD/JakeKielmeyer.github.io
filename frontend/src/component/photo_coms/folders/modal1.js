@@ -2,14 +2,12 @@ import React from "react";
 import Carousel from "react-material-ui-carousel";
 import useFirestore1 from "../../../hooks/useFirestore1";
 import axios from "axios";
-import firebase from "firebase/app";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 
 // My Moments Content
-
 const useStyles = makeStyles((theme) => ({
   modal: {
     backgroundColor: "rgba(30, 30, 36, 0.92)",
@@ -95,7 +93,37 @@ const useStyles = makeStyles((theme) => ({
     height:"70vh",
   },
 
-    },
+    // iPhone X/XS iOS12
+    '@media (max-width:375px) and (max-height: 812px) and (orientation:portrait)': {
+      width:"50vh",
+      height:"50vh",
+  },
+  
+  '@media (max-width:812px) and (max-height: 375px) and (orientation:landscape)': {
+    width:"100vh",
+    height:"65vh",
+  },
+  
+  // iPhone X/XS 12 Portrait
+  '@media (max-width: 375px) and (max-height: 812px)': {
+    paddingRight: "17px",
+    paddingLeft: "17px",
+  },
+  
+  
+  // iPhone 6/7/8 Regular and Plus Portrait
+  '@media (max-width: 414px) and (max-height: 736px)': {
+    paddingRight: "15px",
+    paddingLeft: "15px",
+  },
+  
+  
+  // Galaxy S9 Portrait
+  '@media (max-width: 360px) and (max-height: 740px)': {
+    paddingRight: "10px",
+    paddingLeft: "10px",
+  },
+},
     
   }));
 
@@ -116,13 +144,7 @@ function Modal1({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
         name: selectedImg.name,
       },
     };
-    // firebase.auth().onAuthStateChanged((user) => {
-          
-    //   if (user) {
-    //     console.log(user.uid)
-    //      axios.delete(`/image/${user.uid}`, config).then(() => setselectedImg(null));
-    //   } 
-    // });
+ 
     const userID = localStorage.getItem("norman");
     if (userID) {
         //console.log(userID)
@@ -144,10 +166,6 @@ return (
  
      <Fade in={modalOpen}>
        <div style={{textAlign:"center"}}>
-       
-      {/* <button className="close"  onClick={handleClose}>
-        Close
-      </button> */}
     
       <div>
       <Carousel
@@ -159,7 +177,7 @@ return (
         indicatorContainerProps={{
           style: { width: "0px", height: "0px" },
         }}
-        // navButtonsAlwaysVisible={true}
+        navButtonsAlwaysVisible={true}
       >
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id}/>)}
       </Carousel>

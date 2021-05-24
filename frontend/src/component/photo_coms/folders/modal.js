@@ -49,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
   paddingTop:"8%",
 },
 
+'@media (max-width:360px) and (max-height: 740px) and (orientation:landscape)': {
+  paddingTop:"8%",
+},
+
 }, 
   img:{
    margin:"auto",
@@ -57,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "70%",
     boxSizing:"border-box",
     filter: "drop-shadow(0 0 0.1rem white)",
-  
+
     // Standard Portrait Mode
     '@media (orientation:portrait)': {
       width:"220vh",
@@ -80,9 +84,27 @@ const useStyles = makeStyles((theme) => ({
   width:"100vh",
   height:"65vh",
 },
-     
-  },
-  
+
+// iPhone X/XS 12 Portrait
+'@media (max-width: 375px) and (max-height: 812px)': {
+  paddingRight: "17px",
+  paddingLeft: "17px",
+},
+
+
+// iPhone 6/7/8 Regular and Plus Portrait
+'@media (max-width: 414px) and (max-height: 736px)': {
+  paddingRight: "15px",
+  paddingLeft: "15px",
+},
+
+
+// Galaxy S9 Portrait
+'@media (max-width: 360px) and (max-height: 740px)': {
+  paddingRight: "10px",
+  paddingLeft: "10px",
+},
+},
 }));
 
 function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
@@ -105,11 +127,11 @@ function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
     >
      <Fade in={modalOpen}>
        <div style={{textAlign:"center"}}>
-     
+
       {/* <button className="close" style={{width:'70%'}} onClick={handleClose}>
         Close
       </button> */}
-    
+
       <div>
       <Carousel
         index={imgarr.indexOf(selectedImg.id)}
@@ -118,14 +140,14 @@ function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
         animation={'fade'}
         timeout={120}
         indicatorContainerProps={{
-          style: { width: "0px", height: "0px" },
+          style: { width: "0px", height: "0px", margin: "0px"},
         }}
-        // navButtonsAlwaysVisible={true}
+        navButtonsAlwaysVisible={true}
       >
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id} />)}
       </Carousel>
       </div>
-      </div> 
+      </div>
       </Fade>
     </Modal>
  );

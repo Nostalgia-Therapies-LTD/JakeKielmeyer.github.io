@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -100,14 +100,11 @@ const useStyles = makeStyles((theme) => ({
 
 function MusicPlayer(props) {
   const classes = useStyles();
-  const theme = useTheme();
+  //const theme = useTheme();
 
   const [musicName, setmusicName] = useState(null);
   const [musicImages, setmusicImages] = useState(null);
 
-  // useEffect(() => {}, []);
-
-  // useEffect(() => {});
 
   useEffect(() => {
     axios
@@ -122,6 +119,7 @@ function MusicPlayer(props) {
     if (localStorage.getItem(props.folderName)) {
       setmusicName(JSON.parse(localStorage.getItem(props.folderName)));
     } else {
+      console.log(props.folderName);
       axios
         .get(`/getMusics/${props.folderName}`)
         .then((res) => {
@@ -147,6 +145,7 @@ function MusicPlayer(props) {
               <div className="musicImageContainer">
                 <img
                   src={musicImages.data.path}
+                  alt="musicImage"
                   className="musicImage"
                   onClick={() => playMusicPlayer()}
                 />

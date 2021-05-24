@@ -12,7 +12,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from "@material-ui/core/Button";
 
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -193,6 +193,11 @@ export default function MobileNavbar() {
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
             Video
+          </Button>
+        </Link>
+        <Link to="/payment_management">
+          <Button color="inherit" className={classes.navLink}>
+            Account
           </Button>
         </Link>
         {/* <Link to="/puzzle">

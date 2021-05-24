@@ -40,36 +40,36 @@ function Main_photo(props) {
       style={{backgroundColor:"rgba(0, 0, 0, 0.952)", color:"white", font: "inherit", 
       border:"none", borderRight:"2.5px solid whiteSmoke"}}  >
       <img src={My_Moments} alt="My Moments"/>
-      <div className="black"><a>My Moments</a></div>
+      <div className="black"><a href="/photo/My moments">My Moments</a></div>
       </button>
 
       <button className="img-wrap" 
       onClick={()=>{props.history.push("/photo/Cats")}}>
       <img src={erik} alt="cat"/>
-      <div className="black"><a>Cute Cats</a></div></button>
+      <div className="black"><a href="/photo/Cats">Cute Cats</a></div></button>
 
       <button className="img-wrap" 
       onClick={()=>{props.history.push("/photo/Nature")}}> 
       <img src={Nature} alt="nature"/>
-      <div className="black"><a>Mother Nature</a></div>
+      <div className="black"><a href="/photo/Nature">Mother Nature</a></div>
       </button>
 
       <button className="img-wrap" 
       onClick={()=>{props.history.push("/photo/Dogs")}}>
         <img src={Animals} alt="dog"/>
-        <div className="black"><a>Dashing Dogs</a></div>
+        <div className="black"><a href="/photo/Dogs">Dashing Dogs</a></div>
         </button>
 
       <button className="img-wrap"
        onClick={()=>{props.history.push("/photo/Places")}}>
         <img src={rush} alt="place"/>
-        <div className="black"><a>Famous Places</a></div>
+        <div className="black"><a href="/photo/Places">Famous Places</a></div>
         </button>
 
       <button className="img-wrap"
        onClick={()=>{props.history.push("/photo/Wildlife")}}>
       <img src={panda} alt="wildlife"/>
-      <div className="black"><a>Wonderful Wildlife</a></div>
+      <div className="black"><a href="/photo/Wildlife">Wonderful Wildlife</a></div>
       </button>
       </form>
       </div>
