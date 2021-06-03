@@ -1,21 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import firebase from "firebase/app";
-import Upload from "../component/photo_coms/folders/Upload";
 
 const useUserStorage = (files) => {
   const [error, seterror] = useState(null);
   const [url, seturl] = useState(null);
+  //const[sizeError,setSizeError]=useState(null);
+  const size = file =>file.size >5 *1024 *1024;
+  const sizeErr=[...files].some(size);
+  if (sizeErr){
+    alert("Photo size must me 5MB or less")
+  }
 
   useEffect(() => {
     const source = axios.CancelToken.source();
-    //console.log(files);
+    //console.log(files[0].size);
     const uploadFile = async () => {
-      //[...files].map( (eachFile) => {
       try {
         const formData = new FormData();
-
-        [...files].forEach((file) => {
+        // if ([...files].forEach(file=>file.size>5 *1024 *1024)){
+        //   setSizeError(true)
+        // };
+       
+        //setSizeError();
+        const nFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
+        console.log(nFiles);
+        nFiles.forEach((file) => {
           formData.append("file", file);
         });
 
@@ -27,18 +36,7 @@ const useUserStorage = (files) => {
           },
         };
         const userID = localStorage.getItem("norman");
-        //console.log("uid=",userID)
-        //  firebase.auth().onAuthStateChanged((user) => {
-        //    console.log("user",user);
-        //    console.log("uid",user.uid)})
-
-        //   if (user) {
-        //     const { url } = axios.post(`/upload/${user.uid}`, formData, config);
-            
-        //     seturl(url);
-            
-        //   }
-        // });
+       
         if (userID) {
            const { url } = axios.post(`/upload/${userID}`, formData, config);
               
@@ -55,7 +53,7 @@ const useUserStorage = (files) => {
       source.cancel();
     };
   }, [files]);
-
+  //console.log(sizeError);
   return { url, error };
 };
 

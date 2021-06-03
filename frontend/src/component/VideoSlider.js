@@ -1,16 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 
 //material-UI
 import IconButton from "@material-ui/core/IconButton";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import Skeleton from "@material-ui/lab/Skeleton";
-
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import CancelIcon from "@material-ui/icons/Cancel";
-import Divider from "@material-ui/core/Divider";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -20,12 +14,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
 import headerImage from "../images/movie/header4.jpg";
@@ -294,13 +283,13 @@ function VideoSlider(props) {
   }
 
   function onClickImages(genreCat) {
-    if (modalContentState != null && modalDescription != null) {
+    if (modalContentState !== null && modalDescription !== null) {
       let outputArr = [];
       let arr = [];
       let movieUrl = [];
       modalContentState.forEach((value, indx) => {
         if (
-          value.path.split("/")[value.path.split("/").length - 2] == genreCat
+          value.path.split("/")[value.path.split("/").length - 2] === genreCat
         ) {
           setmodaltitle(value.path.split("/")[2]);
           let modalHeaderUrl = `https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/${value.path.replace(
@@ -328,7 +317,7 @@ function VideoSlider(props) {
                 />
                 <CardContent className={classes.texts}>
                   <Typography gutterBottom className="cardTitle">
-                    {typeof modalDescription.get(`${value.path}.mp4`) !=
+                    {typeof modalDescription.get(`${value.path}.mp4`) !==
                     "undefined" ? (
                       modalDescription.get(`${value.path}.mp4`).name
                     ) : (
@@ -357,7 +346,7 @@ function VideoSlider(props) {
 
   //useeffects
   useEffect(() => {
-    if (modalHeaderImage != null) {
+    if (modalHeaderImage !== null) {
       let endRand = modalHeaderImage.length;
       let randomNum = Math.floor(Math.random() * endRand);
       let arr = modalHeaderImage;
@@ -367,7 +356,7 @@ function VideoSlider(props) {
   }, [modalHeaderImage]);
 
   useEffect(() => {
-    if (dialogZIndex == 1300) {
+    if (dialogZIndex === 1300) {
       setOpenDial(true);
     } else {
       setOpenDial(false);
@@ -375,14 +364,14 @@ function VideoSlider(props) {
   }, [dialogZIndex]);
 
   useEffect(() => {
-    if (modalContentMovImg != null) {
+    if (modalContentMovImg !== null) {
       setOpen(true);
     }
   }, [modalContentMovImg]);
 
   useEffect(() => {
     let map = new Map();
-    if (props.path != null && props.nextP != null) {
+    if (props.path !== null && props.nextP !== null) {
       if (localStorage.getItem(props.nextP)) {
         JSON.parse(localStorage.getItem(props.nextP)).forEach((items) => {
           map.set(items.path, {
@@ -416,7 +405,7 @@ function VideoSlider(props) {
   }, [props.nextP, props.path]);
 
   useEffect(() => {
-    if (props.obj != null) {
+    if (props.obj !== null) {
       let tempArr = [];
       let map = new Map();
       props.obj.data.forEach((items) => {

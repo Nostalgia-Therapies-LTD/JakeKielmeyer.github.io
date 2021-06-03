@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import pupper from "../images/Pupper.jpg";
 import Bonanza from "../images/tv/Bonanza.jpg";
 import VideoSlider from "../component/VideoSlider";
 
@@ -62,7 +61,7 @@ function Video() {
   //states
   const [firstLevelFolderName, setfirstLevelFolderName] = useState(null);
   const [folderName, setfolderName] = useState(null);
-  const [ifChanged, setifChanged] = useState(false);
+  //const [ifChanged, setifChanged] = useState(false);
   const [nextPath, setnextPath] = useState(null);
   //styles
   const classes = useStyles();
@@ -105,13 +104,13 @@ function Video() {
       folderName.data.forEach((obj) => {
         let tempVar = obj.path.split("/");
         if (
-          obj.type == "application/x-www-form-urlencoded;charset=UTF-8" &&
-          tempVar.length == 3
+          obj.type === "application/x-www-form-urlencoded;charset=UTF-8" &&
+          tempVar.length === 3
         ) {
           arr.push(obj.path);
         } else if (
-          obj.type == "application/x-www-form-urlencoded;charset=UTF-8" &&
-          tempVar.length == 4
+          obj.type === "application/x-www-form-urlencoded;charset=UTF-8" &&
+          tempVar.length === 4
         ) {
           arrNextPath.push(obj.path);
         }

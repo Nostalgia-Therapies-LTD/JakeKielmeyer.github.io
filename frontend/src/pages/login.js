@@ -93,11 +93,19 @@ const Login = (props) => {
 
   useEffect(() => {
     if (isClick) {
-      axios.post("/login", user).then((res) => {
+      axios
+      .post("/login", user)
+      .then((res) => {
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-      });
-    }
-  }, [isClick]);
+      })
+      .catch((err) => {
+        setErrors(err.response.data);
+        setLoading(false);
+    })
+  }
+  
+}
+  , [isClick]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -115,7 +123,7 @@ const Login = (props) => {
 
         axios.post("/checkSubscription", { uid: uid }).then((output) => {
           //console.log("very good:", output.data);
-          if (output.data.length != 0) {
+          if (output.data.length !== 0) {
             //console.log("Home:");
             history.push({ pathname: "/home" });
           } else {
@@ -123,67 +131,13 @@ const Login = (props) => {
             history.push({ pathname: "/subscription" });
           }
         });
-
-        // const isLocation = db.collection("customers").doc(uid);
-        // if (isLocation) {
-        //   isLocation.collection("subscriptions").onSnapshot((snapShot) => {
-        //     if (snapShot.docs.length !== 0) {
-        //       console.log("Ah khodaye", snapShot.docs);
-        //       isLocation
-        //         .collection("subscriptions")
-        //         .where("cancel_at_period_end", "===", false)
-        //         .limit(1)
-        //         .get()
-        //         .then((snapShot) => {
-        //           console.log("Ah khodaye man:", snapShot.data());
-        //           if (snapShot.docs.length != 0) {
-
-        //           } else {
-
-        //           }
-        //         });
-        //     } else {
-        //       console.log("Subscription");
-        //       history.push({ pathname: "/subscription" });
-        //     }
-        //   });
-        // }
-        // ...
       })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+      .catch((err) => {
+        // var errorCode = err.code;
+        // var errorMessage = err.message;
+        console.log(err);
       });
 
-    // axios
-    //   .post("/login", user)
-    //   .then((res) => {
-    //     setLoading(false);
-    //     // console.log("input data:", res);
-    //     localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
-    //     // console.log(res.data());
-    //     // history.push("/home");
-    //     //------------------------
-    //     localStorage.setItem("norman", res.data.userId);
-    //     const isLocation = db.collection("customers").doc(res.data.userId);
-    //     if (isLocation) {
-    //       isLocation.collection("subscriptions").onSnapshot((snapShot) => {
-    //         if (snapShot.docs.length !== 0) {
-    //           console.log("Home");
-    //           history.push({ pathname: "/home" });
-    //         } else {
-    //           console.log("Subscription");
-    //           history.push({ pathname: "/subscription" });
-    //         }
-    //       });
-    //       // });
-    //     }
-    //     //------------------------
-    //   })
-    //   .catch((err) => {
-    //     setErrors(err.response.data);
-    //     setLoading(false);
-    //   });
   };
 
   const handleChange = (event) => {

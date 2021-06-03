@@ -48,33 +48,6 @@ const Home = (props) => {
   const { classes } = props;
   const userID = localStorage.getItem("norman");
 
-  // const sendToCkeckOut = async (userID) => {
-  //   const docRef = await db
-  //     .collection("customers")
-  //     .doc(props.location.state.userID)
-  //     .collection("checkout_sessions")
-  //     .add({
-  //       price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
-  //       success_url: window.location.origin,
-  //       cancel_url: window.location.origin,
-  //     });
-  //   // Wait for the CheckoutSession to get attached by the extension
-  //   docRef.onSnapshot(async (snap) => {
-  //     const { error, sessionId } = snap.data();
-  //     if (error) {
-  //       // Show an error to your customer and
-  //       // inspect your Cloud Function logs in the Firebase console.
-  //       alert(`An error occured: ${error.message}`);
-  //     }
-  //     if (sessionId) {
-  //       // We have a session, let's redirect to Checkout
-  //       // Init Stripe
-  //       const stripe = await getStripe();
-  //       stripe.redirectToCheckout({ sessionId });
-  //     }
-  //   });
-  // };
-
   useEffect(() => {
     if (userID) db.collection("customers").doc(userID).set({ Home: true });
   }, []);

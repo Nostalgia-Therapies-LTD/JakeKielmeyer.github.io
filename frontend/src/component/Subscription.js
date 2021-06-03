@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
-import pupper from "../images/Pupper.jpg";
-import Bonanza from "../images/tv/Bonanza.jpg";
-import VideoSlider from "../component/VideoSlider";
+import React, { useEffect } from "react";
 import { db } from "../config";
 import getStripe from "../component/getStripe";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
-//mui stuff
-import makeStyles from "@material-ui/core/styles/makeStyles";
-
-//axios
-import axios from "axios";
-
 //External Styles
 import "../css/videoStyle.css";
 
