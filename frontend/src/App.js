@@ -1,8 +1,9 @@
 import React from "react";
+import {useState, useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./component/Navbar";
 import ProtectedRoute from "./component/protectedRoute";
-
+import Preloader from './component/preloader';
 //mui stuff
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import responsiveFontSizes from "@material-ui/core/styles/responsiveFontSizes";
@@ -83,8 +84,24 @@ if (token) {
 // );
 
 function App() {
+  const [loading, setLoading]=useState(false);
+  
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(()=>{
+      setLoading(false)
+    },2000)
+   
+  }, [])
   return (
     <ThemeProvider theme={theme}>
+      {loading ?
+
+      <header>
+      <Preloader/>
+      </header>:
+      
       <Router>
         <Switch>
           <Route exact path="/" component={Login}></Route>
@@ -157,8 +174,9 @@ function App() {
           </React.Fragment>
         </Switch>
         <Footer />
-      </Router>
+      </Router>}
     </ThemeProvider>
+    
   );
 }
 

@@ -13,7 +13,6 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import GoogleButton from "react-google-button";
-
 //axios
 import axios from "axios";
 
@@ -54,6 +53,7 @@ const styles = {
 
   progress: {
     position: "absolute",
+    color:"#3fa9f5",
   },
 
   customError: {
@@ -252,7 +252,7 @@ const Login = (props) => {
               <Typography variant="h5"> Login</Typography>
 
               {loading && (
-                <CircularProgress size={30} className={classes.progress} />
+                <CircularProgress text="NT" size={30} className={classes.progress} />
               )}
             </Button>
           </form>
