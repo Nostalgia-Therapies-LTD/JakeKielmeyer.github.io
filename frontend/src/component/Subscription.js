@@ -25,8 +25,8 @@ function Subscription(props) {
       .collection("checkout_sessions")
       .add({
         price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
-        success_url: "http://localhost:3000/home",
-        cancel_url: "http://localhost:3000/deleteSubscription",
+        success_url: "https://nostalgiadev-1f319.web.app/home",
+        cancel_url: "https://nostalgiadev-1f319.web.app/",
       });
     docRef.onSnapshot(async (snap) => {
       const { error, sessionId } = snap.data();

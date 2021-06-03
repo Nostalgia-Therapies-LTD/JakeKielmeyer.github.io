@@ -7,7 +7,10 @@ function Payment() {
     const functionRef = app
       .functions("us-central1")
       .httpsCallable("ext-firestore-stripe-subscriptions-createPortalLink");
-    const { data } = await functionRef({ returnUrl: window.location.origin });
+    const { data } = await functionRef({
+      returnUrl: "https://nostalgiadev-1f319.web.app/home",
+    });
+    //window.location.origin
     window.location.assign(data.url);
   };
 
