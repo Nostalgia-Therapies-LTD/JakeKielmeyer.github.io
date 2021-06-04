@@ -85,7 +85,6 @@ const Reset = (props) => {
         setMsg(<body style={{textAlign:"center", fontSize:"1.2em", color:"green"}}>
         A reset link has been emailed to you.
         </body>)
-        setErrors({})
       })
       .catch((err) => {
         setErrors(err.response.data);
@@ -100,14 +99,14 @@ const Reset = (props) => {
 
   return (
 <div>
-<CssBaseline />
 <header className={classes.header}>
       <Typography className={classes.logo} variant="h5">
           Nostalgia Therapy
       </Typography>
       </header>
+      <CssBaseline />
       <div className={classes.formBody}>
-      <div className={classes.formContent}>
+       <div className={classes.formContent}>
       <Typography variant="h4" style={{fontSize: "2rem"}}>
           Reset your password
         </Typography>   
@@ -134,11 +133,12 @@ const Reset = (props) => {
     </Typography>
   )}
   <Button
-          type="link"
+          type="submit"
           variant="contained"
           className={classes.button}
+          onSubmit={handleSubmit}
           fullWidth
-          href="/signup"
+          disabled={loading}
         >
    <Typography variant = "h5">{" "} Reset Password </Typography>
             {loading && (

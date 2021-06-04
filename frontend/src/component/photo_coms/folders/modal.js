@@ -5,6 +5,9 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt,faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 // Provided Content
 
@@ -128,10 +131,6 @@ function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
      <Fade in={modalOpen}>
        <div style={{textAlign:"center"}}>
 
-      {/* <button className="close" style={{width:'70%'}} onClick={handleClose}>
-        Close
-      </button> */}
-
       <div>
       <Carousel
         index={imgarr.indexOf(selectedImg.id)}
@@ -146,6 +145,9 @@ function Modal2({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
       >
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id} />)}
       </Carousel>
+      <button className="close" onClick={handleClose}>
+      <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
+      </button> 
       </div>
       </div>
       </Fade>

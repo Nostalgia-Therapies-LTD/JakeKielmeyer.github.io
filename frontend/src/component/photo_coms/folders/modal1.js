@@ -6,6 +6,8 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt,faTimes } from '@fortawesome/free-solid-svg-icons';
 
 // My Moments Content
 const useStyles = makeStyles((theme) => ({
@@ -163,11 +165,13 @@ return (
     BackdropProps={{
       timeout: 500,}}
     >
+     
  
      <Fade in={modalOpen}>
        <div style={{textAlign:"center"}}>
     
       <div>
+      
       <Carousel
         index={imgarr.indexOf(selectedImg.id)}
         autoPlay={false}
@@ -182,8 +186,11 @@ return (
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id}/>)}
       </Carousel>
       <button className="delete" onClick={handleDelete}>
-        Delete
+      <FontAwesomeIcon icon={faTrashAlt} size="lg"></FontAwesomeIcon> 
       </button>
+      <button className="close" onClick={handleClose}>
+      <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
+      </button> 
       </div>
       </div> 
       </Fade>

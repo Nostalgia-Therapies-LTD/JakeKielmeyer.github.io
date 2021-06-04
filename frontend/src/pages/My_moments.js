@@ -46,7 +46,7 @@ function My_moments() {
             <div></div>
             <div className="img-wrap">
               <Upload />
-              <p className="upload">Upload</p>
+              
             </div>
 </div>
           {localStorage.FBIdToken && (
