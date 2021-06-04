@@ -10,7 +10,7 @@ function Payment() {
     const { data } = await functionRef({
       returnUrl: "https://nostalgiadev-1f319.web.app/home",
     });
-    //window.location.origin
+    //window.location.origin (last page which is https://nostalgiadev-1f319.web.app/)
     window.location.assign(data.url);
   };
 
