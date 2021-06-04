@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useUserStorage = (files) => {
+  
   const [error, seterror] = useState(null);
   const [url, seturl] = useState(null);
   //const[sizeError,setSizeError]=useState(null);
@@ -23,7 +24,7 @@ const useUserStorage = (files) => {
        
         //setSizeError();
         const nFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
-        console.log(nFiles);
+        //console.log(nFiles);
         nFiles.forEach((file) => {
           formData.append("file", file);
         });
@@ -38,9 +39,11 @@ const useUserStorage = (files) => {
         const userID = localStorage.getItem("norman");
        
         if (userID) {
-           const { url } = axios.post(`/upload/${userID}`, formData, config);
-              
-             seturl(url);
+           const { url } =  axios.post(`/upload/${userID}`, formData, config);
+         
+
+             seturl(url); 
+          
               
             }
 
@@ -48,7 +51,9 @@ const useUserStorage = (files) => {
         seterror(error);
       }
     };
+   
     uploadFile();
+   
     return () => {
       source.cancel();
     };
