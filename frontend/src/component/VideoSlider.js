@@ -494,7 +494,7 @@ function VideoSlider(props) {
                 <GridListTile key={key} className="grid__list__tile">
                   {items}
                 </GridListTile>
-              ))}
+              ))} 
             </GridList>
           </div>
         </div>

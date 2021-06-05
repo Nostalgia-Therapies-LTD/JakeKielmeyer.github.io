@@ -74,7 +74,7 @@ function ContentRow(props) {
   const { classes } = props;
   return (
     <div className={classes.row}>
-      <GridList className={classes.gridList} cols={2.5}>
+      <GridList className={classes.gridList} cols={4}>
         {props.images.map((image) => (
           <GridListTile key={image.title} className={classes.gridListTile}>
             <a href={image.href}>

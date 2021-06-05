@@ -836,7 +836,7 @@ element.style {
   .grid__list__tile {
     width: 80% !important;
   }
-  .MuiGridList-root {
+  /* .MuiGridList-root {
     justify-content: center !important;
-  }
+  } */
 }
