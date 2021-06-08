@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Bonanza from "../images/tv/Bonanza.jpg";
 import VideoSlider from "../component/VideoSlider";
+import { useLocation } from "react-router-dom";
 
 //mui stuff
 import Typography from "@material-ui/core/Typography";
@@ -58,19 +59,25 @@ const useStyles = makeStyles({
 });
 
 function Video() {
+  const location = useLocation();
   //states
   const [firstLevelFolderName, setfirstLevelFolderName] = useState(null);
   const [folderName, setfolderName] = useState(null);
   //const [ifChanged, setifChanged] = useState(false);
   const [nextPath, setnextPath] = useState(null);
+  const [hrefLocation, setHrefLocation] = useState(null);
   //styles
   const classes = useStyles();
 
   const repeatMovieCode =
     firstLevelFolderName && nextPath ? (
       <div>
-        {firstLevelFolderName.map((element) => (
-          <div>
+        {firstLevelFolderName.map((element, key) => (
+          <div
+            id={element.split("/")[1]}
+            key={key}
+            onLoad={() => setHrefLocation(element.split("/")[1])}
+          >
             <VideoSlider
               genre={element.split("/")[1]}
               path={element}
@@ -87,7 +94,9 @@ function Video() {
     );
 
   //effects
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .post("/getFoldersName", {
         filename: "movies",
@@ -96,6 +105,27 @@ function Video() {
         setfolderName(item);
       });
   }, []);
+
+  useEffect(() => {
+    // setHrefLocation(location.genreDash);
+    if (hrefLocation != null && hrefLocation == location.genreDash) {
+      console.log("itplays:", location.genreDash);
+      document.getElementById(location.genreDash).scrollIntoView({
+        block: "start",
+        behavior: "smooth",
+      });
+    }
+  }, [hrefLocation]);
+
+  // useEffect(() => {
+  //   if (document.getElementById(location.genreDash) != null) {
+  //     console.log("itplays:", location.genreDash);
+  //     document.getElementById(location.genreDash).scrollIntoView({
+  //       block: "start",
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // });
 
   useEffect(() => {
     let arr = [];

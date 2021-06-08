@@ -8,14 +8,13 @@ function Payment() {
       .functions("us-central1")
       .httpsCallable("ext-firestore-stripe-subscriptions-createPortalLink");
     //for localhost:
-      const { data } = await functionRef({ returnUrl: window.location.origin });
-     //for hosting:
+    const { data } = await functionRef({ returnUrl: window.location.origin });
+    //for hosting:
     //   const { data } = await functionRef({
     //   returnUrl: "https://nostalgiadev-1f319.web.app/home",
     // });
-    
-    window.location.assign(data.url);
 
+    window.location.assign(data.url);
   };
 
   useEffect(() => {
