@@ -84,7 +84,7 @@ function ContentRow(props) {
               onClick={() =>
                 history.push({
                   pathname: `/${image.href}`,
-                  genreDash: `${image.caption}`,
+                  genreDash: `${image.album}`,
                 })
               }
             />

@@ -108,8 +108,11 @@ function Video() {
 
   useEffect(() => {
     // setHrefLocation(location.genreDash);
-    if (hrefLocation != null && hrefLocation == location.genreDash) {
-      console.log("itplays:", location.genreDash);
+    if (
+      hrefLocation != null &&
+      location.genreDash != null &&
+      hrefLocation == location.genreDash
+    ) {
       document.getElementById(location.genreDash).scrollIntoView({
         block: "start",
         behavior: "smooth",

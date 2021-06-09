@@ -27,38 +27,44 @@ const radioImage = [
     url: radio1,
     title: "50s",
     href: "music",
-    caption:"Big band, early rock and more",
+    caption: "Big band, early rock and more",
+    album: "Pop-Socks! Top Hits of the 1950s",
   },
 
   {
     url: radio2,
     title: "60s",
     href: "music",
-    caption:"Biggest hits and bands of the 60s"
+    caption: "Biggest hits and bands of the 60s",
+    album: "Boomer Heyday: Top Hits of the 1960s",
   },
   {
     url: radio3,
     title: "60s",
     href: "music",
-    caption:"The Hillarious Comedy Series"
+    caption: "The Hillarious Comedy Series",
+    album: "Radio Shows: Abbot and Costello",
   },
   {
     url: radio4,
     title: "60s",
     href: "music",
-    caption:"Messages from President Roosevelt"
+    caption: "Messages from President Roosevelt",
+    album: "Radio Shows: Franklin Roosevelt's Fireside Chats",
   },
   {
     url: radio5,
     title: "60s",
     href: "music",
-    caption:"The Classic Radio Show"
+    caption: "The Classic Radio Show",
+    album: "Radio Shows: Superman",
   },
   {
     url: radio6,
     title: "60s",
     href: "music",
-    caption:"The Classic Mystery Series"
+    caption: "The Classic Mystery Series",
+    album: "Radio Shows: The Shadow",
   },
 ];
 
@@ -67,43 +73,41 @@ export const momentImage = [
     url: moment1,
     title: "moments",
     href: "photo/My moments",
-    caption:"Your Nostalgic Moments"
+    caption: "Your Nostalgic Moments",
   },
 
   {
     url: moment2,
     title: "Places",
     href: "photo/Places",
-    caption:"Famous Places"
+    caption: "Famous Places",
   },
   {
     url: moment3,
     title: "Classic car",
     href: "photo/Cats",
-    caption:"Cute Cats"
+    caption: "Cute Cats",
   },
   {
     url: moment4,
     title: "Dog",
     href: "photo/Dogs",
-    caption:"Dhashing Dogs"
+    caption: "Dhashing Dogs",
   },
 
   {
     url: moment5,
     title: "Nature",
     href: "photo/Nature",
-    caption:"Mother Nature"
+    caption: "Mother Nature",
   },
 
   {
     url: moment6,
     title: "Wildlife",
     href: "photo/Wildlife",
-    caption:"Wonderful Wildlife"
+    caption: "Wonderful Wildlife",
   },
-
-
 ];
 
 export const tvImage = [
@@ -111,25 +115,29 @@ export const tvImage = [
     url: tv1,
     title: "Bonanza",
     href: "video",
-    caption:"Westerns"
+    caption: "Westerns",
+    album: "Westerns",
   },
   {
     url: tv2,
     title: "Commercial1",
     href: "video",
-    caption:"Commercials"
+    caption: "Commercials",
+    album: "Commercials",
   },
   {
-  url: tv3,
-  title: "Commercial2",
-  href: "video",
-  caption:"Comedies"
+    url: tv3,
+    title: "Commercial2",
+    href: "video",
+    caption: "Comedies",
+    album: "Comedies",
   },
   {
-  url: tv4,
-  title: "Commercial3",
-  href: "video",
-  caption:"Sci-Fi",
+    url: tv4,
+    title: "Commercial3",
+    href: "video",
+    caption: "Sci-Fi",
+    album: "Sci-Fi",
   },
 ];
 
@@ -138,26 +146,26 @@ export const puzzleImage = [
     url: puzzle1,
     title: "mypuzzle",
     href: "puzzle",
-    caption:"Lady Bug"
+    caption: "Lady Bug",
   },
 
   {
     url: puzzle2,
     title: "dogpuzzle",
     href: "puzzle",
-    caption:"Tucker the Dog"
+    caption: "Tucker the Dog",
   },
   {
     url: puzzle3,
     title: "parrotpuzzle",
     href: "puzzle",
-    caption:"Peter the Parrot"
+    caption: "Peter the Parrot",
   },
   {
     url: puzzle4,
     title: "pumpkinpuzzle",
     href: "puzzle",
-    caption:"Pumpkin Patch"
+    caption: "Pumpkin Patch",
   },
 ];
 
