@@ -120,16 +120,6 @@ function Video() {
     }
   }, [hrefLocation]);
 
-  // useEffect(() => {
-  //   if (document.getElementById(location.genreDash) != null) {
-  //     console.log("itplays:", location.genreDash);
-  //     document.getElementById(location.genreDash).scrollIntoView({
-  //       block: "start",
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // });
-
   useEffect(() => {
     let arr = [];
     let arrNextPath = [];
