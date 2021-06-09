@@ -344,8 +344,6 @@ function Music() {
 
   //Effects
   useEffect(() => {
-    console.log("The real names:", toRedirect);
-    console.log("The album names:", location.genreDash);
     if (
       location.genreDash != null &&
       toRedirect != null &&
@@ -360,11 +358,11 @@ function Music() {
 
   useEffect(() => {
     if (counter != null) {
-      console.log(
-        childData[counter].musicAdd.split("%2F")[
-          childData[counter].musicAdd.split("%2F").length - 1
-        ]
-      );
+      // console.log(
+      //   childData[counter].musicAdd.split("%2F")[
+      //     childData[counter].musicAdd.split("%2F").length - 1
+      //   ]
+      // );
       setmusicPlaying(
         childData[counter].musicAdd.split("%2F")[
           childData[counter].musicAdd.split("%2F").length - 1
@@ -420,7 +418,6 @@ function Music() {
       .catch((err) => {
         console.log(err);
       });
-    console.log(location.genreDash);
   }, []);
 
   useEffect(() => {
