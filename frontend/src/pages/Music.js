@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import pupper from "../images/Pupper.jpg";
 import MusicPlayer from "../component/MusicPlayer";
+import { useLocation } from "react-router-dom";
 
 //mui stuff
 import Typography from "@material-ui/core/Typography";
@@ -166,6 +167,7 @@ const PrettoSlider = withStyles({
 function Music() {
   //style
   const classes = useStyles();
+  const location = useLocation();
 
   //set states
   const [musicGenre, setmusicGenre] = useState(null);
@@ -176,6 +178,7 @@ function Music() {
   const [musicPlaying, setmusicPlaying] = useState(null);
   const [counter, setcounter] = useState(null);
   const [showStopButton, setshowStopButton] = useState(1);
+  const [toRedirect, setToRedirect] = useState(null);
 
   //functions
   function playMusic() {
@@ -320,7 +323,7 @@ function Music() {
   const musicComp = musicGenre ? (
     <div className="container">
       {musicGenre.map((dat) => (
-        <div>
+        <div id={dat} onLoad={() => setToRedirect(dat)}>
           <Typography variant="h4" component="h2" className="videoTitle">
             {dat}
           </Typography>
@@ -340,6 +343,21 @@ function Music() {
   );
 
   //Effects
+  useEffect(() => {
+    console.log("The real names:", toRedirect);
+    console.log("The album names:", location.genreDash);
+    if (
+      location.genreDash != null &&
+      toRedirect != null &&
+      location.genreDash == toRedirect
+    ) {
+      document.getElementById(toRedirect).scrollIntoView({
+        block: "start",
+        behavior: "smooth",
+      });
+    }
+  }, [toRedirect]);
+
   useEffect(() => {
     if (counter != null) {
       console.log(
@@ -393,6 +411,7 @@ function Music() {
   }, [musicPlaying]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .get(`/getMusicInfo`)
       .then((res) => {
@@ -401,6 +420,7 @@ function Music() {
       .catch((err) => {
         console.log(err);
       });
+    console.log(location.genreDash);
   }, []);
 
   useEffect(() => {
