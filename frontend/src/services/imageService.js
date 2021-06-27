@@ -92,7 +92,7 @@ export const momentImage = [
     url: moment4,
     title: "Dog",
     href: "photo/Dogs",
-    caption: "Dhashing Dogs",
+    caption: "Dashing Dogs",
   },
 
   {

@@ -13,7 +13,7 @@ function Places_folder() {
     const [modalOpen, setModalOpen] = useState(false); 
   return (
     <div>
-      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fplaces%2Fshan-elahi-DDiLYt_F88w-unsplash.jpg617?alt=media&token=91a772d8-9644-4c6b-9e5f-0c6e9e230875")'}}>
+      {/* <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fplaces%2Fshan-elahi-DDiLYt_F88w-unsplash.jpg617?alt=media&token=91a772d8-9644-4c6b-9e5f-0c6e9e230875")'}}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Famous Places</Typography>
@@ -22,7 +22,7 @@ function Places_folder() {
             <Typography variant="h4">iconic places in the world</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className="Photocontent">
     <Typography
        variant="h4"

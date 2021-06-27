@@ -14,7 +14,7 @@ function Cat_folder() {
       
   return (
     <div>
-      <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fcats%2Fisabela-ferreira-MQMVPYh3bhk-unsplash.jpg?alt=media&token=a0d4619e-6b3c-40d1-a24a-494df5d6c565")'}}>
+      {/* <div className="welcome" style={{backgroundImage:'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fcats%2Fisabela-ferreira-MQMVPYh3bhk-unsplash.jpg?alt=media&token=a0d4619e-6b3c-40d1-a24a-494df5d6c565")'}}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Cute Cats</Typography>
@@ -23,7 +23,7 @@ function Cat_folder() {
             <Typography variant="h4">Enjoy and reminisce to dozens of of adorable cats</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className="Photocontent">
     <Typography
        variant="h4"

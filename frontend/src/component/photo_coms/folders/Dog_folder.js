@@ -10,7 +10,7 @@ function Dog_folder() {
  
   return (
     <div>
-       <div className="welcome"style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fdaniel-lincoln-u4SKJ1WN9AE-unsplash.jpg?alt=media&token=66231e5a-8361-465f-be32-8615d31b52e7)"}}>
+       {/* <div className="welcome"style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fdogs%2Fdaniel-lincoln-u4SKJ1WN9AE-unsplash.jpg?alt=media&token=66231e5a-8361-465f-be32-8615d31b52e7)"}}>
         <CssBaseLine />
         <Box mt={9}>
         <Typography variant="h3">Dashing Dogs</Typography>
@@ -20,7 +20,7 @@ function Dog_folder() {
             <Typography variant="h4">and reminsice about four legged friends</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className="Photocontent">
     <Typography
        variant="h4"

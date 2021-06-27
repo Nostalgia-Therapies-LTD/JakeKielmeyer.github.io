@@ -10,7 +10,7 @@ function Nature_folder() {
     const [modalOpen, setModalOpen] = useState(false);
   return (
     <div>
-      <div className="welcome" style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fnature%2Fneven-krcmarek-3ym-ev0Pe58-unsplash.jpg?alt=media&token=8b074837-d184-49a0-b133-c8a617b7f2f0)"}}>
+      {/* <div className="welcome" style={{backgroundImage:"url(https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/photofolders%2Fnature%2Fneven-krcmarek-3ym-ev0Pe58-unsplash.jpg?alt=media&token=8b074837-d184-49a0-b133-c8a617b7f2f0)"}}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Mother Nature</Typography>
@@ -19,7 +19,7 @@ function Nature_folder() {
             <Typography variant="h4">pictures of the great outdoors</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className="Photocontent">
     <Typography
        variant="h4"

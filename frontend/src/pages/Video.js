@@ -145,7 +145,7 @@ function Video() {
 
   return (
     <div>
-      <div
+      {/* <div
         className="welcome"
         style={{
           backgroundImage:
@@ -159,7 +159,7 @@ function Video() {
             <Typography variant="h4">Watch the classic show today!</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className={classes.contents}>{repeatMovieCode}</div>
     </div>
   );

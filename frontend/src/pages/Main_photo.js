@@ -12,8 +12,7 @@ import CssBaseLine from "@material-ui/core/CssBaseline";
 
 function Main_photo(props) {
   return (
-    <div>
-      <div className="welcome">
+    <div>      {/* <div className="welcome">
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Nostalgic Moments</Typography>
@@ -22,7 +21,7 @@ function Main_photo(props) {
           <Typography variant="h4">or find comfort in one of our Nostalgic Moments albums</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
        
         <div className="Photocontent" >
         <Typography

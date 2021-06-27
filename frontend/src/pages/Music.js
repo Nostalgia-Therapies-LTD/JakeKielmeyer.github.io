@@ -441,11 +441,11 @@ function Music() {
 
   return (
     <div>
-      <div
+      {/* <div
         className="welcome"
         style={{
           backgroundImage:
-            'url("http://3.bp.blogspot.com/-KgZ1XvqDJnU/Ud2HY5wgf4I/AAAAAAAAheE/QlL9UG811k4/s1600/John+Collier+-+Around+the+Jukebox.+Dance+hall,+Richwood,+West+Virginia,+1942.jpg")',
+            'url("https://firebasestorage.googleapis.com/v0/b/nostalgiadev-1f319.appspot.com/o/musicImages%2FmusicPage.jpg?alt=media&token=57cf8ea8-3505-4204-a171-7c6488f33c81")',
         }}
       >
         <CssBaseLine />
@@ -456,12 +456,12 @@ function Music() {
               With stations like Pop-Socks! Boomer Heyday,
             </Typography>
             <Typography variant="h4">
-              and 70's time machine,there's great{" "}
+              and classic Old Time Radio Shows{" "}
             </Typography>
-            <Typography variant="h4">music for everyone </Typography>
+            <Typography variant="h4">there's something for everyone </Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className={classes.contents}>
         {musicComp}
         <div className="emptyInvisibleDiv"></div>

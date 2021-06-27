@@ -82,7 +82,7 @@ const Home = (props) => {
 
       <div className={classes.contents}>
         <Grid item xs={11} className={classes.rowsTitle}>
-          <Typography variant="h4">Nostalgic Moments</Typography>
+          <Typography variant="h4" style={{marginTop: "2.5%"}}>Nostalgic Moments</Typography>
         </Grid>
         <ContentRow rowName="Nostalgic Moments" images={momentImage} />
 

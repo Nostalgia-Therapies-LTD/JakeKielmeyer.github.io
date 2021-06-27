@@ -22,7 +22,7 @@ function My_moments() {
  //console.log(modalOpen)
   return (
     <div>
-      <div className="welcome">
+      {/* <div className="welcome">
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">My Moments</Typography>
@@ -33,7 +33,7 @@ function My_moments() {
             <Typography variant="h4">friends, and anything else you want.</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
       <div className="Photocontent">
         <Typography
           variant="h4"

@@ -41,7 +41,7 @@ function Photo(props) {
   const { classes } = props;
   return (
     <BrowserRouter>
-      <div className={classes.welcome}>
+      {/* <div className={classes.welcome}>
         <CssBaseLine />
         <Box mt={9}>
           <Typography variant="h3">Nostalgic Moments</Typography>
@@ -50,7 +50,7 @@ function Photo(props) {
             <Typography variant="h4">or find comfort in one of our Nostalgic Moments albums</Typography>
           </Box>
         </Box>
-      </div>
+      </div> */}
     <div className="App">
       <Switch>
         <Route exact path="/photo" component={Main_photo}></Route>

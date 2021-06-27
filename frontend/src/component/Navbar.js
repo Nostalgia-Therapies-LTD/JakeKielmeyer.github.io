@@ -10,9 +10,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = {
   appBar: {
-    background: "transparent",
+    background: "#fff",
     boxShadow: "none",
     paddingLeft: "2rem",
+    position: "fixed",
     "@media (max-width:760px)": {
       display: "none",
     },
@@ -22,21 +23,28 @@ const styles = {
     color: "#3fa9f5",
     fontFamily: "Leviathan",
     textTransform: "capitalize",
-    textShadow: "1px 1px 4px #000",
+    textShadow: "none",
+    "@media (max-width:770px)": {
+      display: "none",
+    },
   },
 
   navContainer: {
     display: "flex",
     color: "white",
     justifyContent: "space-between",
+    "@media (max-width:770px)": {
+      display: "none",
+    },
   },
 
   navLink: {
+    color: "#000",
     padding: "0 3rem",
     fontFamily: "KOJ",
     fontSize: "5rem",
     display: "flex",
-    textShadow: "1px 1px 4px #000",
+    // textShadow: "1px 1px 4px #000",
     textTransform: "capitalize",
     "@media (min-width:760px)": {
       padding: "0 .25rem",
@@ -55,9 +63,7 @@ function Navbar(props) {
     <AppBar position="absolute" className={classes.appBar}>
       <ToolBar className={classes.navContainer}>
         <Link to="/home">
-          <Button color="inherit" className={classes.brandName}>
-            <Typography variant="h6">Nostalgia Therapy</Typography>
-          </Button>
+            <Typography variant="h6" className={classes.brandName}>Nostalgia Therapy</Typography>
         </Link>{" "}
         <Link to="/photo">
           <Button color="inherit" className={classes.navLink}>
