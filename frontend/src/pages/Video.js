@@ -4,9 +4,9 @@ import VideoSlider from "../component/VideoSlider";
 import { useLocation } from "react-router-dom";
 
 //mui stuff
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import CssBaseLine from "@material-ui/core/CssBaseline";
+// import Typography from "@material-ui/core/Typography";
+// import Box from "@material-ui/core/Box";
+// import CssBaseLine from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 

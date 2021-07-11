@@ -88,16 +88,21 @@ function ContentRow(props) {
                 })
               }
             />
-
+                               
             <GridListTileBar
+            onClick={() =>
+              history.push({
+                pathname: `/${image.href}`,
+                genreDash: `${image.album}`,
+              })}
               title={image.caption}
               classes={{
                 root: classes.titleBar,
                 title: classes.title,
               }}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center" , cursor:"pointer"}}
             />
-            {/* </a> */}
+            
           </GridListTile>
         ))}
       </GridList>
