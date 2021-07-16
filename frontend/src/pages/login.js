@@ -96,11 +96,13 @@ const Login = (props) => {
       axios
       .post("/login", user)
       .then((res) => {
+        setLoading(false);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
       })
       .catch((err) => {
         setErrors(err.response.data);
         setLoading(false);
+        setIsClick(false);
     })
   }
   
@@ -109,6 +111,7 @@ const Login = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors({});
     setLoading(true);
     setIsClick(true);
 
@@ -118,7 +121,7 @@ const Login = (props) => {
       .then((userCredential) => {
         const uid = userCredential.user.uid;
         setLoading(false);
-        console.log(uid);
+        //console.log(uid);
         localStorage.setItem("norman", uid);
 
         axios.post("/checkSubscription", { uid: uid }).then((output) => {
@@ -141,8 +144,9 @@ const Login = (props) => {
   };
 
   const handleChange = (event) => {
+    setErrors({});
     if (event.target.name === "email") {
-      setUser({ email: event.target.value, password: user.password });
+      setUser({ email: event.target.value, password: user.password });  
     } else {
       setUser({ email: user.email, password: event.target.value });
     }

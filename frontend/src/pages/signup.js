@@ -84,7 +84,7 @@ const SignUp = (props) => {
     axios
       .post("/signup", user)
       .then((res) => {
-        console.log("Input sign up:", res);
+        //console.log("Input sign up:", res);
         setLoading(false);
         localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         // history.push("/home");
@@ -110,6 +110,7 @@ const SignUp = (props) => {
   };
 
   const handleChange = (event) => {
+    setErrors({});
     if (event.target.name === "firstName") {
       setUser({
         firstName: event.target.value,

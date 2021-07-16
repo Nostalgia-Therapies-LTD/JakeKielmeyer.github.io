@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import ImgGrid1 from "./imgGrid1"
 import Modal from './modal';
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import CssBaseLine from "@material-ui/core/CssBaseline";
+// import Box from "@material-ui/core/Box";
+// import CssBaseLine from "@material-ui/core/CssBaseline";
 
 
 

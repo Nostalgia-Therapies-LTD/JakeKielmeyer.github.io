@@ -6,8 +6,8 @@ import rush from "../../src/images/moments/terence.jpg";
 import My_Moments from "../../src/images/moments/MyMoments.jpg";
 import Nature from "../../src/images/moments/Nature.jpg";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import CssBaseLine from "@material-ui/core/CssBaseline";
+// import Box from "@material-ui/core/Box";
+// import CssBaseLine from "@material-ui/core/CssBaseline";
 
 
 function Main_photo(props) {
