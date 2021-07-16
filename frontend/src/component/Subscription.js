@@ -35,6 +35,7 @@ function Subscription(props) {
   };
 
   useEffect(() => {
+    console.log(userID);
     sendToCkeckOut(userID);
   }, []);
 

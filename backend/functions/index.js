@@ -52,7 +52,8 @@ const FBAuth = (req, res, next) => {
 };
 
 const isEmail = (email) => {
-  const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regEx =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (email.match(regEx)) return true;
   else return false;
 };
@@ -276,7 +277,7 @@ app.post("/getInfoTest", (req, res) => {
 app.post("/upload/:uid", FBAuth, filesUpload, async (req, res) => {
   const allUrl = [];
   const allFiles = req.files;
-  console.log(req.files.foo)
+  console.log(req.files.foo);
   await Promise.all(
     allFiles.map(async (eachFile) => {
       try {
@@ -415,9 +416,10 @@ app.get("/getMusicOnClick/:musicname", async (req, res) => {
     .limit(1)
     .get()
     .then((docs) => {
-      const documentName = docs.docs[0].ref.path.split("/")[
-        docs.docs[0].ref.path.split("/").length - 1
-      ];
+      const documentName =
+        docs.docs[0].ref.path.split("/")[
+          docs.docs[0].ref.path.split("/").length - 1
+        ];
       const docRef = db.collection("music").doc(documentName);
 
       db.runTransaction(async (t) => {
@@ -522,6 +524,9 @@ app.post("/checkSubscription", (req, res) => {
     .get()
     .then((snap) => {
       return res.json(snap.docs);
+    })
+    .catch((err) => {
+      console.error("The error come from the custome page");
     });
 });
 
