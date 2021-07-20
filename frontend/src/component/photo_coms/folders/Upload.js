@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import PhotoFile from "./PhotoFile";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { CircularProgress } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const Upload = () => {
-  const [loading, setLoading] = useState(false);
+ 
+  const [loading, setLoading] = useState(0);
   const [files, setfiles] = useState([]);
   const [error, seterror] = useState(null);
-  //const types =['image/jpeg','image/png'];
-  //const [size,setSize]=useState(0);
+  
   const changeHandler = (e) => {
-    setLoading(true)
+    //setLoading(true)
     e.preventDefault();
     let selected = e.target.files;
     if (selected.length !== 0) {
-      // [...selected].forEach(imgfile=>
-      //     setfile(imgfile));
-      //setfiles((files) => [...files, selected])
       setfiles(selected);
       seterror("");
     } else {
@@ -39,16 +37,32 @@ const Upload = () => {
           onChange={changeHandler}
         />
         <span>+</span>
-        <p className="upload">Upload</p>
       </label>
+      <p className="upload">Upload</p>
+      <div>
+      {loading > 0 && <Box position="relative" display="inline-flex">
+        <CircularProgress label={loading} variant="determinate" value= {loading} size={50}/> 
+        <Box
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+       <Typography variant="caption">{`${loading}%`}</Typography>
+      </Box>
+      </Box> } 
+     
+      </div>
       <div>
       
         {error && <div>{error}</div>}
         {files.length !== 0 && <PhotoFile setLoading={setLoading} files={files} setfiles={setfiles} />}
       </div>
-      {loading && (
-                <CircularProgress text="NT" size={30}  />
-              )}
+      
     </form>
   );
 };

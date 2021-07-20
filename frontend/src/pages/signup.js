@@ -93,10 +93,10 @@ const SignUp = (props) => {
         if (isLocation) {
           isLocation.collection("subscriptions").onSnapshot((snapShot) => {
             if (snapShot.docs.length !== 0) {
-              console.log("Home");
+              //console.log("Home");
               history.push({ pathname: "/home" });
             } else {
-              console.log("Subscription");
+              //console.log("Subscription");
               history.push({ pathname: "/subscription" });
             }
           });

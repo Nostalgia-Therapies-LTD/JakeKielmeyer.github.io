@@ -4,12 +4,18 @@ import useUserStorage from "../../../hooks/useUserStorage";
 
 const PhotoFile = ({ files, setfiles, setLoading }) => {
   // const url= useStorage(file);
-  const url = useUserStorage(files);
+  const {url} = useUserStorage(files, setLoading);
   
   useEffect(() => {
     
     if (url) {
-      setLoading(false);
+      // setLoading(100);
+      // setLoading(()=>{
+      //   setTimeout(()=> {setLoading(0)
+      //  },1000
+      //   )
+      // }
+      // )      
       setfiles([]);
     }
   }, [url, setfiles]);
