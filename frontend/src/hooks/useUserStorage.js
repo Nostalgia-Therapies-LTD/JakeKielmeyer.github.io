@@ -35,7 +35,7 @@ const useUserStorage = (files, setLoading) => {
               const loaded =progressEvent.loaded;
               const total=progressEvent.total;
               let percent=Math.floor(loaded *100 / total)
-               console.log(` ${loaded}kb of ${total}kb | ${percent}% `)
+              //  console.log(` ${loaded}kb of ${total}kb | ${percent}% `)
 
                if (percent<100){
                 setLoading(percent)

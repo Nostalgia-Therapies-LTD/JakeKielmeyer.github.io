@@ -8,10 +8,15 @@ import { makeStyles} from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt,faTimes } from '@fortawesome/free-solid-svg-icons';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 // My Moments Content
 const useStyles = makeStyles((theme) => ({
   modal: {
+    outlineStyle:"none",
     backgroundColor: "rgba(30, 30, 36, 0.92)",
     position: "fixed", /* Stay in place */
     zIndex: "1", /* Sit on top */
@@ -53,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }, 
 
   img:{
+    outlineStyle:"none",
      margin:"auto",
      display:"block",
       maxWidth: "70%",
@@ -126,18 +132,34 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10px",
   },
 },
+
+dialog:{
+  fontFamily:"Verdana",
+  textShadow:"none",
+
+}, 
     
   }));
 
 function Modal1({ selectedImg, setselectedImg,modalOpen,setModalOpen, props }) {
   const { docs, imgarr } = useFirestore1(props);
+  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClickClose =() =>{
+    setOpen(false);
+  }
  
   const handleClose = (e) => {
     setselectedImg(null);
     setModalOpen(false);
   };
   const handleDelete = (e) => {
+   
     const config = {
       headers: {
         Authorization: localStorage.FBIdToken,
@@ -185,12 +207,31 @@ return (
       >
         {selectedImg && docs.map((doc) => <img className ={classes.img} src={doc.url} alt={doc.name} key={doc.id}/>)}
       </Carousel>
-      <button className="delete" onClick={handleDelete}>
+      <div>
+      <button className="delete" onClick={handleClickOpen}>
       <FontAwesomeIcon icon={faTrashAlt} size="lg"></FontAwesomeIcon> 
       </button>
+      <Dialog
+        open={open}
+        onClose={handleClickClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        id="alert-dialog-title"
+      >
+     <DialogTitle classes={classes.dialog}>{"Are you sure you want to delete this photo permanently?"}</DialogTitle>
+     <DialogActions>
+          <Button onClick={handleClickClose} color="secondary">
+            No
+          </Button>
+          <Button onClick={handleDelete} color="secondary" >
+            Yes
+          </Button>
+          </DialogActions>
+      </Dialog>
       <button className="close" onClick={handleClose}>
       <FontAwesomeIcon icon={faTimes} size="lg"></FontAwesomeIcon>
       </button> 
+      </div>
       </div>
       </div> 
       </Fade>
