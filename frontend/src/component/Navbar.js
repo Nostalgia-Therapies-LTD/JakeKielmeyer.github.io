@@ -67,17 +67,17 @@ function Navbar(props) {
         </Link>{" "}
         <Link to="/photo">
           <Button color="inherit" className={classes.navLink}>
-            Photos{" "}
+            Moments{" "}
           </Button>
         </Link>
         <Link to="/music">
           <Button color="inherit" className={classes.navLink}>
-            Music{" "}
+            Radio{" "}
           </Button>
         </Link>
         <Link to="/video">
           <Button color="inherit" className={classes.navLink}>
-            Video
+            TV
           </Button>
         </Link>
         <Link to="/payment_management">
