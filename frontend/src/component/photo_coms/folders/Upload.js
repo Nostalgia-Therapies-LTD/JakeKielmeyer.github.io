@@ -14,13 +14,18 @@ const Upload = () => {
     //setLoading(true)
     e.preventDefault();
     let selected = e.target.files;
-    if (selected.length !== 0) {
-      setfiles(selected);
-      seterror("");
-    } else {
-      setfiles([]);
-      seterror("Please choose image file (jpeg or png)");
-    }
+    [...selected].forEach(x=>
+      {console.log(x,x.type)
+      if (selected.length === 0 || (x.type!=="image/jpeg" && x.type!=="image/png")) {
+        setfiles([]);
+        seterror("Please select an image file (jpg/png)");
+    } 
+  else{
+    setfiles(selected);
+    seterror("");
+  }
+  })
+    
   };
 
   return (

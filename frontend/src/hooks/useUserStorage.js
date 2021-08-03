@@ -18,7 +18,8 @@ const useUserStorage = (files, setLoading) => {
       try {
         const formData = new FormData();
     
-        const nFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
+        let nxFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
+        const nFiles=nxFiles.filter(x=>x.type==="image/jpeg" || x.type==="image/png" || x.type==="image/jpg")
         //console.log(nFiles);
         nFiles.forEach((file) => {
           formData.append("file", file);

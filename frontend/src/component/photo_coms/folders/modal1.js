@@ -12,9 +12,15 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Typography } from "@material-ui/core";
 
 // My Moments Content
 const useStyles = makeStyles((theme) => ({
+  dialogbox:{
+      fontFamily:"KOJ",
+      fontSize: "22px",
+      color:"#000"
+  },
   modal: {
     outlineStyle:"none",
     backgroundColor: "rgba(30, 30, 36, 0.92)",
@@ -133,11 +139,6 @@ const useStyles = makeStyles((theme) => ({
   },
 },
 
-dialog:{
-  fontFamily:"Verdana",
-  textShadow:"none",
-
-}, 
     
   }));
 
@@ -218,7 +219,8 @@ return (
         aria-describedby="alert-dialog-description"
         id="alert-dialog-title"
       >
-     <DialogTitle classes={classes.dialog}>{"Are you sure you want to delete this photo permanently?"}</DialogTitle>
+     <div style={{padding:"2em"}}><Typography  className={classes.dialogbox} variant="h7">Are you sure you want to delete this photo permanently?</Typography></div>
+     
      <DialogActions>
           <Button onClick={handleClickClose} color="secondary">
             No
