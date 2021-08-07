@@ -14,7 +14,7 @@ function Subscription(props) {
       .doc(userID)
       .collection("checkout_sessions")
       .add({
-        price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
+        price: "price_1IkWqLCmldA3mk4tWnZaGTJK",
         //for localhost:
         success_url: "http://localhost:3000/home",
         cancel_url: "http://localhost:3000/",
