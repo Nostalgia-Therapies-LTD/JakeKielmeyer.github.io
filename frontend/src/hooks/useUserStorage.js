@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useUserStorage = (files) => {
-  
+const useUserStorage = (files, setLoading) => {
   const [error, seterror] = useState(null);
   const [url, seturl] = useState(null);
   //const[sizeError,setSizeError]=useState(null);
@@ -18,16 +17,14 @@ const useUserStorage = (files) => {
     const uploadFile = async () => {
       try {
         const formData = new FormData();
-        // if ([...files].forEach(file=>file.size>5 *1024 *1024)){
-        //   setSizeError(true)
-        // };
-       
-        //setSizeError();
-        const nFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
+    
+        let nxFiles=[...files].filter(file=>file.size < 5 * 1024 * 1024);
+        const nFiles=nxFiles.filter(x=>x.type==="image/jpeg" || x.type==="image/png" || x.type==="image/jpg")
         //console.log(nFiles);
         nFiles.forEach((file) => {
           formData.append("file", file);
         });
+
 
         const config = {
           headers: {
@@ -35,20 +32,37 @@ const useUserStorage = (files) => {
             "Access-Control-Allow-Origin": "*",
             Authorization: localStorage.FBIdToken,
           },
+          onUploadProgress: (progressEvent) => {
+              const loaded =progressEvent.loaded;
+              const total=progressEvent.total;
+              let percent=Math.floor(loaded *100 / total)
+              //  console.log(` ${loaded}kb of ${total}kb | ${percent}% `)
+
+               if (percent<100){
+                setLoading(percent)
+               }
+             }
+
         };
         const userID = localStorage.getItem("norman");
        
         if (userID) {
-           const { url } =  axios.post(`/upload/${userID}`, formData, config);
-         
-
-             seturl(url); 
-          
+            axios.post(`/upload/${userID}`, formData, config)
+           .then((res)=> {
+            seturl(res.data.url);
+            setLoading(100);
+            setLoading(()=>{
+            setTimeout(()=> {setLoading(0)
+            },2500
+             )})          
               
-            }
+            })
+            .catch((err) => {
+              console.error(err);})
 
-      } catch (error) {
-        seterror(error);
+            }}
+      catch (error) {
+      seterror(error);
       }
     };
    
@@ -58,8 +72,8 @@ const useUserStorage = (files) => {
       source.cancel();
     };
   }, [files]);
-  //console.log(sizeError);
-  return { url, error };
+  //console.log(url,upPercent);
+  return { url };
 };
 
 export default useUserStorage;

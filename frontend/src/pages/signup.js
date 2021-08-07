@@ -62,6 +62,13 @@ const styles = {
     marginTop: "25px",
     paddingLeft: "2rem",
   },
+  link:{
+    textDecoration:"underline",
+    "&:hover": {
+        color: "#3fa9f5",
+    },
+  }
+  
 };
 
 const SignUp = (props) => {
@@ -93,10 +100,10 @@ const SignUp = (props) => {
         if (isLocation) {
           isLocation.collection("subscriptions").onSnapshot((snapShot) => {
             if (snapShot.docs.length !== 0) {
-              console.log("Home");
+              //console.log("Home");
               history.push({ pathname: "/home" });
             } else {
-              console.log("Subscription");
+              //console.log("Subscription");
               history.push({ pathname: "/subscription" });
             }
           });
@@ -206,6 +213,12 @@ const SignUp = (props) => {
                 {errors.general}
               </Typography>
             )}
+
+           <Typography variant="body2" className={classes.textField}>
+                By clicking Sign up you agree to our 
+                <a className={classes.link} href="https://www.termsfeed.com/live/e80ff337-86fb-46a8-85bb-e99af248e61b" target="blank"> Terms and Conditions </a> 
+                and <a className={classes.link} href= "https://www.termsfeed.com/live/f5b96439-0422-4218-b816-9673ea5917af" target="blank"> Privacy Policy</a>
+              .</Typography>
 
             <Button
               type="submit"

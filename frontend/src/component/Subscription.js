@@ -17,7 +17,7 @@ function Subscription(props) {
         price: "price_1IlhtTCmldA3mk4tlb9YRTb8",
         //for localhost:
         success_url: "http://localhost:3000/home",
-        cancel_url: "http://localhost:3000/deleteSubscription",
+        cancel_url: "http://localhost:3000/",
         //for hosting:
         // success_url: "https://nostalgiadev-1f319.web.app/home",
         // cancel_url: "https://nostalgiadev-1f319.web.app/",

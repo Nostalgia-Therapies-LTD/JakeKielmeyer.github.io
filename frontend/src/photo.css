@@ -156,6 +156,8 @@ form {
   color: rgba(255, 255, 255, 0.37);
 }
 .upload {
+  font-family:KOJ;
+  font-size: 22px;
   color: whitesmoke;
   margin: 10px 0;
   
@@ -235,6 +237,11 @@ form {
 .or span { 
    background:#fff; 
    padding:0 10px; 
+  }
+
+  .MuiDialogTitle-root{
+    font-family:Verdana;
+    text-shadow:none;
   }
 
 .delete {
