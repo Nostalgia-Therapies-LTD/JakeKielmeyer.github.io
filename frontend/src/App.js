@@ -101,20 +101,25 @@ function App() {
       <header>
       <Preloader/>
       </header>:
-      
+
       <Router>
         <Switch>
-          <Route exact path="/" component={Login}></Route>
+          {/* <Route exact path="/" component={Login}></Route>
           <Route exact path="/signup" component={SignUp}></Route>
           <Route exact path="/reset" component={Reset}></Route>
           <Route exact path="/subscription" component={Subscription}></Route>
           <Route exact path="/terms" component={Terms}></Route>
           <Route exact path="/privacy" component={Privacy}></Route>
-          <Route exact path="/payment_management" component={Payment}></Route>
+          <Route exact path="/payment_management" component={Payment}></Route> */}
           <React.Fragment>
             <Navbar />
             <MobileNavbar />
             <div className="container">
+            <ProtectedRoute
+              exact
+              path="/"
+              component={Home}>
+              </ProtectedRoute>
               <ProtectedRoute
                 exact
                 path="/home"

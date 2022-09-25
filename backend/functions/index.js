@@ -38,18 +38,18 @@ const db = admin.firestore();
 const storageRef = admin.storage().bucket();
 
 //Authentication Validation
-const FBAuth = (req, res, next) => {
-  let idToken;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer ")
-  ) {
+// const FBAuth = (req, res, next) => {
+//   let idToken;
+//   if (
+//     req.headers.authorization &&
+//     req.headers.authorization.startsWith("Bearer ")
+//   ) {
     // idToken = req.headers.authorization.split("Bearer ")[1];
-    next();
-  } else {
-    return res.status(403).json({ error: "The user is Unauthorized" });
-  }
-};
+//     next();
+//   } else {
+//     return res.status(403).json({ error: "The user is Unauthorized" });
+//   }
+// };
 
 const isEmail = (email) => {
   const regEx =

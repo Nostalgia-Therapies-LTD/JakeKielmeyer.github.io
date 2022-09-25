@@ -195,17 +195,17 @@ export default function MobileNavbar() {
             TV
           </Button>
         </Link>
-        <Link to="/payment_management">
+        {/* <Link to="/payment_management">
           <Button color="inherit" className={classes.navLink}>
             Account
           </Button>
-        </Link>
+        </Link> */}
         {/* <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
           </Button>
         </Link> */}
-        <Link to="/">
+        {/* <Link to="/">
           <Button
             color="inherit"
             className={classes.navLink}
@@ -213,7 +213,7 @@ export default function MobileNavbar() {
           >
             Logout
           </Button>
-        </Link>
+        </Link> */}
 
         </ul>
 

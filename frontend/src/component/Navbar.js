@@ -80,17 +80,17 @@ function Navbar(props) {
             TV
           </Button>
         </Link>
-        <Link to="/payment_management">
+        {/* <Link to="/payment_management">
           <Button color="inherit" className={classes.navLink}>
             Account Settings
           </Button>
-        </Link>
+        </Link> */}
         {/* <Link to="/puzzle">
           <Button color="inherit" className={classes.navLink}>
             Puzzle
           </Button>
         </Link> */}
-        <Link to="/">
+        {/* <Link to="/">
           <Button
             color="inherit"
             className={classes.navLink}
@@ -98,7 +98,7 @@ function Navbar(props) {
           >
             Logout
           </Button>
-        </Link>
+        </Link> */}
       </ToolBar>
     </AppBar>
   );
